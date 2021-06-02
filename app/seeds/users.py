@@ -1,5 +1,7 @@
 from werkzeug.security import generate_password_hash
 from app.models import db, User
+from faker import Faker
+fake = Faker()
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
@@ -7,7 +9,8 @@ def seed_users():
     demo = User(
         first_name="Demo",
         last_name="User",
-        email="demo@.com",
+        username="demouserrr",
+        email="demo@user.io",
         phone="1112223333",
         birthday="07151994",
         password="password",
@@ -20,7 +23,8 @@ def seed_users():
     eunice = User(
         first_name='Eunice',
         last_name="Park",
-        email="eunice.com",
+        username="euniceparkkk",
+        email="eunice@gmail.com",
         phone="1234567890",
         birthday="04181998",
         password="password",
@@ -32,8 +36,24 @@ def seed_users():
     )
     db.session.add(demo)
     db.session.add(eunice)
-
     db.session.commit()
+
+    for i in range(20):
+        fake_user = User(
+            first_name=fake.first_name(),
+            last_name=fake.last_name(),
+            username=fake.user_name(),
+            email=fake.free_email(),
+            phone=fake.phone_number(),
+            birthday=fake.date_of_birth(),
+            password="password",
+            profile_img=fake.image_url(),
+            cover_img=fake.image_url(),
+            bio=fake.sentence(nb_words=9),
+            location=fake.city()
+        )
+        db.session.add(fake_user)
+        db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this

@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key = True)
   first_name = db.Column(db.String(50), nullable = False)
   last_name = db.Column(db.String(50), nullable = False)
+  username = db.Column(db.String(50), nullable = False, unique = True)
   email = db.Column(db.String(100), nullable = False, unique = True)
   phone = db.Column(db.Integer, nullable = False, unique = True)
   birthday = db.Column(db.Text, nullable = False)
@@ -64,6 +65,7 @@ class User(db.Model, UserMixin):
       "id": self.id,
       "first_name": self.first_name,
       "last_name": self.last_name,
+      "username": self.username,
       "email": self.email,
       "phone": self.phone,
       "birthday": self.birthday,

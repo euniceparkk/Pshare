@@ -1,29 +1,30 @@
-from app.models import db, Bookmark
+from app.models import db, Tweet
 import datetime
 
-def seed_bookmarks():
+def seed_tweets():
 
-  demo_bookmark1 = Bookmark(
+  demo_tweet1 = Tweet(
       user_id=1, 
-      tweet_id=1, 
+      content="First tweet, hello world!",
       created_at=datetime.datetime.now(), 
   )
-
-  demo_bookmark2 = Bookmark(
+  
+  demo_tweet2 = Tweet(
     user_id=1, 
-    tweet_id=2, 
+    content="Second tweet, hello world!",
     created_at=datetime.datetime.now(), 
   )
 
-  demo_bookmark3 = Bookmark(
+  demo_tweet3 = Tweet(
     user_id=1, 
-    tweet_id=3, 
+    content="Third tweet, hello world!",
     created_at=datetime.datetime.now(), 
   )
 
-  db.session.add(demo_bookmark1)
-  db.session.add(demo_bookmark2)
-  db.session.add(demo_bookmark3)
+  db.session.add(demo_tweet1)
+  db.session.add(demo_tweet2)
+  db.session.add(demo_tweet3)
+
   db.session.commit()
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
@@ -31,6 +32,6 @@ def seed_bookmarks():
 # the auto incrementing primary key
 
 
-def undo_bookmarks():
-    db.session.execute('TRUNCATE Bookmarks RESTART IDENTITY CASCADE;')
+def undo_tweets():
+    db.session.execute('TRUNCATE Tweets RESTART IDENTITY CASCADE;')
     db.session.commit()
