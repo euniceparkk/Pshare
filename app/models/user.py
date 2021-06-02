@@ -10,7 +10,7 @@ class User(db.Model, UserMixin):
   first_name = db.Column(db.String(50), nullable = False)
   last_name = db.Column(db.String(50), nullable = False)
   email = db.Column(db.String(100), nullable = False, unique = True)
-  phone = db.Column(db.Integer(10), nullable = False, unique = True)
+  phone = db.Column(db.Integer, nullable = False, unique = True)
   birthday = db.Column(db.Text, nullable = False)
   hashed_password = db.Column(db.String(255), nullable = False)
   profile_img = db.Column(db.Text, nullable = False)
@@ -24,17 +24,26 @@ class User(db.Model, UserMixin):
   bookmarks = db.relationship("Bookmark", back_populates="user")
   # likes belongsTo user
   likes = db.relationship("Like", back_populates="user")
-
   # tweets belongTo user
   tweets = db.relationship("Tweet", back_populates="user")
-
   # replies belongsTo user
   replies = db.relationship("Reply", back_populates="user")
 
   # followers belongsTo user
-  followers = db.relationship("Follower", back_populates="follows", foreign_keys=[Follower.user_id])
+  # followers = db.relationship("Follower", back_populates="follows", foreign_keys=[Follower.user_id])
   # followed belongsTo user
-  followed = db.relationship("Follower", back_populates="follows", foreign_keys=[Follower.follows_id])
+  # followed = db.relationship("Follower", back_populates="follows", foreign_keys=[Follower.follows_id])
+
+  # many-to-many
+  followed_users = db.relationship(
+    "User", 
+    secondary="Follower",
+    primaryjoin=(Follower.follows_id == id),
+    secondaryjoin=(Follower.user_id == id),
+    backref=db.backref("users_followers", lazy="dynamic"),
+    lazy="dynamic"
+  ) 
+
 
   @property
   def password(self):

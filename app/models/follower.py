@@ -8,7 +8,7 @@ class Follower(db.Model):
   created_at = db.Column(db.DateTime, nullable = False)
 
   # user hasMany followers
-  follows = db.relationship("User", back_populates="followers", foreign_keys=[user_id])
+  # follows = db.relationship("User", back_populates="followers", foreign_keys=[user_id])
   # followed hasMany followers
-  user = db.relationship("User", back_populates="followed", foreign_keys=[follows_id])
+  # user = db.relationship("User", back_populates="followed", foreign_keys=[follows_id])
   

@@ -35,14 +35,17 @@ This is the backend for the Flask React project.
 5. Get into your pipenv, migrate your database, seed your database, and run your flask app
 
    ```bash
-   (flask seed undo)
    pipenv shell
    ```
 
+   ```bashpsql
+   (flask seed undo)
+   flask db downgrade
+   ```
+
    ```bash
-   flask db migrate
    flask db upgrade
-   (flask db migrate)
+   flask db migrate
    (flask db upgrade)
    ```
 
