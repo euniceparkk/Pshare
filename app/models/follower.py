@@ -12,3 +12,10 @@ class Follower(db.Model):
   # followed hasMany followers
   # user = db.relationship("User", back_populates="followed", foreign_keys=[follows_id])
   
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "user_id": self.user_id,
+      "follows_id": self.follows_id,
+      "created_at": self.created_at
+    }

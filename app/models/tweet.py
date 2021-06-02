@@ -18,3 +18,16 @@ class Tweet(db.Model):
 
   # replies belongsTo tweet
   replies = db.relationship("Reply", back_populates="tweet")
+
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "user_id": self.user_id,
+      "content": self.content,
+      "image": self.image,
+      "created_at": self.created_at,
+
+      # nesting bookmark dictionary inside user dictionary
+      "likes": self.likes.to_dict(),
+      "replies": self.replies.to_dict()
+    }

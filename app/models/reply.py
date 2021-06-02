@@ -12,3 +12,12 @@ class Reply(db.Model):
   user = db.relationship("User", back_populates="replies")
   # tweet hasMany replies
   tweet = db.relationship("Tweet", back_populates="replies")
+
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "user_id": self.user_id,
+      "tweet_id": self.tweet_id,
+      "content": self.content,
+      "created_at": self.created_at
+    }

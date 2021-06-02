@@ -29,11 +29,6 @@ class User(db.Model, UserMixin):
   # replies belongsTo user
   replies = db.relationship("Reply", back_populates="user")
 
-  # followers belongsTo user
-  # followers = db.relationship("Follower", back_populates="follows", foreign_keys=[Follower.user_id])
-  # followed belongsTo user
-  # followed = db.relationship("Follower", back_populates="follows", foreign_keys=[Follower.follows_id])
-
   # many-to-many
   followed_users = db.relationship(
     "User", 
@@ -43,6 +38,11 @@ class User(db.Model, UserMixin):
     backref=db.backref("users_followers", lazy="dynamic"),
     lazy="dynamic"
   ) 
+
+  # followers belongsTo user
+  # followers = db.relationship("Follower", back_populates="follows", foreign_keys=[Follower.user_id])
+  # followed belongsTo user
+  # followed = db.relationship("Follower", back_populates="follows", foreign_keys=[Follower.follows_id])
 
 
   @property
@@ -62,6 +62,23 @@ class User(db.Model, UserMixin):
   def to_dict(self):
     return {
       "id": self.id,
-      "username": self.username,
-      "email": self.email
+      "first_name": self.first_name,
+      "last_name": self.last_name,
+      "email": self.email,
+      "phone": self.phone,
+      "birthday": self.birthday,
+      "hashed_password": self.hashed_password,
+      "profile_img": self.profile_img,
+      "cover_img": self.cover_img,
+      "bio": self.bio,
+      "location": self.location,
+      "created_at": self.created_at,
+
+      # nesting bookmark dictionary inside user dictionary 
+      "bookmarks": self.bookmarks.to_dict(),
+      "likes": self.likes.to_dict(),
+      "tweets": self.tweets.to_dict(),
+      "replies": self.replies.to_dict(),
+      "followed_users": [user.id for user in self.followed_users],
+      # "users_followers": self.users_followers.to_dict()
     }

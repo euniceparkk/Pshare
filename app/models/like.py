@@ -11,3 +11,11 @@ class Like(db.Model):
   user = db.relationship("User", back_populates="likes")
   # tweet hasMany likes
   tweet = db.relationship("Tweet", back_populates="likes")
+
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "user_id": self.user_id,
+      "tweet_id": self.tweet_id,
+      "created_at": self.created_at
+    }
