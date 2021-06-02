@@ -1,5 +1,10 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
+from .bookmark import seed_bookmarks, undo_bookmarks
+from .follower import seed_followers, undo_followers
+from .like import seed_likes, undo_likes
+from .reply import seed_replies, undo_replies
+from .tweet import seed_tweets, undo_tweets
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
