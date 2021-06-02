@@ -40,6 +40,7 @@ This is the backend for the Flask React project.
    ```
 
    ```bash
+   flask db migrate
    flask db upgrade
    (flask db migrate)
    (flask db upgrade)
