@@ -1,0 +1,74 @@
+.login-form__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form__email {
+  border: 1px solid lightgray;
+  border-radius: .3em;
+
+  padding-left: 15px;
+  height: 3.5em;
+  width: 21em;
+
+  font-size: 1.05em;
+}
+
+.login-form__email:focus{
+  outline: none;
+  border: 2.5px solid #FFDA0A;
+}
+
+.login-form__password {
+  border: 1px solid lightgray;
+  border-radius: .3em;
+
+  margin: 25px 0px;
+  padding-left: 15px;
+  height: 3.5em;
+  width: 21em;
+
+  font-size: 1.05em;
+}
+
+.login-form__password:focus{
+  outline: none;
+  border: 2.5px solid #FFDA0A;
+}
+
+.login-form__container-1 {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px;
+}
+
+#login__sign-btn {
+  margin-bottom: .8em;
+  background-color: #FFDA0A;
+  border-radius: 2em;
+  width: 21.5em;
+  height: 3em;
+  
+  color: white;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+
+#login__demo-btn {
+  margin-top: .5em;
+  background-color: white;
+  border: 1px solid #FFDA0A;
+  border-radius: 2em;
+  width: 21.5em;
+  height: 3em;
+  
+  color: #FFDA0A;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+
+#login__demo-btn:hover {
+  background-color: #FFFCEB;
+}

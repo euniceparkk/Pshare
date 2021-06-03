@@ -1,0 +1,40 @@
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  height: 100vh;
+  width: 100vw;
+  padding: 45px;
+  margin: 30px;
+}
+
+#login__bird-image {
+  height: 3.5em;
+  width: 3.5em;
+  position: absolute;
+  top: 16px;
+  right: 850px;
+}
+
+#login__header-1 {
+  font-size: 2.5em;
+  letter-spacing: .03;
+}
+
+.login__container-1 {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0px;
+  font-size: .9em;
+}
+
+#login__redirect-link {
+  color: #FFDA0A;
+  padding-left: 8px;
+}
+
+#login__redirect-link:hover {
+  text-decoration: underline;
+}
