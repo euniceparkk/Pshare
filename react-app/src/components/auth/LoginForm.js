@@ -37,17 +37,15 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         ))}
       </div>
       <div>
-        <label htmlFor="email">Email</label>
         <input
           name="email"
           type="text"
-          placeholder="Email"
           value={email}
           onChange={updateEmail}
+          placeholder="Phone, email, or username"
         />
       </div>
       <div>
-        <label htmlFor="password">Password</label>
         <input
           name="password"
           type="password"

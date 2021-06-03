@@ -70,7 +70,7 @@
   width: 23.8em;
   height: 3.1em;
   
-  color: #FFDA0A;
+  color: red;
   font-size: 1em;
   font-weight: 600;
   letter-spacing: .01em;
@@ -86,13 +86,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  padding-bottom: 1.2em;
+  padding-bottom: 1em;
 }
 
 .splash__footer {
   font-size: .86em;
   font-weight: 400;
-  letter-spacing: .04em;
+  letter-spacing: .05em;
   color: rgb(92, 92, 92);
 }
 

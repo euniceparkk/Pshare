@@ -8,6 +8,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
 import SplashPage from "./components/auth/SplashPage";
+import LoginPage from "./components/auth/LoginPage";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -32,6 +33,10 @@ function App() {
       <Switch>
         <Route path="/" exact={true}>
           <SplashPage />
+        </Route>
+
+        <Route path="/login">
+          <LoginPage />
         </Route>
 
         <NavBar setAuthenticated={setAuthenticated} />

@@ -4,7 +4,8 @@ import yellowBird from '../../images/bird-yellow.png';
 import { Modal } from '../../context/Modal';
 import './SplashPage.css';
 import SignUpForm from './SignUpForm';
-import LoginForm from './LoginForm';
+import { NavLink } from 'react-router-dom';
+import LoginPage from './LoginPage';
 
 function SplashPage() {
   const [showSignup, setShowSignup] = useState(false);
@@ -16,10 +17,10 @@ function SplashPage() {
     setShowSignup(!showSignup);
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    setShowLogin(!showLogin);
-  };
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   setShowLogin(!showLogin);
+  // };
 
   const handleClickOutside = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {
@@ -50,22 +51,32 @@ function SplashPage() {
         <span id="splash__header-1">Happening now</span>
         <h2 id="splash__header-2">Join Pshare today.</h2>
         <button id="splash__sign-btn" onClick={handleSignup}>Sign up</button>
-        <button id="splash__log-btn" onClick={handleLogin}>Log in</button>
+        <button id="splash__log-btn">
+          <NavLink to={`/login`} exact={true}>
+            Log in
+          </NavLink>
+        </button>
       </div>
 
       {showSignup &&
-        <div ref={ref}>
+        // <div ref={ref}>
+        <div>
           <Modal>
             <SignUpForm />
+            {/* <button>Log in to Twitter</button> */}
+            {/* <NavLink to={`/login`}>Log in to Twitter</NavLink> */}
           </Modal>
         </div>
       }
 
       {showLogin &&
-        <div ref={ref}>
-          <Modal>
-            <LoginForm />
-          </Modal>
+        <div>
+          {/* <LoginForm /> */}
+          {/* <button>Sign up for Twitter</button> */}
+          <NavLink to={`/login`}>
+            Sign up for Twitter
+          <LoginPage />
+          </NavLink>
         </div>
       }
 
