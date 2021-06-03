@@ -33,15 +33,14 @@ class User(db.Model, UserMixin):
   # this relationship allows you to access both the collection of users 
   # that follow a given user (with user.followers), and the collection
   # of users that a user follows (with user.follows)
-  followers = db.relationship(
+  followed_users = db.relationship(
     "User", 
     secondary=follows,
     primaryjoin=(follows.c.user_id == id),
     secondaryjoin=(follows.c.follows_id == id),
-    backref=db.backref("follows", lazy="dynamic"),
+    backref=db.backref("users_followers", lazy="dynamic"),
     lazy="dynamic"
   )
-
 
   # # many-to-many relationship without having a physical joins table
   # followed_users = db.relationship(
@@ -52,8 +51,6 @@ class User(db.Model, UserMixin):
   #   backref=db.backref("users_followers", lazy="dynamic"),
   #   lazy="dynamic"
   # ) 
-
-
 
   @property
   def password(self):
@@ -86,10 +83,10 @@ class User(db.Model, UserMixin):
       "created_at": self.created_at,
 
       # nesting bookmark dictionary inside user dictionary 
-      "bookmarks": self.bookmarks.to_dict(),
-      "likes": self.likes.to_dict(),
-      "tweets": self.tweets.to_dict(),
-      "replies": self.replies.to_dict(),
+      "bookmarks": [bookmark.to_dict() for bookmark in self.bookmarks],
+      "likes": [like.to_dict() for like in self.likes],
+      "tweets": [tweet.to_dict() for tweet in self.tweets],
+      "replies": [reply.to_dict() for reply in self.replies],
       "followed_users": [user.id for user in self.followed_users],
       # "users_followers": self.users_followers.to_dict()
     }

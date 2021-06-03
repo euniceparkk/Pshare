@@ -1,21 +1,29 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { login } from "../../services/auth";
+import { login } from "../../store/session";
+import './LoginForm.css';
 
-const LoginForm = ({ authenticated, setAuthenticated }) => {
+const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const user = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const user = await login(email, password);
-    if (!user.errors) {
-      setAuthenticated(true);
-    } else {
+    const data = await login(email, password);
+    if (data.errors) {
       setErrors(user.errors);
     }
   };
+
+  const demoUser = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@user.io', 'password'));
+    if (data.errors) setErrors(data.errors);
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -25,37 +33,40 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     setPassword(e.target.value);
   };
 
-  if (authenticated) {
-    return <Redirect to="/" />;
+  if (user) {
+    return <Redirect to="/home" />;
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form onSubmit={onLogin} className="login-form__wrapper">
       <div>
         {errors.map((error) => (
           <div>{error}</div>
         ))}
       </div>
       <div>
-        <label htmlFor="email">Email</label>
         <input
+          className="login-form__email"
           name="email"
           type="text"
-          placeholder="Email"
           value={email}
           onChange={updateEmail}
+          placeholder="Phone, email, or username"
         />
       </div>
       <div>
-        <label htmlFor="password">Password</label>
         <input
+          className="login-form__password"
           name="password"
           type="password"
           placeholder="Password"
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
+        <div className="login-form__container-1">
+          <button type="submit" id="login__sign-btn">Log in</button>
+          <button type="submit" id="login__demo-btn" onClick={demoUser}>Demo User</button>
+        </div>
       </div>
     </form>
   );
