@@ -28,6 +28,6 @@ class Tweet(db.Model):
       "created_at": self.created_at,
 
       # nesting bookmark dictionary inside user dictionary
-      "likes": self.likes.to_dict(),
-      "replies": self.replies.to_dict()
+      "likes": [like.to_dict() for like in self.likes],
+      "replies": [reply.to_dict() for reply in self.replies]
     }

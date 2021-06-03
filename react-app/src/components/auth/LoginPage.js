@@ -1,11 +1,12 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import LoginForm from '../../components/auth/LoginForm';
 
 function LoginPage() {
   return (
     <div>
       <LoginForm />
-      <h2>Hello World</h2>
+      <NavLink to={`/signup`}>Sign up for Twitter</NavLink>
     </div>
   )
 }

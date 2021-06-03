@@ -1,21 +1,28 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { login } from "../../services/auth";
+import { login } from "../../store/session";
 
-const LoginForm = ({ authenticated, setAuthenticated }) => {
+const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const user = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const user = await login(email, password);
-    if (!user.errors) {
-      setAuthenticated(true);
-    } else {
+    const data = await login(email, password);
+    if (data.errors) {
       setErrors(user.errors);
     }
   };
+
+  const demoUser = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@user.io', 'password'));
+    if (data.errors) setErrors(data.errors);
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -25,8 +32,8 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     setPassword(e.target.value);
   };
 
-  if (authenticated) {
-    return <Redirect to="/" />;
+  if (user) {
+    return <Redirect to="/home" />;
   }
 
   return (
@@ -54,6 +61,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           onChange={updatePassword}
         />
         <button type="submit">Login</button>
+        <button type="submit" onClick={demoUser}>Demo User</button>
       </div>
     </form>
   );

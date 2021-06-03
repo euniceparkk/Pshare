@@ -70,15 +70,14 @@
   width: 23.8em;
   height: 3.1em;
   
-  color: red;
+  color: #FFDA0A;
   font-size: 1em;
   font-weight: 600;
   letter-spacing: .01em;
 }
 
 #splash__log-btn:hover {
-  background-color: #FFE433;
-  color: white;
+  background-color: #FFFCEB;
 }
 
 .splash__container-3 {

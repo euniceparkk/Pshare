@@ -1,21 +1,35 @@
-import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../services/auth';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
+import { signUp } from "../../store/session"
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+const SignUpForm = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  // const [errors, setErrors] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const user = useSelector(state => state.session.user);
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(username, email, password);
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
+      await dispatch(signUp(firstName, lastName, username, email, password, birthday));
     }
+  };
+
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   const updateUsername = (e) => {
@@ -34,50 +48,85 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     setRepeatPassword(e.target.value);
   };
 
-  if (authenticated) {
-    return <Redirect to="/" />;
-  }
+  const updateBirthday = (e) => {
+    setBirthday(e.target.value);
+  };
+
+  useEffect(() => {
+    if (user) {
+      history.push(`/home`);
+    }
+  }, [user, history])
 
   return (
     <form onSubmit={onSignUp}>
       <div>
-        <label>User Name</label>
         <input
           type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
+          name="first_name"
+          onChange={updateFirstName}
+          value={firstName}
+          placeholder="First Name"
         ></input>
       </div>
       <div>
-        <label>Email</label>
+        <input
+          type="text"
+          name="last_name"
+          onChange={updateLastName}
+          value={lastName}
+          placeholder="Last Name"
+        ></input>
+      </div>
+      <div>
+        <input
+          type="text"
+          name="last_name"
+          onChange={updateUsername}
+          value={username}
+          placeholder="Username"
+        ></input>
+      </div>
+      <div>
         <input
           type="text"
           name="email"
           onChange={updateEmail}
           value={email}
+          placeholder="Email"
         ></input>
       </div>
       <div>
-        <label>Password</label>
         <input
           type="password"
           name="password"
           onChange={updatePassword}
           value={password}
+          placeholder="Password"
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
         <input
           type="password"
           name="repeat_password"
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
+          placeholder="Confirm Password"
+        ></input>
+      </div>
+      <div>
+        <input
+          type="birthday"
+          name="birthday"
+          onChange={updateBirthday}
+          value={birthday}
+          required={true}
+          placeholder="MM/DD/YYYY"
         ></input>
       </div>
       <button type="submit">Sign Up</button>
+
     </form>
   );
 };

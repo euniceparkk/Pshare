@@ -1,49 +1,24 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import yellowImg from '../../images/yellow.png';
 import yellowBird from '../../images/bird-yellow.png';
 import { Modal } from '../../context/Modal';
-import './SplashPage.css';
+import './SignupPage.css';
 import SignUpForm from './SignUpForm';
 import { NavLink } from 'react-router-dom';
-import LoginPage from './LoginPage';
 
-function SplashPage() {
+function SignupPage() {
   const [showSignup, setShowSignup] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const ref = useRef(null);
 
   const handleSignup = (e) => {
     e.preventDefault();
     setShowSignup(!showSignup);
   };
 
-  // const handleLogin = (e) => {
-  //   e.preventDefault();
-  //   setShowLogin(!showLogin);
-  // };
-
-  const handleClickOutside = (e) => {
-    if (ref.current && !ref.current.contains(e.target)) {
-      setShowLogin(false);
-    }
-    if (ref.current && !ref.current.contains(e.target)) {
-      setShowSignup(false);
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside, true);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside, true);
-    };
-  }, []);
-
   return (
     <div className="splash-wrapper">
 
       <div className="splash__container-1">
-        <img alt="Pshare image" id="splash__main-image" src={yellowImg}></img>
+        <img alt="Pshare" id="splash__main-image" src={yellowImg}></img>
       </div>
 
       <div className="splash__container-2">
@@ -51,32 +26,17 @@ function SplashPage() {
         <span id="splash__header-1">Happening now</span>
         <h2 id="splash__header-2">Join Pshare today.</h2>
         <button id="splash__sign-btn" onClick={handleSignup}>Sign up</button>
-        <button id="splash__log-btn">
-          <NavLink to={`/login`} exact={true}>
-            Log in
-          </NavLink>
-        </button>
+        <NavLink to={`/login`} exact={true}>
+          <button id="splash__log-btn">Log in</button>
+        </NavLink>
       </div>
 
       {showSignup &&
-        // <div ref={ref}>
         <div>
-          <Modal>
+          <Modal onClose={() => setShowSignup(false)}>
             <SignUpForm />
-            {/* <button>Log in to Twitter</button> */}
-            {/* <NavLink to={`/login`}>Log in to Twitter</NavLink> */}
+            <NavLink to={`/login`}>Log in to Twitter</NavLink>
           </Modal>
-        </div>
-      }
-
-      {showLogin &&
-        <div>
-          {/* <LoginForm /> */}
-          {/* <button>Sign up for Twitter</button> */}
-          <NavLink to={`/login`}>
-            Sign up for Twitter
-          <LoginPage />
-          </NavLink>
         </div>
       }
 
@@ -96,8 +56,8 @@ function SplashPage() {
         </a>
         <div className="splash__footer">© 2021 Pshare, Inc.</div>
       </footer>
-    </div >
+    </div>
   )
 }
 
-export default SplashPage;
+export default SignupPage;

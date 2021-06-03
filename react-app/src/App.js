@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
-import SplashPage from "./components/auth/SplashPage";
+import SignupPage from "./components/auth/SignupPage";
 import LoginPage from "./components/auth/LoginPage";
+import HomePage from "./components/MainPage/HomePage";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -32,19 +32,23 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact={true}>
-          <SplashPage />
+
+        </Route>
+        <Route path="/signup" exact={true}>
+          <SignupPage />
         </Route>
 
-        <Route path="/login">
+        <Route path="/login" exact={true}>
           <LoginPage />
+          {/* authenticated={authenticated} */}
+          {/* setAuthenticated={setAuthenticated} */}
+          {/* /> */}
         </Route>
 
         <NavBar setAuthenticated={setAuthenticated} />
-        <Route path="/login">
-          <LoginForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
+        <Route path="/home">
+          <HomePage />
+          {/* <LoginForm */}
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
