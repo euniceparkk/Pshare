@@ -33,7 +33,7 @@ function SignupPage() {
 
       {showSignup &&
         <div>
-          <Modal onClose={() => setShowSignup(false)}>
+          <Modal onClose={() => setShowSignup(false)} className="signup__modal-wrapper">
             <SignUpForm />
             <NavLink to={`/login`}>Log in to Twitter</NavLink>
           </Modal>

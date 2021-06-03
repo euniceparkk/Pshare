@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LoginForm from '../../components/auth/LoginForm';
 import yellowBird from '../../images/bird-yellow.png';
-import './LoginPage.css'
+import './LoginPage.css';
+
 function LoginPage() {
   return (
     <div className="login-wrapper">
@@ -20,4 +21,4 @@ function LoginPage() {
   )
 }
 
-export default LoginPage
+export default LoginPage;
