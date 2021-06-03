@@ -7,13 +7,14 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
+import SplashPage from "./components/auth/SplashPage";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       const user = await authenticate();
       if (!user.errors) {
         setAuthenticated(true);
@@ -28,9 +29,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
       <Switch>
-        <Route path="/login" exact={true}>
+        <Route path="/" exact={true}>
+          <SplashPage />
+        </Route>
+
+        <NavBar setAuthenticated={setAuthenticated} />
+        <Route path="/login">
           <LoginForm
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
@@ -40,7 +45,7 @@ function App() {
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
         </Route>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
