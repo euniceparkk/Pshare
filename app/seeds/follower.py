@@ -1,22 +1,31 @@
-from app.models import db, Follower
+from app.models import db, User
 import datetime
 
 def seed_followers():
 
-  demo_follower1 = Follower(
-      user_id=1, 
-      follows_id=2, 
-      created_at=datetime.datetime.now(), 
-  )
+  demo = User.query.filter_by(username='demouserrr').first()
+  eunice = User.query.filter_by(username='euniceparkkk').first()
 
-  demo_follower2 = Follower(
-    user_id=2, 
-    follows_id=1, 
-    created_at=datetime.datetime.now(), 
-  )
+  # 'followers' is the helper table
+  eunice.followers.append(demo)
+  # demo.followers.append(eunice)
 
-  db.session.add(demo_follower1)
-  db.session.add(demo_follower2)
+
+
+  # demo_follower1 = Follower(
+  #     user_id=1, 
+  #     follows_id=2, 
+  #     created_at=datetime.datetime.now(), 
+  # )
+
+  # demo_follower2 = Follower(
+  #   user_id=2, 
+  #   follows_id=1, 
+  #   created_at=datetime.datetime.now(), 
+  # )
+
+  # db.session.add(demo_follower1)
+  # db.session.add(demo_follower2)
   db.session.commit()
 
   
@@ -27,5 +36,5 @@ def seed_followers():
 
 
 def undo_followers():
-    db.session.execute('TRUNCATE Followers RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE followers RESTART IDENTITY CASCADE;')
     db.session.commit()

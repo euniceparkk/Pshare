@@ -2,6 +2,7 @@ from werkzeug.security import generate_password_hash
 from app.models import db, User
 from faker import Faker
 fake = Faker()
+import datetime
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
@@ -17,7 +18,8 @@ def seed_users():
         profile_img="https://pshare-app.s3.amazonaws.com/demo.jpg",
         cover_img="https://pshare-app.s3.amazonaws.com/demo-cover.jpg",
         bio="Demo User tweets below",
-        location="Houston, Texas"
+        location="Houston",
+        created_at=datetime.datetime.now()
     )
 
     eunice = User(
@@ -31,9 +33,10 @@ def seed_users():
         profile_img="https://pshare-app.s3.amazonaws.com/koda4.jpg",
         cover_img="https://pshare-app.s3.amazonaws.com/eunice-cover.jpg",
         bio="Hello and welcome Pshare community :)",
-        location="Philadelphia, Pennsylvania"
-    
+        location="Philadelphia",
+        created_at=datetime.datetime.now()
     )
+
     db.session.add(demo)
     db.session.add(eunice)
     db.session.commit()
@@ -44,14 +47,16 @@ def seed_users():
             last_name=fake.last_name(),
             username=fake.user_name(),
             email=fake.free_email(),
-            phone=fake.phone_number(),
+            phone=fake.ean(length=8, prefixes=('10', '11', '12', '13', '14', '15', '16', '17', '18', '19')),
             birthday=fake.date_of_birth(),
             password="password",
             profile_img=fake.image_url(),
             cover_img=fake.image_url(),
             bio=fake.sentence(nb_words=9),
-            location=fake.city()
+            location=fake.city(),
+            created_at=datetime.datetime.now()
         )
+
         db.session.add(fake_user)
         db.session.commit()
 

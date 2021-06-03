@@ -1,8 +1,8 @@
 """recreating migrations
 
-Revision ID: c95c48349390
+Revision ID: 3acc0eefd036
 Revises: 
-Create Date: 2021-06-02 16:08:10.145003
+Create Date: 2021-06-02 20:07:40.100845
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c95c48349390'
+revision = '3acc0eefd036'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,6 +22,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=50), nullable=False),
     sa.Column('last_name', sa.String(length=50), nullable=False),
+    sa.Column('username', sa.String(length=50), nullable=False),
     sa.Column('email', sa.String(length=100), nullable=False),
     sa.Column('phone', sa.Integer(), nullable=False),
     sa.Column('birthday', sa.Text(), nullable=False),
@@ -31,19 +32,16 @@ def upgrade():
     sa.Column('bio', sa.Text(), nullable=False),
     sa.Column('location', sa.String(length=50), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
-    sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
-    sa.UniqueConstraint('phone')
+    sa.UniqueConstraint('phone'),
+    sa.UniqueConstraint('username')
     )
-    op.create_table('followers',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('follows_id', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.DateTime(), nullable=False),
+    op.create_table('follows',
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('follows_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['follows_id'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], )
     )
     op.create_table('tweets',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -91,6 +89,6 @@ def downgrade():
     op.drop_table('likes')
     op.drop_table('bookmarks')
     op.drop_table('tweets')
-    op.drop_table('followers')
+    op.drop_table('follows')
     op.drop_table('users')
     # ### end Alembic commands ###
