@@ -43,7 +43,7 @@ function App() {
 
 
         <ProtectedRoute path="/home" exact={true} authenticated={authenticated}>
-          <NavBar setAuthenticated={setAuthenticated} />
+          <NavBar />
           <HomePage />
         </ProtectedRoute>
 

@@ -1,3 +1,48 @@
 .home-wrapper {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+}
 
+.home__content-wrapper {
+  grid-column: 2/4;
+}
+
+.home__container-1 {
+  position: fixed;
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  width: 50vw;
+
+  display: flex;
+  padding-left: 20px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#home__header-1 {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.home__container-2 {
+  padding-top: 4em;
+  border: 1px solid lightgray;
+  background-color: lightyellow;
+  height: 21vh;
+}
+
+.home__tweet-textbox {
+  border: none;
+}
+
+.home__container-3 {
+  border: 1px solid red;
+}
+
+.one-tweet__container {
+  border: 1px solid red;
 }

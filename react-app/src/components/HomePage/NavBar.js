@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import "./NavBar.css";
 import yellowBird from '../../images/bird-yellow.png';
+import { Modal } from '../../context/Modal';
 
 const NavBar = ({ setAuthenticated }) => {
+  const [showTweetModal, setShowTweetModal] = useState(false);
+  const [tweetContent, setTweetContent] = useState("");
+
+  const handleTweetModal = (e) => {
+    e.preventDefault();
+    setShowTweetModal(!showTweetModal);
+  };
+
+  const handleTweetSubmit = (e) => {
+    e.preventDefault();
+    console.log("hello")
+  }
+
+  const updateTweet = (e) => {
+    setTweetContent(e.target.value);
+  }
+
   return (
     <nav className="nav-wrapper">
       <ul>
@@ -46,8 +64,31 @@ const NavBar = ({ setAuthenticated }) => {
           <buton>More</buton>
         </li>
         <li>
-          <button id="nav__tweet-btn">Tweet</button>
+          <button id="nav__tweet-btn" onClick={handleTweetModal}>Tweet</button>
         </li>
+
+        {showTweetModal &&
+          <div>
+            <Modal onClose={() => setShowTweetModal(false)}>
+              <div>
+                <form onSubmit={handleTweetSubmit}>
+                  <div>
+                    <input
+                      type="textbox"
+                      name="tweet"
+                      onChange={updateTweet}
+                      value={tweetContent}
+                      placeholder="What's happening?"
+                    >
+                    </input>
+                    <button type="submit">Tweet</button>
+                  </div>
+                </form>
+              </div>
+            </Modal>
+          </div>
+        }
+
         <li>
           <LogoutButton setAuthenticated={setAuthenticated} />
         </li>
