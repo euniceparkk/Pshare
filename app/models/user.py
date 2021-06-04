@@ -75,7 +75,6 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "phone": self.phone,
       "birthday": self.birthday,
-      "hashed_password": self.hashed_password,
       "profile_img": self.profile_img,
       "cover_img": self.cover_img,
       "bio": self.bio,
@@ -90,3 +89,20 @@ class User(db.Model, UserMixin):
       "followed_users": [user.id for user in self.followed_users],
       # "users_followers": self.users_followers.to_dict()
     }
+  
+  def tweets_user_dict(self):
+    return {
+      "id": self.id,
+      "first_name": self.first_name,
+      "last_name": self.last_name,
+      "username": self.username,
+      "email": self.email,
+      "phone": self.phone,
+      "birthday": self.birthday,
+      "profile_img": self.profile_img,
+      "cover_img": self.cover_img,
+      "bio": self.bio,
+      "location": self.location,
+      "created_at": self.created_at,
+    }
+

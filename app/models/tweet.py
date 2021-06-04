@@ -1,5 +1,6 @@
 from .db import db
 
+
 class Tweet(db.Model):
   __tablename__ = 'tweets'
   id = db.Column(db.Integer, primary_key = True)
@@ -29,5 +30,7 @@ class Tweet(db.Model):
 
       # nesting bookmark dictionary inside user dictionary
       "likes": [like.to_dict() for like in self.likes],
-      "replies": [reply.to_dict() for reply in self.replies]
+      "replies": [reply.to_dict() for reply in self.replies],
+      "bookmarks": [bookmark.to_dict() for bookmark in self.bookmarks],
+      "user": self.user.tweets_user_dict()
     }
