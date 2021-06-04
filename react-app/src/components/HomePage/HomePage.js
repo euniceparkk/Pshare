@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { loadAllTweets, addOneTweet } from '../../store/tweet';
 import './HomePage.css'
-import { loadAllTweets } from '../../store/tweet';
 
 function HomePage() {
   const [tweetContent, setTweetContent] = useState("");
-  // const user = useSelector(state => state.session.user.id);
+  const user = useSelector(state => state.session);
   const dispatch = useDispatch();
-  // console.log('user', user)
+  console.log('user', user)
 
   const allTweets = useSelector(state => {
     const tweet = Object.values(state.tweet)
     return tweet
   })
-  console.log(allTweets)
+  // console.log(allTweets)
 
   useEffect(() => {
     dispatch(loadAllTweets())
@@ -25,6 +25,9 @@ function HomePage() {
 
   const handleTweetSubmit = (e) => {
     e.preventDefault();
+    const content = tweetContent;
+    setTweetContent("")
+    dispatch(addOneTweet({ content }))
     console.log("hello")
   }
 
@@ -53,7 +56,7 @@ function HomePage() {
               placeholder="What's happening?"
             >
             </input>
-            <button type="submit">Tweet</button>
+            <button type="submit" id="submit-btn">Tweet</button>
           </form>
         </div>
 
@@ -106,6 +109,8 @@ function HomePage() {
             )
           })}
         </div>
+
+
       </div>
     </div>
   )

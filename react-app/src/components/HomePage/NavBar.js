@@ -5,7 +5,7 @@ import "./NavBar.css";
 import yellowBird from '../../images/bird-yellow.png';
 import { Modal } from '../../context/Modal';
 
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = () => {
   const [showTweetModal, setShowTweetModal] = useState(false);
   const [tweetContent, setTweetContent] = useState("");
 
@@ -90,7 +90,7 @@ const NavBar = ({ setAuthenticated }) => {
         }
 
         <li>
-          <LogoutButton setAuthenticated={setAuthenticated} />
+          <LogoutButton />
         </li>
       </ul>
     </nav>

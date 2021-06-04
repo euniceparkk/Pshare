@@ -1,31 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./components/HomePage/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import { authenticate } from "./services/auth";
+import { authenticate } from "./store/session";
 import SignupPage from "./components/auth/SignupPage";
 import LoginPage from "./components/auth/LoginPage";
 import HomePage from "./components/HomePage/HomePage";
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      const user = await authenticate();
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
-      setLoaded(true);
-    })();
-  }, []);
-
-  if (!loaded) {
-    return null;
-  }
+    dispatch(authenticate());
+  }, [dispatch])
 
   return (
     <BrowserRouter>
@@ -41,36 +31,35 @@ function App() {
           <LoginPage />
         </Route>
 
-
-        <ProtectedRoute path="/home" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/home" exact={true}>
           <NavBar />
           <HomePage />
         </ProtectedRoute>
 
-        <ProtectedRoute path="/explore" exact={true} authenticated={authenticated}>
-          <NavBar setAuthenticated={setAuthenticated} />
+        <ProtectedRoute path="/explore" exact={true}>
+          <NavBar />
           <HomePage />
         </ProtectedRoute>
 
-        <ProtectedRoute path="/notifications" exact={true} authenticated={authenticated}>
-          <NavBar setAuthenticated={setAuthenticated} />
+        <ProtectedRoute path="/notifications" exact={true}>
+          <NavBar />
           <HomePage />
         </ProtectedRoute>
 
-        <ProtectedRoute path="/bookmarks" exact={true} authenticated={authenticated}>
-          <NavBar setAuthenticated={setAuthenticated} />
+        <ProtectedRoute path="/bookmarks" exact={true}>
+          <NavBar />
           <HomePage />
         </ProtectedRoute>
 
-        <ProtectedRoute path="/profile" exact={true} authenticated={authenticated}>
-          <NavBar setAuthenticated={setAuthenticated} />
+        <ProtectedRoute path="/profile" exact={true}>
+          <NavBar />
           <UsersList />
         </ProtectedRoute>
 
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+        {/* <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
         </ProtectedRoute> */}
 

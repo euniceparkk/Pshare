@@ -36,7 +36,15 @@
 }
 
 .home__tweet-textbox {
-  border: none;
+  /* border: none; */
+  height: 8em;
+  width: 30em;
+  background-color: lightgray;
+}
+
+#submit-btn {
+  height: 4em;
+  width: 4em;
 }
 
 /* ------all things tweets------------------------------- */

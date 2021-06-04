@@ -1,4 +1,4 @@
-from app.models import db, User
+from app.models import db, User, follows
 import datetime
 
 def seed_followers():
@@ -6,12 +6,18 @@ def seed_followers():
   demo = User.query.filter_by(username='demouserrr').first()
   eunice = User.query.filter_by(username='euniceparkkk').first()
 
-  # 'followers' is the helper table
-  eunice.followers.append(demo)
-  # demo.followers.append(eunice)
+  # from Follower model, 'follows' is a helper table
+  # 'followed_users' and 'users_followers'
+  # is the many-many association made from User model
+  eunice.followed_users.append(demo)
+  eunice.users_followers.append(demo)
+  
+  # # association below is equivialent to association above.
+  # # demo follows eunice, eunice follows demo
+  # eunice.follows.append(demo)
+  # demo.follows.append(eunice)
 
-
-
+  
   # demo_follower1 = Follower(
   #     user_id=1, 
   #     follows_id=2, 
@@ -36,5 +42,5 @@ def seed_followers():
 
 
 def undo_followers():
-    db.session.execute('TRUNCATE followers RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE follows RESTART IDENTITY CASCADE;')
     db.session.commit()

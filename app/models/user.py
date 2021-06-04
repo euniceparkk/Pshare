@@ -30,6 +30,7 @@ class User(db.Model, UserMixin):
   replies = db.relationship("Reply", back_populates="user")
 
 
+
   # this relationship allows you to access both the collection of users 
   # that follow a given user (with user.followers), and the collection
   # of users that a user follows (with user.follows)
@@ -43,6 +44,7 @@ class User(db.Model, UserMixin):
   )
 
   # # many-to-many relationship without having a physical joins table
+  # # wasn't best method for my case
   # followed_users = db.relationship(
   #   "User", 
   #   secondary=Follower,

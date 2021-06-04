@@ -6,7 +6,7 @@ class Tweet(db.Model):
   id = db.Column(db.Integer, primary_key = True)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
   content = db.Column(db.String(280), nullable = False)
-  image = db.Column(db.Text)
+  image = db.Column(db.Text, nullable = True)
   created_at = db.Column(db.DateTime, nullable = False)
 
   # bookmarks belongsTo tweet

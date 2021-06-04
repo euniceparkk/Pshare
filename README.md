@@ -51,7 +51,7 @@ This is the backend for the Flask React project.
    or
    ---------------------------
    flask db migrate -m "recreating migration messages"
-   flask db upgrade
+   flask db upgrade (x2)
    ---------------------------
    flask db downgrade
    flask db downgrade

@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { signUp } from "../../store/session"
 
 const SignUpForm = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
 
-  // const [errors, setErrors] = useState([]);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -52,11 +50,9 @@ const SignUpForm = () => {
     setBirthday(e.target.value);
   };
 
-  useEffect(() => {
-    if (user) {
-      history.push(`/home`);
-    }
-  }, [user, history])
+  if (user) {
+    return <Redirect to="/home" />
+  }
 
   return (
     <form onSubmit={onSignUp}>

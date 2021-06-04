@@ -1,5 +1,6 @@
 /* -----action verbs-------------------------------------------------- */
 const LOAD_TWEETS = "tweets/LOAD_TWEETS";
+const ADD_TWEET = "tweets/ADD_TWEET"
 
 /* -----action creator-------------------------------------------------- */
 const loadTweets = (tweets) => ({
@@ -7,10 +8,15 @@ const loadTweets = (tweets) => ({
   tweets
 });
 
+const addTweet = (tweet) => ({
+  type: ADD_TWEET,
+  tweet
+});
+
 /* -----thunk-------------------------------------------------- */
 // GET all tweets
 export const loadAllTweets = (tweets) => async (dispatch) => {
-  const response = await fetch(`/api/tweets`, {
+  const response = await fetch(`/api/tweets/`, {
     headers: { 'Content-Type': 'application/json' }
   })
 
@@ -21,6 +27,29 @@ export const loadAllTweets = (tweets) => async (dispatch) => {
   const data = await response.json();
 
   dispatch(loadTweets(data));
+  return data;
+}
+
+// POST one tweet
+export const addOneTweet = (tweet) => async (dispatch) => {
+  const { user_id, content } = tweet;
+
+  const response = await fetch(`/api/tweets/add`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      user_id, content
+    })
+  })
+
+  if (!response.ok) {
+    throw response
+  }
+
+  const data = await response.json();
+  dispatch(addTweet(data));
   return data;
 }
 
@@ -38,6 +67,14 @@ const tweetsReducer = (state = initialState, action) => {
         ...newState, ...state
       }
     }
+
+    case ADD_TWEET:
+      newState = {
+        ...state,
+        [action.tweet.id]: action.list
+      };
+      return newState;
+
     default:
       return state;
   }

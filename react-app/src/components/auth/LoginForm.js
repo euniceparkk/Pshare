@@ -22,7 +22,9 @@ const LoginForm = () => {
   const demoUser = async (e) => {
     e.preventDefault();
     const data = await dispatch(login('demo@user.io', 'password'));
-    if (data.errors) setErrors(data.errors);
+    if (data && data.errors) {
+      setErrors(data.errors);
+    }
   }
 
   const updateEmail = (e) => {
