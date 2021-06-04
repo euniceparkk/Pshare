@@ -66,7 +66,7 @@ def sign_up():
         user = User(
             # first_name = matches to database
             first_name=form.data['firstName'],
-            last_name=form.data['last_name'],
+            last_name=form.data['lastName'],
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],

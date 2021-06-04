@@ -1,13 +1,15 @@
 from .db import db
+import datetime
 
+now = datetime.datetime.now()
 
 class Tweet(db.Model):
   __tablename__ = 'tweets'
   id = db.Column(db.Integer, primary_key = True)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
   content = db.Column(db.String(280), nullable = False)
-  image = db.Column(db.Text, nullable = True)
-  created_at = db.Column(db.DateTime, nullable = False)
+  image = db.Column(db.Text)
+  created_at = db.Column(db.DateTime, default=now)
 
   # bookmarks belongsTo tweet
   bookmarks = db.relationship("Bookmark", back_populates="tweet")

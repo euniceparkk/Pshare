@@ -2,6 +2,9 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .follower import follows
+import datetime
+
+now = datetime.datetime.now()
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -18,7 +21,7 @@ class User(db.Model, UserMixin):
   cover_img = db.Column(db.Text, nullable = False)
   bio = db.Column(db.Text, nullable = False)
   location = db.Column(db.String(50), nullable = False)
-  created_at = db.Column(db.DateTime, nullable = False)
+  created_at = db.Column(db.DateTime, default=now)
 
   # booksmarks belongsTo user
   bookmarks = db.relationship("Bookmark", back_populates="user")

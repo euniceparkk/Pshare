@@ -71,7 +71,7 @@ const tweetsReducer = (state = initialState, action) => {
     case ADD_TWEET:
       newState = {
         ...state,
-        [action.tweet.id]: action.list
+        [action.tweet.id]: action.tweet
       };
       return newState;
 

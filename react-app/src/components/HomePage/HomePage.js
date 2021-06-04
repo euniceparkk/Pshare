@@ -5,15 +5,14 @@ import './HomePage.css'
 
 function HomePage() {
   const [tweetContent, setTweetContent] = useState("");
-  const user = useSelector(state => state.session);
+  const user_id = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  console.log('user', user)
+  // console.log('user', user_id)
 
   const allTweets = useSelector(state => {
     const tweet = Object.values(state.tweet)
     return tweet
   })
-  // console.log(allTweets)
 
   useEffect(() => {
     dispatch(loadAllTweets())
@@ -26,9 +25,9 @@ function HomePage() {
   const handleTweetSubmit = (e) => {
     e.preventDefault();
     const content = tweetContent;
-    setTweetContent("")
-    dispatch(addOneTweet({ content }))
-    console.log("hello")
+    setTweetContent("");
+    dispatch(addOneTweet({ content, user_id }));
+    // console.log("hello")
   }
 
   // null is valid JSX so if no tweets, returning nothing
