@@ -5,7 +5,9 @@ import { loadAllTweets } from '../../store/tweet';
 
 function HomePage() {
   const [tweetContent, setTweetContent] = useState("");
+  // const user = useSelector(state => state.session.user.id);
   const dispatch = useDispatch();
+  // console.log('user', user)
 
   const allTweets = useSelector(state => {
     const tweet = Object.values(state.tweet)
@@ -58,33 +60,51 @@ function HomePage() {
         <div className="home__container-3">
           {allTweets && allTweets.map((tweet) => {
             return (
-              <div className="one-tweet__container" key={tweet.id}>
-                <img src={tweet.user.profile_img}></img>
-                {tweet.user.first_name} {tweet.user.last_name}
-                @ {tweet.user.username}
-                {/* {tweet.content} */}
-                {/* {tweet.created_at} */}
+              <div className="home-tweet__container" key={tweet.id}>
+
+                <div className="home-tweet__profile-container">
+                  <img src={tweet.user.profile_img} id="home-tweet__profile-img"></img>
+                </div>
+
+                <div className="home-tweet__user-container">
+                  <div id="home-tweet__full-name">
+                    {tweet.user.first_name} {tweet.user.last_name}
+                  </div>
+                  <div id="home-tweet__username">
+                    @{tweet.user.username} • {tweet.created_at}
+                  </div>
+                </div>
+
+                <div className="home-tweet__content-container">
+                  {tweet.content}
+                </div>
+
+                <div className="home-tweet__options-container">
+
+                  <div className="home-tweet__option home-tweet__comment">
+                    <i className="far fa-comment" id="home-tweet__comment-icon"></i>
+                    {tweet.replies.length}
+                  </div>
+
+                  <div className="home-tweet__option home-tweet__like">
+                    <i className="far fa-heart" id="home-tweet__like-icon"></i>
+                    {tweet.likes.length}
+                  </div>
+
+                  <div className="home-tweet__option home-tweet__bookmark">
+                    <i className="far fa-bookmark" id="home-tweet__bookmark-icon"></i>
+                    {tweet.bookmarks.length}
+                  </div>
+
+                </div>
+
+                <div className="home-tweet__dropdown-container">
+                  <i class="fas fa-ellipsis-h"></i>
+                </div>
+
               </div>
             )
           })}
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-          <h1>hello</h1>
-
         </div>
       </div>
     </div>
