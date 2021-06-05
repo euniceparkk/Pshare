@@ -7,7 +7,6 @@ function HomePage() {
   const [tweetContent, setTweetContent] = useState("");
   const user_id = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  // console.log('user', user_id)
 
   const allTweets = useSelector(state => {
     const tweet = Object.values(state.tweet)
@@ -27,7 +26,6 @@ function HomePage() {
     const content = tweetContent;
     setTweetContent("");
     dispatch(addOneTweet({ content, user_id }));
-    // console.log("hello")
   }
 
   // null is valid JSX so if no tweets, returning nothing
@@ -44,19 +42,32 @@ function HomePage() {
         </div>
 
         <div className="home__container-2">
-          <div>hello</div>
-          <form onSubmit={handleTweetSubmit}>
-            <input
-              className="home__tweet-textbox"
-              type="textbox"
-              name="tweet"
-              onChange={updateTweet}
-              value={tweetContent}
-              placeholder="What's happening?"
-            >
-            </input>
-            <button type="submit" id="submit-btn">Tweet</button>
-          </form>
+
+          <div className="home-profile__container">
+            <img src={user_id.profile_img} id="home-profile__img"></img>
+          </div>
+
+          <div className="home-profile__text-container">
+            <form onSubmit={handleTweetSubmit}>
+              <input
+                className="home__tweet-textbox"
+                type="textbox"
+                name="tweet"
+                onChange={updateTweet}
+                value={tweetContent}
+                placeholder="What's happening?"
+              >
+              </input>
+              <div className="home-profile__submit-container">
+                <button type="submit" id="home-profile__submit-btn" className="active">Tweet</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+        <div className="home__extra-container">
+
         </div>
 
         <div className="home__container-3">
