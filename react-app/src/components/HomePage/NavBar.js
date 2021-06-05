@@ -69,7 +69,7 @@ const NavBar = () => {
         </li>
         <li>
           <i class="fas fa-spinner nav__icons"></i>
-          <buton>More</buton>
+          <button>More</button>
         </li>
         <li>
           <button id="nav__tweet-btn" onClick={handleTweetModal}>Tweet</button>

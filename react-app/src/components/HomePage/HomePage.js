@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAllTweets, addOneTweet } from '../../store/tweet';
+import { loadAllTweets, addOneTweet, removeOneTweet } from '../../store/tweet';
 import './HomePage.css'
 
 function HomePage() {
   const [tweetContent, setTweetContent] = useState("");
-  const user_id = useSelector(state => state.session.user);
+  const user = useSelector(state => state.session.user);
+  const user_id = user.id;
+
   const dispatch = useDispatch();
 
   const allTweets = useSelector(state => {
     const tweet = Object.values(state.tweet)
     return tweet
   })
+
+  // console.log("tweet", allTweets)
+  console.log("user id!", user.id)
 
   useEffect(() => {
     dispatch(loadAllTweets())
@@ -26,6 +31,14 @@ function HomePage() {
     const content = tweetContent;
     setTweetContent("");
     dispatch(addOneTweet({ content, user_id }));
+  }
+
+  // CHANGE TO DROPDOWN MODAL FOR DELETE LATER
+  const handleDelete = async (tweet) => {
+    console.log("testing")
+    // if (tweet.user_id == user_id) {
+    await dispatch(removeOneTweet(tweet))
+    // }
   }
 
   // null is valid JSX so if no tweets, returning nothing
@@ -44,7 +57,7 @@ function HomePage() {
         <div className="home__container-2">
 
           <div className="home-profile__container">
-            <img src={user_id.profile_img} id="home-profile__img"></img>
+            <img src={user.profile_img} id="home-profile__img"></img>
           </div>
 
           <div className="home-profile__text-container">
@@ -74,7 +87,7 @@ function HomePage() {
           {allTweets && allTweets.map((tweet) => {
             return (
               <div className="home-tweet__container" key={tweet.id}>
-
+                {console.log({ tweet })}
                 <div className="home-tweet__profile-container">
                   <img src={tweet.user.profile_img} id="home-tweet__profile-img"></img>
                 </div>
@@ -112,7 +125,9 @@ function HomePage() {
                 </div>
 
                 <div className="home-tweet__dropdown-container">
-                  <i class="fas fa-ellipsis-h"></i>
+                  <button type="button" onClick={() => handleDelete(tweet.id)}>
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
                 </div>
 
               </div>

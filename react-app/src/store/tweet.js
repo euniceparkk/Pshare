@@ -1,6 +1,7 @@
 /* -----action verbs-------------------------------------------------- */
 const LOAD_TWEETS = "tweets/LOAD_TWEETS";
-const ADD_TWEET = "tweets/ADD_TWEET"
+const ADD_TWEET = "tweets/ADD_TWEET";
+const REMOVE_TWEET = "tweets/REMOVE_TWEET";
 
 /* -----action creator-------------------------------------------------- */
 const loadTweets = (tweets) => ({
@@ -10,6 +11,11 @@ const loadTweets = (tweets) => ({
 
 const addTweet = (tweet) => ({
   type: ADD_TWEET,
+  tweet
+});
+
+const removeTweet = (tweet) => ({
+  type: REMOVE_TWEET,
   tweet
 });
 
@@ -53,8 +59,25 @@ export const addOneTweet = (tweet) => async (dispatch) => {
   return data;
 }
 
+// DELETE one tweet
+export const removeOneTweet = (tweet) => async (dispatch) => {
+  const response = await fetch(`/api/tweets/${tweet}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+  })
+
+  if (!response.ok) {
+    throw response
+  }
+
+  dispatch(removeTweet(tweet));
+}
+
 /* -----reducer-------------------------------------------------- */
 const initialState = {};
+
 const tweetsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
@@ -74,6 +97,12 @@ const tweetsReducer = (state = initialState, action) => {
         [action.tweet.id]: action.tweet
       };
       return newState;
+
+    case REMOVE_TWEET: {
+      newState = { ...state };
+      delete newState[action.tweet];
+      return newState;
+    }
 
     default:
       return state;
