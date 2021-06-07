@@ -4,7 +4,8 @@ import './ActivityBar.css';
 function ActivityBar() {
   return (
     <nav className="activity-wrapper">
-      <ul>Activity Bar
+      <h1>Activity Bar</h1>
+      <ul>
         <li>
           <div>hello</div>
         </li>

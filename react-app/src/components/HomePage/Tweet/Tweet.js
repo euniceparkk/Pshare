@@ -58,9 +58,8 @@ function Tweet({ tweet, user_id }) {
       </div>
 
       <div className="home-tweet__dropdown-container">
-        <button type="button" onClick={() => {
+        <button type="button" id="tweet__options-button" onClick={() => {
           handleDropdown()
-          // handleDelete(tweet.id)
           setCurrentTweet(tweet.id)
           // console.log(tweet.user_id)
           // console.log(tweet.id)
@@ -71,14 +70,13 @@ function Tweet({ tweet, user_id }) {
       </div>
 
       {showOptionsDropdown && user_id == tweet.user_id &&
-        <div className={"home-tweet__one-option"}>
-          <div>
-            <i class="far fa-trash-alt"></i>
-            <button type="button" onClick={handleDelete} className='practice'>Delete</button>
-          </div>
+        <div className="home-tweet__one-option">
+          <button type="button" onClick={handleDelete} id="tweet__delete-button">
+            <i class="far fa-trash-alt trash-icon"></i>
+            Delete
+          </button>
         </div>
       }
-
 
     </div>
 
