@@ -5,6 +5,8 @@ import './HomePage.css'
 
 function HomePage() {
   const [tweetContent, setTweetContent] = useState("");
+  // const [currentTweet, setCurrentTweet] = useState();
+
   const user = useSelector(state => state.session.user);
   const user_id = user.id;
 
@@ -12,7 +14,7 @@ function HomePage() {
 
   const allTweets = useSelector(state => {
     const tweet = Object.values(state.tweet)
-    return tweet
+    return tweet.reverse()
   })
 
   // console.log("tweet", allTweets)
@@ -35,10 +37,12 @@ function HomePage() {
 
   // CHANGE TO DROPDOWN MODAL FOR DELETE LATER
   const handleDelete = async (tweet) => {
-    console.log("testing")
-    // if (tweet.user_id == user_id) {
+    // console.log("testing")
+    // if (currentTweet === user_id) {
     await dispatch(removeOneTweet(tweet))
     // }
+    // console.log('currentTweet', currentTweet)
+    // console.log('user_id', user_id)
   }
 
   // null is valid JSX so if no tweets, returning nothing
@@ -87,7 +91,7 @@ function HomePage() {
           {allTweets && allTweets.map((tweet) => {
             return (
               <div className="home-tweet__container" key={tweet.id}>
-                {console.log({ tweet })}
+                {/* {console.log({ tweet })} */}
                 <div className="home-tweet__profile-container">
                   <img src={tweet.user.profile_img} id="home-tweet__profile-img"></img>
                 </div>
@@ -97,7 +101,7 @@ function HomePage() {
                     {tweet.user.first_name} {tweet.user.last_name}
                   </div>
                   <div id="home-tweet__username">
-                    @{tweet.user.username} • {tweet.created_at}
+                    @{tweet.user.username} • {(tweet.created_at).slice(0, -13)}
                   </div>
                 </div>
 
@@ -125,7 +129,10 @@ function HomePage() {
                 </div>
 
                 <div className="home-tweet__dropdown-container">
-                  <button type="button" onClick={() => handleDelete(tweet.id)}>
+                  <button type="button" onClick={() => {
+                    handleDelete(tweet.id)
+                    // setCurrentTweet(tweet.user_id)
+                  }}>
                     <i class="fas fa-ellipsis-h"></i>
                   </button>
                 </div>
