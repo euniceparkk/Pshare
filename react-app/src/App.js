@@ -9,6 +9,7 @@ import { authenticate } from "./store/session";
 import SignupPage from "./components/auth/SignupPage";
 import LoginPage from "./components/auth/LoginPage";
 import HomePage from "./components/HomePage/HomePage";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,12 @@ function App() {
           <HomePage />
         </ProtectedRoute>
 
+        <ProtectedRoute path="/profile" exact={true}>
+          <NavBar />
+          <ProfilePage />
+          {/* <UsersList /> */}
+        </ProtectedRoute>
+
         <ProtectedRoute path="/explore" exact={true}>
           <NavBar />
           <HomePage />
@@ -49,11 +56,6 @@ function App() {
         <ProtectedRoute path="/bookmarks" exact={true}>
           <NavBar />
           <HomePage />
-        </ProtectedRoute>
-
-        <ProtectedRoute path="/profile" exact={true}>
-          <NavBar />
-          <UsersList />
         </ProtectedRoute>
 
         <ProtectedRoute path="/users/:userId" exact={true}>

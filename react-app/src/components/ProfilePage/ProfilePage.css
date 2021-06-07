@@ -1,0 +1,13 @@
+.profile-wrapper {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.profile__content-wrapper {
+  grid-column: 2/4;
+  margin-right: 139px;
+  margin-left: 28px;
+}

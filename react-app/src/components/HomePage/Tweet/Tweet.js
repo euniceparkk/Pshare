@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { removeOneTweet } from '../../../store/tweet';
-import './Tweet.css'
+import './Tweet.css';
 
 function Tweet({ tweet, user_id }) {
   const dispatch = useDispatch();
