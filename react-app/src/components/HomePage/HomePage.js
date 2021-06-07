@@ -16,7 +16,7 @@ function HomePage() {
   })
 
   // console.log("tweet", allTweets)
-  console.log("user id!", user.id)
+  // console.log("user id!", user.id)
 
   useEffect(() => {
     dispatch(loadAllTweets())

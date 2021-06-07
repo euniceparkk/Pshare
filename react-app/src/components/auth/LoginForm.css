@@ -55,6 +55,10 @@
   letter-spacing: .01em;
 }
 
+#login__sign-btn:hover {
+  background-color: #FFE433;
+}
+
 #login__demo-btn {
   margin-top: .5em;
   background-color: white;
