@@ -1,0 +1,197 @@
+.home-tweet__container {
+  border-bottom: .06em solid rgba(228, 228, 228, 0.986);
+  padding-top: 6px;
+  padding-bottom: 6px;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  /* border: 1px solid red;   */
+}
+
+.home-tweet__container:hover {
+  background-color: rgba(250, 250, 250, 0.986);
+}
+
+.home-tweet__profile-container {
+  grid-column: 1/2;
+  grid-row: 1/3;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* background-color: plum; */
+  /* border: 1px solid plum; */
+}
+
+#home-tweet__profile-img {
+  height: 3.2em;
+  width: 3.2em;
+  border-radius: 50%;
+
+  margin: 7px 12px 0px 12px;
+}
+
+.home-tweet__user-container {
+  grid-column: 2/11;
+  grid-row: 1/2;
+  display: flex;
+  align-items: center;
+  margin-left: 2px;
+
+  /* background-color: palegreen; */
+}
+
+#home-tweet__full-name {
+  font-weight: 600;
+  letter-spacing: .02em;
+  font-size: .98em;
+}
+
+#home-tweet__username {
+  font-size: .98em;
+  font-weight: 400;
+  padding-left: 3px;
+  letter-spacing: .01em;
+  color: rgb(116, 116, 116);
+}
+
+.home-tweet__content-container {
+  grid-column: 2/13;
+  grid-row: 2/3;
+
+  display: flex;
+  align-items: center;
+
+  font-size: .98em;
+  letter-spacing: .01em;
+  font-weight: 400;
+  color: black;
+  
+  margin-right: 1em;
+  margin-left: 2px;
+
+  /* height: fit-content; ????? */
+
+  /* background-color: pink; */
+}
+
+
+.home-tweet__options-container {
+  grid-column: 2/13;
+  grid-row: 3/4;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  color: rgb(116, 116, 116);
+  /* background-color: yellow; */
+}
+
+.home-tweet__option {
+  margin-right: 70px;
+  font-size: 1em;
+  padding: 0px 60px 0px 16px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  /* letter-spacing: 1em; */
+  /* background-color: red; */
+}
+
+.home-tweet__comment:hover {
+  color: #FFE433;
+}
+
+.home-tweet__like:hover {
+  color: rgb(226, 93, 93);
+}
+
+.home-tweet__bookmark:hover {
+  color: #FFE433;
+}
+
+
+
+
+
+#home-tweet__comment-icon {
+  /* border: 1px solid red; */
+  padding: 7px 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  
+  display: flex;
+  justify-items: center;
+}
+
+#home-tweet__comment-icon:hover {
+  background-color: #fdf7c8ec;
+}
+
+#home-tweet__like-icon {
+  /* border: 1px solid red; */
+  padding: 7px 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-items: center;
+}
+
+#home-tweet__like-icon:hover {
+  background-color: rgba(252, 204, 204, 0.795);
+}
+
+#home-tweet__bookmark-icon {
+  /* border: 1px solid red; */
+  padding: 6px 9px;
+  margin-right: 8px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-items: center;
+}
+
+#home-tweet__bookmark-icon:hover {
+  background-color: #fdf7c8ec;
+}
+
+
+
+
+
+
+
+.home-tweet__dropdown-container {
+  grid-column: 12/13;
+  grid-row: 1/2;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* border: 1px solid red; */
+}
+
+.home-tweet__one-option {
+  position: sticky;
+  top: 160px;
+  right: 600px;
+
+  background-color: yellow;
+}
+
+.hidden {
+  display: none;
+  /* visibility: none; */
+}
+
+.practice {
+  border: 1px solid red;
+}

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAllTweets, addOneTweet, removeOneTweet } from '../../store/tweet';
+import { loadAllTweets, addOneTweet } from '../../store/tweet';
+import ActivityBar from "./ActivityBar";
 import './HomePage.css'
+import Tweet from "./Tweet/Tweet";
 
 function HomePage() {
+  const dispatch = useDispatch();
   const [tweetContent, setTweetContent] = useState("");
-  // const [currentTweet, setCurrentTweet] = useState();
 
   const user = useSelector(state => state.session.user);
   const user_id = user.id;
-
-  const dispatch = useDispatch();
 
   const allTweets = useSelector(state => {
     const tweet = Object.values(state.tweet)
@@ -33,16 +33,6 @@ function HomePage() {
     const content = tweetContent;
     setTweetContent("");
     dispatch(addOneTweet({ content, user_id }));
-  }
-
-  // CHANGE TO DROPDOWN MODAL FOR DELETE LATER
-  const handleDelete = async (tweet) => {
-    // console.log("testing")
-    // if (currentTweet === user_id) {
-    await dispatch(removeOneTweet(tweet))
-    // }
-    // console.log('currentTweet', currentTweet)
-    // console.log('user_id', user_id)
   }
 
   // null is valid JSX so if no tweets, returning nothing
@@ -83,67 +73,21 @@ function HomePage() {
 
         </div>
 
-        <div className="home__extra-container">
-
-        </div>
+        <div className="home__extra-container"></div>
 
         <div className="home__container-3">
           {allTweets && allTweets.map((tweet) => {
             return (
-              <div className="home-tweet__container" key={tweet.id}>
-                {/* {console.log({ tweet })} */}
-                <div className="home-tweet__profile-container">
-                  <img src={tweet.user.profile_img} id="home-tweet__profile-img"></img>
-                </div>
-
-                <div className="home-tweet__user-container">
-                  <div id="home-tweet__full-name">
-                    {tweet.user.first_name} {tweet.user.last_name}
-                  </div>
-                  <div id="home-tweet__username">
-                    @{tweet.user.username} • {(tweet.created_at).slice(0, -13)}
-                  </div>
-                </div>
-
-                <div className="home-tweet__content-container">
-                  {tweet.content}
-                </div>
-
-                <div className="home-tweet__options-container">
-
-                  <div className="home-tweet__option home-tweet__comment">
-                    <i className="far fa-comment" id="home-tweet__comment-icon"></i>
-                    {tweet.replies.length}
-                  </div>
-
-                  <div className="home-tweet__option home-tweet__like">
-                    <i className="far fa-heart" id="home-tweet__like-icon"></i>
-                    {tweet.likes.length}
-                  </div>
-
-                  <div className="home-tweet__option home-tweet__bookmark">
-                    <i className="far fa-bookmark" id="home-tweet__bookmark-icon"></i>
-                    {tweet.bookmarks.length}
-                  </div>
-
-                </div>
-
-                <div className="home-tweet__dropdown-container">
-                  <button type="button" onClick={() => {
-                    handleDelete(tweet.id)
-                    // setCurrentTweet(tweet.user_id)
-                  }}>
-                    <i class="fas fa-ellipsis-h"></i>
-                  </button>
-                </div>
-
+              <div>
+                <Tweet key={tweet.id} tweet={tweet} user_id={user_id} />
               </div>
             )
           })}
         </div>
 
-
       </div>
+
+      <ActivityBar />
     </div>
   )
 }
