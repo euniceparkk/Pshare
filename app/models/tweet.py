@@ -36,3 +36,12 @@ class Tweet(db.Model):
       "bookmarks": [bookmark.to_dict() for bookmark in self.bookmarks],
       "user": self.user.tweets_user_dict()
     }
+
+  def users_tweet_to_dict(self):
+    return {
+      # nesting bookmark dictionary inside user dictionary
+      "likes": [like.id for like in self.likes],
+      "replies": [reply.id for reply in self.replies],
+      "bookmarks": [bookmark.id for bookmark in self.bookmarks],
+      "user": self.user.tweets_user_dict()
+    }

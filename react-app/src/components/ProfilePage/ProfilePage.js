@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ActivityBar from '../HomePage/ActivityBar';
@@ -6,11 +6,42 @@ import Tweet from '../HomePage/Tweet/Tweet';
 import './ProfilePage.css';
 
 function ProfilePage() {
+  const [showTweets, setShowTweets] = useState(true);
+  const [showReplies, setShowReplies] = useState(false);
+  const [showLikes, setShowLikes] = useState(false);
+
   const user = useSelector(state => state.session.user);
   const userTweets = user.tweets;
 
+  // GET all likes/replies thru store instead
+  // const userLikes = user.likes;
+  // console.log('user', user)
+  // console.log('userTweets', userTweets)
+  // console.log('userLikes', userLikes)
+
+  const handleTweetChange = (e) => {
+    console.log('in the bar', e.target.id)
+    setShowReplies(showReplies);
+    setShowTweets(showTweets);
+    setShowLikes(showLikes);
+  }
+
+  const handleReplyChange = (e) => {
+    console.log('in the bar', e.target.id);
+    setShowReplies(!showReplies);
+    setShowTweets(!showTweets)
+    setShowLikes(showLikes)
+  }
+
+  const handleLikeChange = (e) => {
+    console.log('in the bar', e.target.id);
+    setShowLikes(!showLikes)
+    setShowTweets(!showTweets)
+    setShowReplies(showReplies);
+  }
+
   console.log('user', user)
-  console.log('user tweets', userTweets)
+  // console.log('user tweets', userTweets)
 
   if (!userTweets) {
     return null;
@@ -42,7 +73,7 @@ function ProfilePage() {
             <img src={user.cover_img} id="profile-c2__cover-img"></img>
           </div>
 
-
+          <img src={user.profile_img} id="profile-c2__profile-img"></img>
 
           <div className="profile-c2__container2">
             <div className="pc2__name-container">
@@ -51,7 +82,7 @@ function ProfilePage() {
             </div>
 
             <div className="pc2__info-container">
-              <div>{user.bio}</div>
+              <div id="pc2__bio">{user.bio}</div>
 
               <div className="pc2__icon-container">
                 <div className="pc2-icon__text">
@@ -74,23 +105,45 @@ function ProfilePage() {
                 <span className="pc2-follower-num">{user.users_followers.length}</span>
                 <span className="pc2-follower-txt">Followers</span>
               </div>
-
             </div>
-
-
-
           </div>
 
         </div>
 
+        <div className="profile__container-3">
+          <div className="pc3-link" onClick={handleTweetChange}>Tweets</div>
+          <div className="pc3-link" onClick={handleReplyChange}>Replies</div>
+          <div className="pc3-link" onClick={handleLikeChange}>Likes</div>
+        </div>
+
         <div>
-          {userTweets && userTweets.map((tweet) => {
+          {showTweets && userTweets && userTweets.map((tweet) => {
             return (
-              <div>
-                <Tweet user_id={user.id} tweet={tweet} key={tweet.id} />
+              <div key={tweet.id}>
+                <Tweet
+                  user_id={user.id}
+                  tweet={tweet}
+                  onClick={handleTweetChange}
+                />
               </div>
             )
           })}
+        </div>
+
+        <div>
+          {showReplies &&
+            <div>
+              <h1>Replies</h1>
+            </div>
+          }
+        </div>
+
+        <div>
+          {showLikes &&
+            <div>
+              <h1>Likes</h1>
+            </div>
+          }
         </div>
 
       </div>

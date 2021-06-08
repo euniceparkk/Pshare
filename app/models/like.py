@@ -20,5 +20,8 @@ class Like(db.Model):
       "id": self.id,
       "user_id": self.user_id,
       "tweet_id": self.tweet_id,
-      "created_at": self.created_at
+      "created_at": self.created_at,
+
+      "tweet": self.tweet.users_tweet_to_dict(),
+      "user": self.user.tweets_user_dict(),
     }
