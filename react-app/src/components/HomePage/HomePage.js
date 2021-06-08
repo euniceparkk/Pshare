@@ -51,7 +51,7 @@ function HomePage() {
         <div className="home__container-2">
 
           <div className="home-profile__container">
-            <img src={user.profile_img} id="home-profile__img"></img>
+            <img alt="profile" src={user.profile_img} id="home-profile__img"></img>
           </div>
 
           <div className="home-profile__text-container">
@@ -78,8 +78,18 @@ function HomePage() {
         <div className="home__container-3">
           {allTweets && allTweets.map((tweet) => {
             return (
-              <div>
-                <Tweet key={tweet.id} tweet={tweet} user_id={user_id} />
+              <div key={tweet.id}>
+                <Tweet
+                  user_id={user_id}
+                  tweet_userId={tweet.user_id}
+                  tweet_id={tweet.id}
+                  tweetsReplies={tweet.replies}
+                  tweetsLikes={tweet.likes}
+                  tweetsBookmarks={tweet.bookmarks}
+                  tweetsUser={tweet.user}
+                  tweetCreated={tweet.created_at}
+                  tweetContent={tweet.content}
+                />
               </div>
             )
           })}
