@@ -51,7 +51,7 @@ function HomePage() {
         <div className="home__container-2">
 
           <div className="home-profile__container">
-            <img src={user.profile_img} id="home-profile__img"></img>
+            <img alt="profile" src={user.profile_img} id="home-profile__img"></img>
           </div>
 
           <div className="home-profile__text-container">

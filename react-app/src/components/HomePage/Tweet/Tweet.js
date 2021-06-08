@@ -22,7 +22,7 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
     <div className="home-tweet__container">
       {/* {console.log({ tweet })} */}
       <div className="home-tweet__profile-container">
-        <img src={tweetsUser.profile_img} id="home-tweet__profile-img"></img>
+        <img alt="profile" src={tweetsUser.profile_img} id="home-tweet__profile-img"></img>
       </div>
 
       <div className="home-tweet__user-container">
@@ -64,15 +64,15 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
           // console.log(tweet.user_id)
           // console.log(tweet_id)
         }}>
-          <i class="fas fa-ellipsis-h"></i>
+          <i className="fas fa-ellipsis-h"></i>
           {/* {console.log('tweet id', tweet_id)} */}
         </button>
       </div>
 
-      {showOptionsDropdown && user_id == tweet_userId &&
+      {showOptionsDropdown && user_id === tweet_userId &&
         <div className="home-tweet__one-option">
           <button type="button" onClick={handleDelete} id="tweet__delete-button">
-            <i class="far fa-trash-alt trash-icon"></i>
+            <i className="far fa-trash-alt trash-icon"></i>
             Delete
           </button>
         </div>

@@ -25,7 +25,7 @@ function ProfilePage() {
     dispatch(loadAllLikes())
   }, [dispatch])
 
-  console.log('all likes', allLikes)
+  // console.log('all likes', allLikes)
   // GET all likes/replies thru store instead
   // const userLikes = user.likes;
   // console.log('user', user)
@@ -33,21 +33,21 @@ function ProfilePage() {
   // console.log('userLikes', userLikes)
 
   const handleTweetChange = (e) => {
-    console.log('in the bar', e.target.id)
+    // console.log('in the bar', e.target.id)
     setShowReplies(showReplies);
     setShowTweets(showTweets);
     setShowLikes(showLikes);
   }
 
   const handleReplyChange = (e) => {
-    console.log('in the bar', e.target.id);
+    // console.log('in the bar', e.target.id);
     setShowReplies(!showReplies);
     setShowTweets(!showTweets)
     setShowLikes(showLikes)
   }
 
   const handleLikeChange = (e) => {
-    console.log('in the bar', e.target.id);
+    // console.log('in the bar', e.target.id);
     setShowLikes(!showLikes)
     setShowTweets(!showTweets)
     setShowReplies(showReplies);
@@ -67,7 +67,7 @@ function ProfilePage() {
         <div className="profile__container-1">
           <div>
             <NavLink to="/home" exact={true}>
-              <i class="fas fa-arrow-left" id="profile-c1__back-arrow"></i>
+              <i className="fas fa-arrow-left" id="profile-c1__back-arrow"></i>
             </NavLink>
           </div>
 
@@ -83,10 +83,10 @@ function ProfilePage() {
         <div className="profile__container-2">
           {/* <h1>hello</h1> */}
           <div className="profile-c2__container1">
-            <img src={user.cover_img} id="profile-c2__cover-img"></img>
+            <img alt="profile cover" src={user.cover_img} id="profile-c2__cover-img"></img>
           </div>
 
-          <img src={user.profile_img} id="profile-c2__profile-img"></img>
+          <img alt="profile" src={user.profile_img} id="profile-c2__profile-img"></img>
 
           <div className="profile-c2__container2">
             <div className="pc2__name-container">
@@ -99,15 +99,15 @@ function ProfilePage() {
 
               <div className="pc2__icon-container">
                 <div className="pc2-icon__text">
-                  <i class="fas fa-map-marker-alt pc2-icon"></i>
+                  <i className="fas fa-map-marker-alt pc2-icon"></i>
                   {user.location}
                 </div>
                 <div className="pc2-icon__text">
-                  <i class="fas fa-birthday-cake pc2-icon"></i>
+                  <i className="fas fa-birthday-cake pc2-icon"></i>
                   {user.birthday}
                 </div>
                 <div className="pc2-icon__text">
-                  <i class="far fa-calendar-alt pc2-icon"></i>
+                  <i className="far fa-calendar-alt pc2-icon"></i>
                   Joined {(user.created_at).slice(8, -13)}
                 </div>
               </div>
@@ -133,6 +133,7 @@ function ProfilePage() {
           {showTweets && userTweets && userTweets.map((tweet) => {
             return (
               <div key={tweet.id}>
+                {/* {console.log('tweet', tweet)} */}
                 <Tweet
                   user_id={user.id}
                   tweet_userId={tweet.user_id}
@@ -143,8 +144,6 @@ function ProfilePage() {
                   tweetsUser={tweet.user}
                   tweetCreated={tweet.created_at}
                   tweetContent={tweet.content}
-
-
                 // onClick={handleTweetChange}
                 />
               </div>
@@ -161,11 +160,24 @@ function ProfilePage() {
         </div>
 
         <div>
-          {showLikes &&
-            <div>
-              <h1>Likes</h1>
-            </div>
-          }
+          {showLikes && allLikes && allLikes.map((like) => {
+            return (
+              <div key={like.id}>
+                {/* {console.log('inside', like)} */}
+                <Tweet
+                  user_id={user.id}
+                  tweet_userId={like.user_id}
+                  tweet_id={like.tweet_id}
+                  tweetsReplies={like.tweet.replies}
+                  tweetsLikes={like.tweet.likes}
+                  tweetsBookmarks={like.tweet.bookmarks}
+                  tweetsUser={like.tweet.user}
+                  tweetCreated={like.created_at}
+                  tweetContent={like.tweet.content}
+                />
+              </div>
+            )
+          })}
         </div>
 
       </div>
