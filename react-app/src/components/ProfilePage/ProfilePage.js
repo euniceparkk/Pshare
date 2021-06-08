@@ -25,13 +25,6 @@ function ProfilePage() {
     dispatch(loadAllLikes())
   }, [dispatch])
 
-  // console.log('all likes', allLikes)
-  // GET all likes/replies thru store instead
-  // const userLikes = user.likes;
-  // console.log('user', user)
-  // console.log('userTweets', userTweets)
-  // console.log('userLikes', userLikes)
-
   const handleTweetChange = (e) => {
     // console.log('in the bar', e.target.id)
     setShowReplies(showReplies);
@@ -52,9 +45,6 @@ function ProfilePage() {
     setShowTweets(!showTweets)
     setShowReplies(showReplies);
   }
-
-  // console.log('user', user)
-  // console.log('user tweets', userTweets)
 
   if (!userTweets) {
     return null;
@@ -81,7 +71,6 @@ function ProfilePage() {
         </div>
 
         <div className="profile__container-2">
-          {/* <h1>hello</h1> */}
           <div className="profile-c2__container1">
             <img alt="profile cover" src={user.cover_img} id="profile-c2__cover-img"></img>
           </div>

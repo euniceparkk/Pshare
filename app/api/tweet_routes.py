@@ -19,11 +19,6 @@ def load_tweets():
 @tweet_routes.route('/add', methods=["POST"])
 @login_required
 def add_tweet():
-
-  """
-    Creates a new tweet
-  """
-
   form = TweetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():

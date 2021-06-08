@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { removeOneTweet } from '../../../store/tweet';
+import { addOneLike } from '../../../store/like';
 import './Tweet.css';
 
 function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
@@ -9,12 +10,18 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
 
   const [currentTweet, setCurrentTweet] = useState();
 
-  const handleDelete = async () => {
+  const handleTweetDelete = async () => {
     await dispatch(removeOneTweet(currentTweet))
   }
 
   const handleDropdown = () => {
     setShowOptionsDropdown(!showOptionsDropdown);
+  }
+
+  const handleLikeAdd = (e) => {
+    console.log('testing')
+    e.preventDefault();
+    dispatch(addOneLike({ user_id, tweet_id }))
   }
 
   return (
@@ -45,8 +52,8 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
           {tweetsReplies.length}
         </div>
 
-        <div className="home-tweet__option home-tweet__like">
-          <i className="far fa-heart" id="home-tweet__like-icon"></i>
+        <div className="home-tweet__option home-tweet__like" onClick={handleLikeAdd}>
+          <i className="far fa-heart" id="home-tweet__like-icon" ></i>
           {tweetsLikes.length}
         </div>
 
@@ -71,7 +78,7 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
 
       {showOptionsDropdown && user_id === tweet_userId &&
         <div className="home-tweet__one-option">
-          <button type="button" onClick={handleDelete} id="tweet__delete-button">
+          <button type="button" onClick={handleTweetDelete} id="tweet__delete-button">
             <i className="far fa-trash-alt trash-icon"></i>
             Delete
           </button>
