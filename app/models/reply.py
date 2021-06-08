@@ -1,4 +1,7 @@
 from .db import db
+import datetime
+
+now = datetime.datetime.now()
 
 class Reply(db.Model):
   __tablename__= 'replies'
@@ -6,7 +9,7 @@ class Reply(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
   tweet_id = db.Column(db.Integer, db.ForeignKey("tweets.id"), nullable = False)
   content = db.Column(db.String(280), nullable = False)
-  created_at = db.Column(db.DateTime, nullable = False)
+  created_at = db.Column(db.DateTime, default=now)
 
   # user hasMany replies
   user = db.relationship("User", back_populates="replies")

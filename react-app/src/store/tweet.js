@@ -1,5 +1,7 @@
 /* -----action verbs-------------------------------------------------- */
 const LOAD_TWEETS = "tweets/LOAD_TWEETS";
+const ADD_TWEET = "tweets/ADD_TWEET";
+const REMOVE_TWEET = "tweets/REMOVE_TWEET";
 
 /* -----action creator-------------------------------------------------- */
 const loadTweets = (tweets) => ({
@@ -7,10 +9,20 @@ const loadTweets = (tweets) => ({
   tweets
 });
 
+const addTweet = (tweet) => ({
+  type: ADD_TWEET,
+  tweet
+});
+
+const removeTweet = (tweet) => ({
+  type: REMOVE_TWEET,
+  tweet
+});
+
 /* -----thunk-------------------------------------------------- */
 // GET all tweets
 export const loadAllTweets = (tweets) => async (dispatch) => {
-  const response = await fetch(`/api/tweets`, {
+  const response = await fetch(`/api/tweets/`, {
     headers: { 'Content-Type': 'application/json' }
   })
 
@@ -24,8 +36,48 @@ export const loadAllTweets = (tweets) => async (dispatch) => {
   return data;
 }
 
+// POST one tweet
+export const addOneTweet = (tweet) => async (dispatch) => {
+  const { user_id, content } = tweet;
+
+  const response = await fetch(`/api/tweets/add`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      user_id, content
+    })
+  })
+
+  if (!response.ok) {
+    throw response
+  }
+
+  const data = await response.json();
+  dispatch(addTweet(data));
+  return data;
+}
+
+// DELETE one tweet
+export const removeOneTweet = (tweet) => async (dispatch) => {
+  const response = await fetch(`/api/tweets/${tweet}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+  })
+
+  if (!response.ok) {
+    throw response
+  }
+
+  dispatch(removeTweet(tweet));
+}
+
 /* -----reducer-------------------------------------------------- */
 const initialState = {};
+
 const tweetsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
@@ -38,6 +90,20 @@ const tweetsReducer = (state = initialState, action) => {
         ...newState, ...state
       }
     }
+
+    case ADD_TWEET:
+      newState = {
+        ...state,
+        [action.tweet.id]: action.tweet
+      };
+      return newState;
+
+    case REMOVE_TWEET: {
+      newState = { ...state };
+      delete newState[action.tweet];
+      return newState;
+    }
+
     default:
       return state;
   }

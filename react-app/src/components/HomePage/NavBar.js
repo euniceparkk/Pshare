@@ -1,26 +1,34 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
-import "./NavBar.css";
 import yellowBird from '../../images/bird-yellow.png';
 import { Modal } from '../../context/Modal';
+import { addOneTweet } from "../../store/tweet";
+import "./NavBar.css";
 
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = () => {
+  const dispatch = useDispatch();
   const [showTweetModal, setShowTweetModal] = useState(false);
   const [tweetContent, setTweetContent] = useState("");
+
+  const user_id = useSelector(state => state.session.user);
 
   const handleTweetModal = (e) => {
     e.preventDefault();
     setShowTweetModal(!showTweetModal);
   };
 
-  const handleTweetSubmit = (e) => {
-    e.preventDefault();
-    console.log("hello")
-  }
-
   const updateTweet = (e) => {
     setTweetContent(e.target.value);
+  }
+
+  const handleTweetSubmit = (e) => {
+    e.preventDefault();
+    const content = tweetContent;
+    setTweetContent("");
+    setShowTweetModal(!showTweetModal);
+    dispatch(addOneTweet({ content, user_id }));
   }
 
   return (
@@ -61,7 +69,7 @@ const NavBar = ({ setAuthenticated }) => {
         </li>
         <li>
           <i class="fas fa-spinner nav__icons"></i>
-          <buton>More</buton>
+          <button>More</button>
         </li>
         <li>
           <button id="nav__tweet-btn" onClick={handleTweetModal}>Tweet</button>
@@ -90,7 +98,7 @@ const NavBar = ({ setAuthenticated }) => {
         }
 
         <li>
-          <LogoutButton setAuthenticated={setAuthenticated} />
+          <LogoutButton />
         </li>
       </ul>
     </nav>

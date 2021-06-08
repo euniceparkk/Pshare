@@ -13,16 +13,18 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await login(email, password);
-    if (data.errors) {
-      setErrors(user.errors);
-    }
+    const data = await dispatch(login(email, password));
+    // if (data.errors) {
+    // setErrors(user.errors);
+    // }
   };
 
   const demoUser = async (e) => {
     e.preventDefault();
     const data = await dispatch(login('demo@user.io', 'password'));
-    if (data.errors) setErrors(data.errors);
+    if (data && data.errors) {
+      setErrors(data.errors);
+    }
   }
 
   const updateEmail = (e) => {
@@ -64,7 +66,7 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         <div className="login-form__container-1">
-          <button type="submit" id="login__sign-btn">Log in</button>
+          <button type="submit" id="login__sign-btn" onClick={onLogin}>Log in</button>
           <button type="submit" id="login__demo-btn" onClick={demoUser}>Demo User</button>
         </div>
       </div>

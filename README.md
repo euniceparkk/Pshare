@@ -44,13 +44,11 @@ This is the backend for the Flask React project.
    ```
 
    ```bash migrating
-   ---------------------------
-   flask db migrate
-   flask db upgrade
-   ---------------------------
-   or
+   
    ---------------------------
    flask db migrate -m "recreating migration messages"
+   flask db upgrade (x2)
+   flask seed all
    flask db upgrade
    ---------------------------
    flask db downgrade

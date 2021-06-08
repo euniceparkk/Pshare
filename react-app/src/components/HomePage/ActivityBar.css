@@ -1,0 +1,9 @@
+.activity-wrapper {
+  height: 100vh;
+  width: 34.3vw;
+  border-left: .1px solid rgba(224, 224, 224, 0.637);
+  position: fixed;
+
+  right: 0px;
+  /* background-color: red; */
+}

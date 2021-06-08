@@ -2,6 +2,9 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .follower import follows
+import datetime
+
+now = datetime.datetime.now()
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -18,7 +21,7 @@ class User(db.Model, UserMixin):
   cover_img = db.Column(db.Text, nullable = False)
   bio = db.Column(db.Text, nullable = False)
   location = db.Column(db.String(50), nullable = False)
-  created_at = db.Column(db.DateTime, nullable = False)
+  created_at = db.Column(db.DateTime, default=now)
 
   # booksmarks belongsTo user
   bookmarks = db.relationship("Bookmark", back_populates="user")
@@ -28,6 +31,7 @@ class User(db.Model, UserMixin):
   tweets = db.relationship("Tweet", back_populates="user")
   # replies belongsTo user
   replies = db.relationship("Reply", back_populates="user")
+
 
 
   # this relationship allows you to access both the collection of users 
@@ -43,6 +47,7 @@ class User(db.Model, UserMixin):
   )
 
   # # many-to-many relationship without having a physical joins table
+  # # wasn't best method for my case
   # followed_users = db.relationship(
   #   "User", 
   #   secondary=Follower,
@@ -87,7 +92,7 @@ class User(db.Model, UserMixin):
       "tweets": [tweet.to_dict() for tweet in self.tweets],
       "replies": [reply.to_dict() for reply in self.replies],
       "followed_users": [user.id for user in self.followed_users],
-      # "users_followers": self.users_followers.to_dict()
+      "users_followers": [user.id for user in self.users_followers]
     }
   
   def tweets_user_dict(self):
@@ -96,13 +101,13 @@ class User(db.Model, UserMixin):
       "first_name": self.first_name,
       "last_name": self.last_name,
       "username": self.username,
-      "email": self.email,
-      "phone": self.phone,
-      "birthday": self.birthday,
+      # "email": self.email,
+      # "phone": self.phone,
+      # "birthday": self.birthday,
       "profile_img": self.profile_img,
-      "cover_img": self.cover_img,
-      "bio": self.bio,
-      "location": self.location,
+      # "cover_img": self.cover_img,
+      # "bio": self.bio,
+      # "location": self.location,
       "created_at": self.created_at,
     }
 

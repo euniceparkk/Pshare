@@ -1,0 +1,209 @@
+.profile-wrapper {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.profile__content-wrapper {
+  grid-column: 2/4;
+  margin-right: 142px;
+  margin-left: 28px;
+
+  /* border-left: .1px solid red; */
+  /* background-color: pink; */
+}
+
+/* ----Container1--------------------------------------- */
+.profile__container-1 {
+  position: fixed;
+
+  background-color: white;
+  border-bottom: .1px solid rgba(224, 224, 224, 0.637);
+  border-right: .1px solid rgba(224, 224, 224, 0.637);
+  width: 38.9vw;
+  padding: 8px 7px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* background-color: pink; */
+}
+
+#profile-c1__back-arrow {
+  font-size: 1.2em;
+  color: #FFDA0A;  
+  padding: 8px 10px;
+  margin-left: 5px;
+
+  /* border: 1px solid red; */
+}
+
+#profile-c1__back-arrow:hover {
+  background-color: #faf5daef;
+  border-radius: 50px;
+}
+
+.profile-c1__flex-container {
+  display: flex;
+  flex-direction: column;
+  /* padding-left: 28px; */
+  margin-left: 18px;
+  padding-left: 6px;
+  /* border: 1px solid red; */
+}
+
+#profile-c1__name{
+  font-size: 1.2em;
+  font-weight: 700;
+  padding-bottom: 3px;
+}
+
+#profile-c1__tweet-count {
+  font-size: .8em;
+  font-weight: 400;
+  color: rgb(143, 143, 143);
+}
+
+/* ----Container2--------------------------------------- */
+.profile__container-2 {
+  padding-top: 3.4em;
+  padding-bottom: 1em;
+  
+  height: 30.3em;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  
+  /* background-color: red; */
+  /* border: 1px solid red; */
+}
+
+.profile-c2__container1 {
+  grid-row: 1/2;
+}
+
+#profile-c2__cover-img {
+  height: 12.4em;
+  width: 37.3em;
+}
+
+
+
+#profile-c2__profile-img {
+  position: absolute;
+  top: 182px;
+  right: 971px;
+
+  height: 8.9em;
+  width: 8.9em;
+  border-radius: 50%;
+  border: 4.7px solid white;
+}
+
+.profile-c2__container2 {
+  grid-row: 2/3;
+  padding-left: 18px;
+  padding-top: 3.9em;
+
+  /* background-color: yellow; */
+}
+
+
+
+.pc2__name-container {
+  /* border: 1px solid blue; */
+}
+
+#pc2__name {
+  font-size: 1.2em;
+  font-weight: 700;
+  padding-bottom: 2px;
+}
+
+#pc2__username {
+  font-size: .95em;
+  font-weight: 400;
+  color: rgb(117, 117, 117);
+}
+
+.pc2__info-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 12px;
+  /* background-color: orange; */
+}
+
+#pc2__bio {
+  font-size: .95em;
+  letter-spacing: .01em;
+  font-weight: 400;
+}
+
+.pc2__icon-container {
+  display: flex;
+  flex-direction: row;
+
+  color: rgb(117, 117, 117);
+  font-size: .95em;
+  font-weight: 400;
+  letter-spacing: .02em;
+  padding: 14px 0px;
+
+  /* border: 1px solid green; */
+}
+
+.pc2-icon {
+  padding-right: 6px;
+}
+
+.pc2-icon__text {
+  padding-right: 20px;
+}
+
+.pc2-follower-num, .pc2-follower-txt{
+  font-size: .95em;
+}
+
+.pc2-follower-num {
+  font-weight: 600;
+  padding-right: 5px;
+}
+
+.pc2-follower-txt {
+  padding-right: 20px;
+  color: rgb(117, 117, 117);
+}
+
+/* ----Container3--------------------------------------- */
+.profile__container-3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+
+  /* background-color: lightblue; */
+}
+
+.pc3-link {
+  height: 3.2em;
+  padding: 18px 73.5px 0px 73.5px;
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: .02em;
+  color: rgb(117, 117, 117);
+
+  /* background-color: yellow; */
+}
+
+.pc3-link:hover {
+  background-color: rgba(255, 254, 213, 0.877);
+  color: #fcd705;
+  cursor: pointer;
+}
+
+.pc3-link:active {
+  color: #fcd705;
+}

@@ -1,8 +1,9 @@
 .nav-wrapper {
   height: 100vh;
-  width: 25vw;
-  border-right: 1px solid lightgray;
+  width: 26.8vw;
+  border-right: .1px solid rgba(224, 224, 224, 0.637);
   position: fixed;
+
 }
 
 #nav__bird-image {

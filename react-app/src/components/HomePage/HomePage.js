@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { loadAllTweets, addOneTweet } from '../../store/tweet';
+import ActivityBar from "./ActivityBar";
 import './HomePage.css'
-import { loadAllTweets } from '../../store/tweet';
+import Tweet from "./Tweet/Tweet";
 
 function HomePage() {
-  const [tweetContent, setTweetContent] = useState("");
-  // const user = useSelector(state => state.session.user.id);
   const dispatch = useDispatch();
-  // console.log('user', user)
+  const [tweetContent, setTweetContent] = useState("");
+
+  const user = useSelector(state => state.session.user);
+  const user_id = user.id;
 
   const allTweets = useSelector(state => {
     const tweet = Object.values(state.tweet)
-    return tweet
+    return tweet.reverse()
   })
-  console.log(allTweets)
+
+  // console.log("tweet", allTweets)
+  // console.log("user id!", user.id)
 
   useEffect(() => {
     dispatch(loadAllTweets())
@@ -25,7 +30,9 @@ function HomePage() {
 
   const handleTweetSubmit = (e) => {
     e.preventDefault();
-    console.log("hello")
+    const content = tweetContent;
+    setTweetContent("");
+    dispatch(addOneTweet({ content, user_id }));
   }
 
   // null is valid JSX so if no tweets, returning nothing
@@ -42,71 +49,45 @@ function HomePage() {
         </div>
 
         <div className="home__container-2">
-          <div>hello</div>
-          <form onSubmit={handleTweetSubmit}>
-            <input
-              className="home__tweet-textbox"
-              type="textbox"
-              name="tweet"
-              onChange={updateTweet}
-              value={tweetContent}
-              placeholder="What's happening?"
-            >
-            </input>
-            <button type="submit">Tweet</button>
-          </form>
+
+          <div className="home-profile__container">
+            <img src={user.profile_img} id="home-profile__img"></img>
+          </div>
+
+          <div className="home-profile__text-container">
+            <form onSubmit={handleTweetSubmit}>
+              <input
+                className="home__tweet-textbox"
+                type="textbox"
+                name="tweet"
+                onChange={updateTweet}
+                value={tweetContent}
+                placeholder="What's happening?"
+              >
+              </input>
+              <div className="home-profile__submit-container">
+                <button type="submit" id="home-profile__submit-btn" className="active">Tweet</button>
+              </div>
+            </form>
+          </div>
+
         </div>
+
+        <div className="home__extra-container"></div>
 
         <div className="home__container-3">
           {allTweets && allTweets.map((tweet) => {
             return (
-              <div className="home-tweet__container" key={tweet.id}>
-
-                <div className="home-tweet__profile-container">
-                  <img src={tweet.user.profile_img} id="home-tweet__profile-img"></img>
-                </div>
-
-                <div className="home-tweet__user-container">
-                  <div id="home-tweet__full-name">
-                    {tweet.user.first_name} {tweet.user.last_name}
-                  </div>
-                  <div id="home-tweet__username">
-                    @{tweet.user.username} • {tweet.created_at}
-                  </div>
-                </div>
-
-                <div className="home-tweet__content-container">
-                  {tweet.content}
-                </div>
-
-                <div className="home-tweet__options-container">
-
-                  <div className="home-tweet__option home-tweet__comment">
-                    <i className="far fa-comment" id="home-tweet__comment-icon"></i>
-                    {tweet.replies.length}
-                  </div>
-
-                  <div className="home-tweet__option home-tweet__like">
-                    <i className="far fa-heart" id="home-tweet__like-icon"></i>
-                    {tweet.likes.length}
-                  </div>
-
-                  <div className="home-tweet__option home-tweet__bookmark">
-                    <i className="far fa-bookmark" id="home-tweet__bookmark-icon"></i>
-                    {tweet.bookmarks.length}
-                  </div>
-
-                </div>
-
-                <div className="home-tweet__dropdown-container">
-                  <i class="fas fa-ellipsis-h"></i>
-                </div>
-
+              <div>
+                <Tweet key={tweet.id} tweet={tweet} user_id={user_id} />
               </div>
             )
           })}
         </div>
+
       </div>
+
+      <ActivityBar />
     </div>
   )
 }
