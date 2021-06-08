@@ -92,7 +92,7 @@ class User(db.Model, UserMixin):
       "tweets": [tweet.to_dict() for tweet in self.tweets],
       "replies": [reply.to_dict() for reply in self.replies],
       "followed_users": [user.id for user in self.followed_users],
-      # "users_followers": self.users_followers.to_dict()
+      "users_followers": [user.id for user in self.users_followers]
     }
   
   def tweets_user_dict(self):
