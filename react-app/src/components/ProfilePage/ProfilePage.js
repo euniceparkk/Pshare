@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ActivityBar from '../HomePage/ActivityBar';
 import Tweet from '../HomePage/Tweet/Tweet';
+import { loadAllLikes } from '../../store/like';
 import './ProfilePage.css';
 
 function ProfilePage() {
+  const dispatch = useDispatch();
+
   const [showTweets, setShowTweets] = useState(true);
   const [showReplies, setShowReplies] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
@@ -13,6 +16,16 @@ function ProfilePage() {
   const user = useSelector(state => state.session.user);
   const userTweets = user.tweets;
 
+  const allLikes = useSelector(state => {
+    const like = Object.values(state.like)
+    return like
+  })
+
+  useEffect(() => {
+    dispatch(loadAllLikes())
+  }, [dispatch])
+
+  console.log('all likes', allLikes)
   // GET all likes/replies thru store instead
   // const userLikes = user.likes;
   // console.log('user', user)
@@ -40,7 +53,7 @@ function ProfilePage() {
     setShowReplies(showReplies);
   }
 
-  console.log('user', user)
+  // console.log('user', user)
   // console.log('user tweets', userTweets)
 
   if (!userTweets) {
@@ -122,8 +135,17 @@ function ProfilePage() {
               <div key={tweet.id}>
                 <Tweet
                   user_id={user.id}
-                  tweet={tweet}
-                  onClick={handleTweetChange}
+                  tweet_userId={tweet.user_id}
+                  tweet_id={tweet.id}
+                  tweetsReplies={tweet.replies}
+                  tweetsLikes={tweet.likes}
+                  tweetsBookmarks={tweet.bookmarks}
+                  tweetsUser={tweet.user}
+                  tweetCreated={tweet.created_at}
+                  tweetContent={tweet.content}
+
+
+                // onClick={handleTweetChange}
                 />
               </div>
             )
