@@ -21,7 +21,7 @@
   width: 38.9vw;
 
   padding-left: 16px;
-  padding-top: 6px;
+  padding-top: 7px;
   padding-bottom: 6px;
 
   display: flex;
@@ -31,13 +31,16 @@
 }
 
 #bookmark__c1-header {
-  font-size: 1.2em;
+  font-size: 1.25em;
   font-weight: 700;
 }
 
 #bookmark__c1-username {
-  font-size: .85em;
+  font-size: .83em;
   font-weight: 400;
+  color: rgb(143, 143, 143);
+
+  padding-top: 1px;
 }
 
 /* ----Container2--------------------------------------- */
