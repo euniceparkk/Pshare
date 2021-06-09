@@ -21,3 +21,14 @@ def add_like():
   db.session.add(like)
   db.session.commit()
   return like.to_dict()
+
+
+# DELETE one like
+@like_routes.route('/<int:like_id>', methods=["DELETE"])
+@login_required
+def remove_like(like_id):
+  like = Like.query.get(like_id)
+
+  db.session.delete(like)
+  db.session.commit()
+  return like.to_dict()

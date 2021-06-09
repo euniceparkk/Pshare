@@ -20,10 +20,18 @@ function ProfilePage() {
     const like = Object.values(state.like)
     return like
   })
+  // console.log("likes", allLikes)
 
   useEffect(() => {
     dispatch(loadAllLikes())
   }, [dispatch])
+
+  // console.log('all likes', allLikes)
+  // GET all likes/replies thru store instead
+  // const userLikes = user.likes;
+  // console.log('user', user)
+  // console.log('userTweets', userTweets)
+  // console.log('userLikes', userLikes)
 
   const handleTweetChange = (e) => {
     // console.log('in the bar', e.target.id)

@@ -1,6 +1,7 @@
 /* -----action verbs--------------------------------------------- */
 const LOAD_LIKES = "likes/LOAD_LIKES";
 const ADD_LIKE = "likes/ADD_LIKE";
+const REMOVE_LIKE = "likes/REMOVE_LIKE";
 
 /* -----action creator------------------------------------------- */
 const loadLikes = (likes) => ({
@@ -10,6 +11,11 @@ const loadLikes = (likes) => ({
 
 const addLike = (like) => ({
   type: ADD_LIKE,
+  like
+});
+
+const removeLike = (like) => ({
+  type: REMOVE_LIKE,
   like
 });
 
@@ -52,6 +58,24 @@ export const addOneLike = (like) => async (dispatch) => {
   return data;
 }
 
+// DELETE one like
+export const removeOneLike = (like_id) => async (dispatch) => {
+  // const { user_id, tweet_id } = like;
+
+  const response = await fetch(`/api/likes/${like_id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+  })
+
+  if (!response.ok) {
+    throw response
+  }
+
+  dispatch(removeLike(like_id));
+}
+
 /* -----reducer-------------------------------------------------- */
 const initialState = {};
 
@@ -74,6 +98,11 @@ const likesReducer = (state = initialState, action) => {
         [action.like.id]: action.like
       };
       return newState;
+
+    case REMOVE_LIKE:
+      newState = { ...state }
+      delete newState[action.like]
+      return newState
 
     default:
       return state;
