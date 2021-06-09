@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { removeOneTweet } from '../../../store/tweet';
-import { addOneLike } from '../../../store/like';
+import { addOneLike, removeOneLike, loadAllLikes } from '../../../store/like';
 import './Tweet.css';
 
 function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
   const dispatch = useDispatch();
   const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
-
   const [currentTweet, setCurrentTweet] = useState();
+
+  useEffect(() => {
+    dispatch(loadAllLikes())
+  }, [dispatch])
 
   const handleTweetDelete = async () => {
     await dispatch(removeOneTweet(currentTweet))
@@ -18,11 +21,40 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
     setShowOptionsDropdown(!showOptionsDropdown);
   }
 
+  const allLikes = useSelector(state => {
+    const like = Object.values(state.like)
+    return like
+  })
+  // console.log('likes', allLikes)
+
+  if (!allLikes) {
+    return null;
+  }
+
+  const filteredLikes = allLikes.filter((userLike) => {
+    if (userLike.user_id === user_id && userLike.tweet_id === tweet_id) {
+      return userLike
+    }
+  })
+  // console.log('filtered likes', filteredLikes)
+
   const handleLikeAdd = (e) => {
-    console.log('testing')
+    // console.log('testing')
     e.preventDefault();
+
+    if (filteredLikes.length) {
+      return
+    }
     dispatch(addOneLike({ user_id, tweet_id }))
   }
+
+  const handleLikeDelete = async () => {
+    // console.log('like_idddd', like_id)
+    const like_id = filteredLikes[0].id
+    await dispatch(removeOneLike(like_id));
+  }
+
+  const filteredLikesLen = filteredLikes.length
 
   return (
 
@@ -52,10 +84,19 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
           {tweetsReplies.length}
         </div>
 
-        <div className="home-tweet__option home-tweet__like" onClick={handleLikeAdd}>
-          <i className="far fa-heart" id="home-tweet__like-icon" ></i>
-          {tweetsLikes.length}
-        </div>
+        {!filteredLikesLen &&
+          <div className="home-tweet__option home-tweet__like" onClick={handleLikeAdd}>
+            <i className="far fa-heart" id="home-tweet__like-icon" style={{ color: "grey" }}></i>
+            {tweetsLikes.length}
+          </div>
+        }
+
+        {filteredLikesLen &&
+          <div className="home-tweet__option home-tweet__like" onClick={handleLikeDelete}>
+            <i className="fas fa-heart" id="home-tweet__like-icon" style={{ color: "red" }}></i>
+            {tweetsLikes.length}
+          </div>
+        }
 
         <div className="home-tweet__option home-tweet__bookmark">
           <i className="far fa-bookmark" id="home-tweet__bookmark-icon"></i>
