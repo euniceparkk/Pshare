@@ -13,7 +13,7 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    // const data = await dispatch(login(email, password));
+    return await dispatch(login(email, password));
     // if (data.errors) {
     // setErrors(user.errors);
     // }
