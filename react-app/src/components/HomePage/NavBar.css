@@ -3,7 +3,15 @@
   width: 26.8vw;
   border-right: .1px solid rgba(224, 224, 224, 0.637);
   position: fixed;
+}
 
+.nav__li-wrapper {
+  margin-top: .75em;
+  margin-left: 4.6em;
+  padding-top: 2.5em;
+  padding-left: 1.5em;
+  
+  /* border: solid 1px red; */
 }
 
 #nav__bird-image {
@@ -18,7 +26,30 @@ ul > * {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 15px 140px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  margin-top: 1.5px;
+  margin-bottom: 2.5px;
+  
+  margin-left: 38px;
+  margin-right: 16px;
+
+  padding-left: 12px;
+  padding-right: 28px;
+
+  /* border: 1px solid blue; */
+}
+
+.nav-hover {
+  /* border: 1px solid red; */
+  padding: 12px 14px;
+}
+
+.nav-hover:hover{
+  background-color: #faf5daef;
+  border-radius: 29px;
+  color: #FFDA0A;
 }
 
 .nav__all-links {
@@ -26,22 +57,34 @@ ul > * {
   font-weight: 500;
 }
 
+/* .nav__all-links:hover {
+  color: #FFDA0A;
+} */
+
 .nav__icons {
-  padding-right: 20px;
+  padding-right: 18px;
+  font-size: 1.5em;
+}
+
+/* -----other btns------------------------------------------ */
+#nav__more-btn {
+  font-size: 1.3em;
+  font-weight: 500;
+  background-color: transparent;
 }
 
 #nav__tweet-btn {
   margin-bottom: .8em;
   background-color: #FFDA0A;
   border-radius: 2em;
-  height: 2.8em;
+  height: 2.9em;
   width: 10em;
   
   color: white;
   font-size: 1em;
   font-weight: 600;
   letter-spacing: .03em;
-  padding: 0px 100px;
+  padding: 0px 110px;
 
   display: flex;
   justify-content: center;
@@ -50,4 +93,115 @@ ul > * {
 
 #nav__tweet-btn:hover {
   background-color: #FFE433;
+}
+
+/* -----container2------------------------------------------ */
+.nav__div2-wrapper {
+  margin-top: .75em;
+  margin-left: 4.6em;
+
+  height: 47.6vh;
+  padding-top: .8em;
+  padding-left: 4em;
+  padding-bottom: .9em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  /* border: 1px solid red; */
+}
+
+.nav__user-container {
+  height: 7.3vh;
+  width: 17..5vw;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+
+  /* border: 1px solid blue; */
+}
+
+.nav__user-container:hover {
+  background-color: #fcf8e0ef;
+  border-radius: 29px;
+  color: #eecc0b;
+  cursor: pointer;
+}
+
+.nav__img-container {
+  grid-column: 1/2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 8px;
+
+  /* border: 1px solid red; */
+}
+
+#nav__profile-img {
+  height: 2.7em;
+  width: 2.7em;
+  border-radius: 50%;
+
+  margin: 1px 10px 1px 10px;
+}
+
+.nav__name-container {
+  grid-column: 2/5;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-left: 2px;
+  /* border: 1px solid yellow; */
+}
+
+#nav__full-name {
+  font-weight: 600;
+  letter-spacing: .02em;
+  font-size: .96em;
+}
+
+#nav__username {
+  font-size: .94em;
+  font-weight: 400;
+  letter-spacing: .005em;
+  color: rgb(116, 116, 116);
+}
+
+.nav__dot-container {
+  grid-column: 5/6;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid pink; */
+}
+
+#nav__dot {
+  color: rgb(116, 116, 116);
+}
+
+.nav__one-option {
+  position: absolute;
+
+  top: 660px;
+  right: 10px;
+  
+  height: 8vh;
+  width: 16vw;
+
+  padding: 5px 0px;
+  border-radius: 15px;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.2); */
+  box-shadow: 2px 2px 10px 3px #cecbcbb7;
 }
