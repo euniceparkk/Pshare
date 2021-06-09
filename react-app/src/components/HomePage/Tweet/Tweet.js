@@ -69,7 +69,7 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
           {tweetsUser.first_name} {tweetsUser.last_name}
         </div>
         <div id="home-tweet__username">
-          @{tweetsUser.username} • {(tweetCreated).slice(0, -13)}
+          @{tweetsUser.username} • {(tweetCreated).slice(5, -13)}
         </div>
       </div>
 

@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import session from "./session"
 import tweet from "./tweet";
 import like from "./like";
+import bookmark from "./bookmark";
 
 const rootReducer = combineReducers({
     session,
     tweet,
     like,
+    bookmark,
 });
 
 
