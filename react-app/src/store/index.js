@@ -4,12 +4,14 @@ import session from "./session"
 import tweet from "./tweet";
 import like from "./like";
 import bookmark from "./bookmark";
+import user from "./user";
 
 const rootReducer = combineReducers({
     session,
     tweet,
     like,
     bookmark,
+    user,
 });
 
 

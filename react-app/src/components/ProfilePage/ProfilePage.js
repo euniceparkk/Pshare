@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import ActivityBar from '../HomePage/ActivityBar';
 import Tweet from '../HomePage/Tweet/Tweet';
 import { loadAllLikes } from '../../store/like';
 import './ProfilePage.css';
+import { getOneUser } from '../../store/user';
 
 function ProfilePage() {
   const dispatch = useDispatch();
@@ -13,25 +14,29 @@ function ProfilePage() {
   const [showReplies, setShowReplies] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
 
-  const user = useSelector(state => state.session.user);
-  const userTweets = user.tweets;
+  // const user = useSelector(state => state.session.user);
+  // const userTweets = user.tweets;
+  // console.log('userTweets', userTweets)
 
-  const allLikes = useSelector(state => {
-    const like = Object.values(state.like)
-    return like
-  })
-  // console.log("likes", allLikes)
+  const { id } = useParams();
+  // console.log(id)
+
+  const user = useSelector(state => Object.values(state.user)[0]);
+  // console.log('one user!', user)
 
   useEffect(() => {
-    dispatch(loadAllLikes())
+    dispatch(getOneUser(id))
   }, [dispatch])
 
-  // console.log('all likes', allLikes)
-  // GET all likes/replies thru store instead
-  // const userLikes = user.likes;
-  // console.log('user', user)
-  // console.log('userTweets', userTweets)
-  // console.log('userLikes', userLikes)
+  // const allLikes = useSelector(state => {
+  //   const like = Object.values(state.like)
+  //   return like
+  // })
+  // console.log("likes", allLikes)
+
+  // useEffect(() => {
+  //   dispatch(loadAllLikes())
+  // }, [dispatch])
 
   const handleTweetChange = (e) => {
     // console.log('in the bar', e.target.id)
@@ -54,7 +59,20 @@ function ProfilePage() {
     setShowReplies(showReplies);
   }
 
+  if (!user) {
+    return null;
+  };
+
+  const userTweets = user.tweets
+  // console.log('tweets', tee)
+  const userLikes = user.likes
+  // console.log('userLikes', userLikes)
+
   if (!userTweets) {
+    return null;
+  };
+
+  if (!userLikes) {
     return null;
   };
 
@@ -157,7 +175,7 @@ function ProfilePage() {
         </div>
 
         <div>
-          {showLikes && allLikes && allLikes.map((like) => {
+          {showLikes && userLikes && userLikes.map((like) => {
             return (
               <div key={like.id}>
                 {/* {console.log('inside', like)} */}

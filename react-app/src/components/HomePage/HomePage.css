@@ -120,6 +120,7 @@
 
 #home-profile__submit-btn:hover {
   background-color: #FFE433;
+  transition: all 0.2s ease-out;
 }
 
 .home__extra-container {

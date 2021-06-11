@@ -10,7 +10,7 @@ function BookmarkPage() {
 
   const user = useSelector(state => state.session.user);
   const user_id = user.id;
-  console.log('user', user)
+  // console.log('user', user)
 
   const allBookmarks = useSelector(state => {
     const bookmark = Object.values(state.bookmark)

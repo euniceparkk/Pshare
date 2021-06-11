@@ -42,14 +42,17 @@ ul > * {
 }
 
 .nav-hover {
-  /* border: 1px solid red; */
   padding: 12px 14px;
+  border-radius: 29px;
+
+  /* border: 1px solid red; */
 }
 
 .nav-hover:hover{
   background-color: #faf5daef;
-  border-radius: 29px;
   color: #FFDA0A;
+  border-radius: 29px;
+  transition: all 0.1s ease-out;
 }
 
 .nav__all-links {
@@ -93,6 +96,7 @@ ul > * {
 
 #nav__tweet-btn:hover {
   background-color: #FFE433;
+  transition: all 0.2s ease-out;
 }
 
 /* -----container2------------------------------------------ */

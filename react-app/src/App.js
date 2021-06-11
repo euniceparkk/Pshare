@@ -38,7 +38,7 @@ function App() {
           <HomePage />
         </ProtectedRoute>
 
-        <ProtectedRoute path="/profile" exact={true}>
+        <ProtectedRoute path="/profile/:id" exact={true}>
           <NavBar />
           <ProfilePage />
           {/* <UsersList /> */}

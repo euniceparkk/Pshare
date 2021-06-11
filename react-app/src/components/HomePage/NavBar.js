@@ -14,6 +14,7 @@ const NavBar = () => {
   const [showLogout, setShowLogout] = useState(false);
 
   const user_id = useSelector(state => state.session.user);
+  const id = user_id.id;
 
   const handleTweetModal = (e) => {
     e.preventDefault();
@@ -82,7 +83,7 @@ const NavBar = () => {
         <li>
           <div className='nav-hover'>
             <i className="far fa-user nav__icons"></i>
-            <NavLink to="/profile" exact={true} activeClassName="active" className="nav__all-links">Profile</NavLink>
+            <NavLink to={`/profile/${id}`} exact={true} activeClassName="active" className="nav__all-links">Profile</NavLink>
           </div>
         </li>
 

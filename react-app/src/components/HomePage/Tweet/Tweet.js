@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { removeOneTweet } from '../../../store/tweet';
+import { NavLink } from 'react-router-dom';
 import { addOneLike, removeOneLike, loadAllLikes } from '../../../store/like';
+import { addOneBookmark, loadAllBookmarks, removeOneBookmark } from '../../../store/bookmark';
+import { removeOneTweet } from '../../../store/tweet';
 import './Tweet.css';
 
 function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
@@ -11,6 +13,10 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
 
   useEffect(() => {
     dispatch(loadAllLikes())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(loadAllBookmarks())
   }, [dispatch])
 
   const handleTweetDelete = async () => {
@@ -27,6 +33,11 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
   })
   // console.log('likes', allLikes)
 
+  const allBookmarks = useSelector(state => {
+    const bookmark = Object.values(state.bookmark)
+    return bookmark
+  })
+
   if (!allLikes) {
     return null;
   }
@@ -41,7 +52,6 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
   const handleLikeAdd = (e) => {
     // console.log('testing')
     e.preventDefault();
-
     if (filteredLikes.length) {
       return
     }
@@ -50,14 +60,35 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
 
   const handleLikeDelete = async () => {
     // console.log('like_idddd', like_id)
-    const like_id = filteredLikes[0].id
+    const like_id = filteredLikes[0].id;
     await dispatch(removeOneLike(like_id));
   }
+  // const filteredLikesLen = filteredLikes.length
 
-  const filteredLikesLen = filteredLikes.length
+  if (!allBookmarks) {
+    return null;
+  }
+
+  const filteredBookmarks = allBookmarks.filter((userBookmark) => {
+    if (userBookmark.user_id === user_id && userBookmark.tweet_id === tweet_id) {
+      return userBookmark
+    }
+  })
+
+  const handleBookmarkAdd = (e) => {
+    e.preventDefault();
+    if (filteredBookmarks.length) {
+      return
+    }
+    dispatch(addOneBookmark({ user_id, tweet_id }));
+  }
+
+  const handleBookmarkDelete = async () => {
+    const bookmark_id = filteredBookmarks[0].id;
+    await dispatch(removeOneBookmark(bookmark_id));
+  }
 
   return (
-
     <div className="home-tweet__container">
       {/* {console.log({ tweet })} */}
       <div className="home-tweet__profile-container">
@@ -65,9 +96,11 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
       </div>
 
       <div className="home-tweet__user-container">
-        <div id="home-tweet__full-name">
-          {tweetsUser.first_name} {tweetsUser.last_name}
-        </div>
+        <NavLink to={`/profile/${tweetsUser.id}`}>
+          <div id="home-tweet__full-name">
+            {tweetsUser.first_name} {tweetsUser.last_name}
+          </div>
+        </NavLink>
         <div id="home-tweet__username">
           @{tweetsUser.username} • {(tweetCreated).slice(5, -13)}
         </div>
@@ -84,24 +117,31 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
           {tweetsReplies.length}
         </div>
 
-        {!filteredLikesLen &&
+        {!filteredLikes.length &&
           <div className="home-tweet__option home-tweet__like" onClick={handleLikeAdd}>
             <i className="far fa-heart" id="home-tweet__like-icon" style={{ color: "grey" }}></i>
             {tweetsLikes.length}
           </div>
         }
 
-        {filteredLikesLen &&
+        {filteredLikes.length &&
           <div className="home-tweet__option home-tweet__like" onClick={handleLikeDelete}>
             <i className="fas fa-heart" id="home-tweet__like-icon" style={{ color: "red" }}></i>
             {tweetsLikes.length}
           </div>
         }
 
-        <div className="home-tweet__option home-tweet__bookmark">
+        {!filteredBookmarks.length && <div className="home-tweet__option home-tweet__bookmark" onClick={handleBookmarkAdd}>
           <i className="far fa-bookmark" id="home-tweet__bookmark-icon"></i>
           {tweetsBookmarks.length}
         </div>
+        }
+
+        {filteredBookmarks.length && <div className="home-tweet__option home-tweet__bookmark" onClick={handleBookmarkDelete}>
+          <i className="fas fa-bookmark" id="home-tweet__bookmark-icon" style={{ color: "gold" }}></i>
+          {tweetsBookmarks.length}
+        </div>
+        }
 
       </div>
 

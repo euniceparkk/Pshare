@@ -51,6 +51,12 @@
   font-size: .98em;
 }
 
+#home-tweet__full-name:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
 #home-tweet__username {
   font-size: .98em;
   font-weight: 400;
