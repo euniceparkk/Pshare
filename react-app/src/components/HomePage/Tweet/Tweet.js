@@ -38,7 +38,15 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
     return bookmark
   })
 
+  // const allBookmarks = useSelector(state => state.bookmark)
+
+  // console.log('all bookmarks', allBookmarks)
+
   if (!allLikes) {
+    return null;
+  }
+
+  if (!allBookmarks) {
     return null;
   }
 
@@ -65,16 +73,14 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
   }
   // const filteredLikesLen = filteredLikes.length
 
-  if (!allBookmarks) {
-    return null;
-  }
-
   const filteredBookmarks = allBookmarks.filter((userBookmark) => {
     if (userBookmark.user_id === user_id && userBookmark.tweet_id === tweet_id) {
+      // console.log("userbookmark.user_id", userBookmark.tweet_id)
+      // console.log("user_id", tweet_id)
       return userBookmark
     }
   })
-
+  console.log("filterdbookmarks", filteredBookmarks)
   const handleBookmarkAdd = (e) => {
     e.preventDefault();
     if (filteredBookmarks.length) {
@@ -131,16 +137,18 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
           </div>
         }
 
-        {!filteredBookmarks.length && <div className="home-tweet__option home-tweet__bookmark" onClick={handleBookmarkAdd}>
-          <i className="far fa-bookmark" id="home-tweet__bookmark-icon"></i>
-          {tweetsBookmarks.length}
-        </div>
+        {!filteredBookmarks.length &&
+          <div className="home-tweet__option home-tweet__bookmark" onClick={handleBookmarkAdd}>
+            <i className="far fa-bookmark" id="home-tweet__bookmark-icon" style={{ color: "grey" }}></i>
+            {tweetsBookmarks.length}
+          </div>
         }
 
-        {filteredBookmarks.length && <div className="home-tweet__option home-tweet__bookmark" onClick={handleBookmarkDelete}>
-          <i className="fas fa-bookmark" id="home-tweet__bookmark-icon" style={{ color: "gold" }}></i>
-          {tweetsBookmarks.length}
-        </div>
+        {filteredBookmarks.length &&
+          <div className="home-tweet__option home-tweet__bookmark" onClick={handleBookmarkDelete}>
+            <i className="fas fa-bookmark" id="home-tweet__bookmark-icon" style={{ color: "gold" }}></i>
+            {tweetsBookmarks.length}
+          </div>
         }
 
       </div>

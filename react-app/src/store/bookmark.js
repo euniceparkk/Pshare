@@ -81,7 +81,7 @@ const bookmarksReducer = (state = initalState, action) => {
     case LOAD_BOOKMARKS: {
       newState = {}
       action.bookmarks.forEach((bookmark) => {
-        newState[bookmarksReducer.id] = bookmark
+        newState[bookmark.id] = bookmark
       })
       return {
         ...newState, ...state

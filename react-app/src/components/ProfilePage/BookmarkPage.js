@@ -12,15 +12,16 @@ function BookmarkPage() {
   const user_id = user.id;
   // console.log('user', user)
 
+  useEffect(() => {
+    dispatch(loadAllBookmarks())
+  }, [dispatch])
+
   const allBookmarks = useSelector(state => {
     const bookmark = Object.values(state.bookmark)
     return bookmark
   })
-  // console.log('all Bookmarks', allBookmarks)
+  console.log('all Bookmarks', allBookmarks)
 
-  useEffect(() => {
-    dispatch(loadAllBookmarks())
-  }, [dispatch])
 
   return (
     <div className="bookmark-wrapper">
