@@ -29,3 +29,14 @@ def add_reply():
     db.session.add(reply)
     db.session.commit()
     return reply.to_dict()
+
+
+# DELETE one reply
+@reply_routes.route('/<int:reply_id>', methods=["DELETE"])
+@login_required
+def remove_reply(reply_id):
+  reply = Reply.query.get(reply_id)
+
+  db.session.delete(reply)
+  db.session.commit()
+  return reply.to_dict()

@@ -31,4 +31,4 @@ def remove_like(like_id):
 
   db.session.delete(like)
   db.session.commit()
-  return like.to_dict()
+  return {'like_id': like_id}

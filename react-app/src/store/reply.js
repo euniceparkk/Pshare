@@ -1,6 +1,7 @@
 /* -----action verbs------------------------------------------ */
 const LOAD_REPLIES = "replies/LOAD_REPLIES";
 const ADD_REPLY = "replies/ADD_REPLY";
+const REMOVE_REPLY = "replies/REMOVE_REPLY";
 
 /* -----action creator---------------------------------------- */
 const loadReplies = (replies) => ({
@@ -10,6 +11,11 @@ const loadReplies = (replies) => ({
 
 const addReply = (reply) => ({
   type: ADD_REPLY,
+  reply
+});
+
+const removeReply = (reply) => ({
+  type: REMOVE_REPLY,
   reply
 });
 
@@ -52,6 +58,22 @@ export const addOneReply = (reply) => async (dispatch) => {
   return data;
 }
 
+// DELETE one reply
+export const removeOneReply = (reply) => async (dispatch) => {
+  const response = await fetch(`/api/replies/${reply}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+  })
+
+  if (!response.ok) {
+    throw response
+  }
+
+  dispatch(removeReply(reply));
+}
+
 /* -----reducer------------------------------------------------ */
 const initialState = {};
 
@@ -74,6 +96,12 @@ const repliesReducer = (state = initialState, action) => {
         [action.reply.id]: action.reply
       };
       return newState;
+
+    case REMOVE_REPLY: {
+      newState = { ...state };
+      delete newState[action.reply];
+      return newState;
+    }
 
     default:
       return state;
