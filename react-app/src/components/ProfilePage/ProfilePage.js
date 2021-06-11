@@ -82,12 +82,18 @@ function ProfilePage() {
   // console.log('tweets', tee)
   const userLikes = user.likes
   // console.log('userLikes', userLikes)
+  const userReplies = user.replies
+  // console.log('userReplies', userReplies)
 
   if (!userTweets) {
     return null;
   };
 
   if (!userLikes) {
+    return null;
+  };
+
+  if (!userReplies) {
     return null;
   };
 
@@ -274,18 +280,33 @@ function ProfilePage() {
         </div>
 
         <div>
-          {showReplies &&
-            <div>
-              <h1>Replies</h1>
-            </div>
-          }
+          {showReplies && userReplies && userReplies.map((reply) => {
+            return (
+              <div key={reply.id}>
+                {console.log('replied tweet', reply)}
+                {console.log('original tweet', reply.tweet)}
+                <Tweet
+                  user_id={user.id}
+                  tweet_userId={reply.user_id}
+                  tweet_id={reply.id}
+                  tweetsReplies={reply.tweet.replies}
+                  tweetsLikes={reply.tweet.likes}
+                  tweetsBookmarks={reply.tweet.bookmarks}
+                  tweetsUser={reply.tweet.user}
+                  tweetCreated={reply.created_at}
+                  tweetContent={reply.content}
+                  repliedTweet={reply.tweet}
+                />
+              </div>
+            )
+          })}
         </div>
 
         <div>
           {showLikes && userLikes && userLikes.map((like) => {
             return (
               <div key={like.id}>
-                {/* {console.log('inside', like)} */}
+                {console.log('inside like', like)}
                 <Tweet
                   user_id={user.id}
                   tweet_userId={like.user_id}

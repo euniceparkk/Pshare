@@ -5,6 +5,7 @@ import tweet from "./tweet";
 import like from "./like";
 import bookmark from "./bookmark";
 import user from "./user";
+import reply from "./reply";
 
 const rootReducer = combineReducers({
     session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     like,
     bookmark,
     user,
+    reply,
 });
 
 

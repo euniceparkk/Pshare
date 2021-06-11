@@ -1,9 +1,10 @@
-/* -----action verbs-------------------------------------------------- */
+/* -----action verbs------------------------------------------ */
 const LOAD_TWEETS = "tweets/LOAD_TWEETS";
 const ADD_TWEET = "tweets/ADD_TWEET";
 const REMOVE_TWEET = "tweets/REMOVE_TWEET";
+const LOAD_TWEET = "tweets/LOAD_TWEET";
 
-/* -----action creator-------------------------------------------------- */
+/* -----action creator---------------------------------------- */
 const loadTweets = (tweets) => ({
   type: LOAD_TWEETS,
   tweets
@@ -16,6 +17,11 @@ const addTweet = (tweet) => ({
 
 const removeTweet = (tweet) => ({
   type: REMOVE_TWEET,
+  tweet
+});
+
+const loadTweet = (tweet) => ({
+  type: LOAD_TWEET,
   tweet
 });
 
@@ -33,6 +39,21 @@ export const loadAllTweets = (tweets) => async (dispatch) => {
   const data = await response.json();
 
   dispatch(loadTweets(data));
+  return data;
+}
+
+// GET one tweet
+export const loadOneTweet = (id) => async (dispatch) => {
+  const response = await fetch(`/api/tweets/${id}`, {
+    headers: { "Content-Type": "application/json" }
+  })
+
+  if (!response.ok) {
+    throw response
+  }
+
+  const data = await response.json();
+  dispatch(loadTweet(data));
   return data;
 }
 
@@ -75,7 +96,7 @@ export const removeOneTweet = (tweet) => async (dispatch) => {
   dispatch(removeTweet(tweet));
 }
 
-/* -----reducer-------------------------------------------------- */
+/* -----reducer------------------------------------------------ */
 const initialState = {};
 
 const tweetsReducer = (state = initialState, action) => {
@@ -102,6 +123,14 @@ const tweetsReducer = (state = initialState, action) => {
       newState = { ...state };
       delete newState[action.tweet];
       return newState;
+    }
+
+    case LOAD_TWEET: {
+      newState = {}
+      newState["tweet"] = action.tweet
+      return {
+        ...newState
+      }
     }
 
     default:
