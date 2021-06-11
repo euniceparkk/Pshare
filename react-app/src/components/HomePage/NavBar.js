@@ -104,7 +104,6 @@ const NavBar = () => {
                 <div>
                   <input
                     type="textbox"
-                    name="tweet"
                     onChange={updateTweet}
                     value={tweetContent}
                     placeholder="What's happening?"

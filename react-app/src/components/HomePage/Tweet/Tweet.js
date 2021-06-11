@@ -11,22 +11,6 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
   const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
   const [currentTweet, setCurrentTweet] = useState();
 
-  useEffect(() => {
-    dispatch(loadAllLikes())
-  }, [dispatch])
-
-  useEffect(() => {
-    dispatch(loadAllBookmarks())
-  }, [dispatch])
-
-  const handleTweetDelete = async () => {
-    await dispatch(removeOneTweet(currentTweet))
-  }
-
-  const handleDropdown = () => {
-    setShowOptionsDropdown(!showOptionsDropdown);
-  }
-
   const allLikes = useSelector(state => {
     const like = Object.values(state.like)
     return like
@@ -38,9 +22,22 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
     return bookmark
   })
 
-  // const allBookmarks = useSelector(state => state.bookmark)
+  useEffect(() => {
+    dispatch(loadAllLikes())
+  }, [dispatch])
 
-  // console.log('all bookmarks', allBookmarks)
+  useEffect(() => {
+    dispatch(loadAllBookmarks())
+  }, [dispatch])
+
+
+  const handleTweetDelete = async () => {
+    await dispatch(removeOneTweet(currentTweet))
+  }
+
+  const handleDropdown = () => {
+    setShowOptionsDropdown(!showOptionsDropdown);
+  }
 
   if (!allLikes) {
     return null;
@@ -50,6 +47,7 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
     return null;
   }
 
+  // finding user_id in allLikes to limit more than like per tweet
   const filteredLikes = allLikes.filter((userLike) => {
     if (userLike.user_id === user_id && userLike.tweet_id === tweet_id) {
       return userLike
@@ -71,16 +69,14 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
     const like_id = filteredLikes[0].id;
     await dispatch(removeOneLike(like_id));
   }
-  // const filteredLikesLen = filteredLikes.length
+  // const filteredLikesLen = filteredLikes.length ??
 
   const filteredBookmarks = allBookmarks.filter((userBookmark) => {
     if (userBookmark.user_id === user_id && userBookmark.tweet_id === tweet_id) {
-      // console.log("userbookmark.user_id", userBookmark.tweet_id)
-      // console.log("user_id", tweet_id)
       return userBookmark
     }
   })
-  console.log("filterdbookmarks", filteredBookmarks)
+
   const handleBookmarkAdd = (e) => {
     e.preventDefault();
     if (filteredBookmarks.length) {

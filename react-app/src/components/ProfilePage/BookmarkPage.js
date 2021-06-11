@@ -20,8 +20,7 @@ function BookmarkPage() {
     const bookmark = Object.values(state.bookmark)
     return bookmark
   })
-  console.log('all Bookmarks', allBookmarks)
-
+  // console.log('all Bookmarks', allBookmarks)
 
   return (
     <div className="bookmark-wrapper">
@@ -34,21 +33,23 @@ function BookmarkPage() {
 
         <div className="bookmark__container-2">
           {allBookmarks && allBookmarks.map((bookmark) => {
-            return (
-              <div key={bookmark.id}>
-                <Tweet
-                  user_id={user_id}
-                  tweet_userId={bookmark.user_id}
-                  tweet_id={bookmark.tweet_id}
-                  tweetsReplies={bookmark.tweet.replies}
-                  tweetsLikes={bookmark.tweet.likes}
-                  tweetsBookmarks={bookmark.tweet.bookmarks}
-                  tweetsUser={bookmark.tweet.user}
-                  tweetCreated={bookmark.created_at}
-                  tweetContent={bookmark.tweet.content}
-                />
-              </div>
-            )
+            if (bookmark.user_id === user_id) {
+              return (
+                <div key={bookmark.id}>
+                  <Tweet
+                    user_id={user_id}
+                    tweet_userId={bookmark.user_id}
+                    tweet_id={bookmark.tweet_id}
+                    tweetsReplies={bookmark.tweet.replies}
+                    tweetsLikes={bookmark.tweet.likes}
+                    tweetsBookmarks={bookmark.tweet.bookmarks}
+                    tweetsUser={bookmark.tweet.user}
+                    tweetCreated={bookmark.created_at}
+                    tweetContent={bookmark.tweet.content}
+                  />
+                </div>
+              )
+            }
           })}
         </div>
 
