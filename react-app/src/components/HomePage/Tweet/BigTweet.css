@@ -1,0 +1,72 @@
+.big-tweet__container {
+  border-bottom: .06em solid rgba(228, 228, 228, 0.986);
+  margin-top: .3em;
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, 1fr);
+
+  /* border: 1px solid orchid;   */
+}
+
+.big-tweet__container:hover {
+  background-color: rgba(250, 250, 250, 0.986);
+}
+
+/* ----row 1/6--------------------------------------- */
+.bt-container-1 {
+  grid-row: 1/2;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* padding: 0px 20px; */
+  /* background-color: plum; */
+}
+
+#big-tweet__profile-img {
+  height: 3.2em;
+  width: 3.2em;
+  border-radius: 50%;
+
+  margin: 15px 11px 15px 16px;
+}
+
+.bt-c1__flex-container{
+  display: flex;
+  flex-direction: column;
+
+  /* background-color: red; */
+}
+
+#bt__full-name {
+  font-weight: 600;
+  letter-spacing: .02em;
+  font-size: .98em;
+}
+
+#bt__full-name:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#bt__username {
+  font-size: .9em;
+  font-weight: 400;
+  letter-spacing: .01em;
+  color: rgb(116, 116, 116);
+  padding-top: .2em;
+}
+
+#bt__dot {
+  margin-left: 360px;
+
+  /* background-color: lightblue; */
+}
+
+/* ----row 2/6--------------------------------------- */
+.bt-container-2 {
+  grid-row: 2/3;
+  background-color: lightcoral;
+}

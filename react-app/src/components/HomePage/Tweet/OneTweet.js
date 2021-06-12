@@ -6,6 +6,7 @@ import { loadOneTweet } from '../../../store/tweet';
 import './OneTweet.css';
 import Tweet from './Tweet';
 import { addOneReply, removeOneReply } from '../../../store/reply';
+import BigTweet from './BigTweet';
 
 function OneTweet() {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ function OneTweet() {
         <div className="single__container-2">
           <div key={tweet.id}>
             {/* {console.log('tweet1', tweet)} */}
-            <Tweet
+            <BigTweet
               user_id={sessionUser.id}
               tweet_userId={tweet.user_id}
               tweet_id={tweet.id}

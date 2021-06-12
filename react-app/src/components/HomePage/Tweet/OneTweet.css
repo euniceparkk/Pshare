@@ -19,6 +19,7 @@
   border-bottom: .1px solid rgba(224, 224, 224, 0.637);
   border-right: .1px solid rgba(224, 224, 224, 0.637);
   width: 38.9vw;
+  height: 6.5vh;
 
   padding-left: 16px;
   padding-top: 7px;
@@ -28,30 +29,42 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+
+  /* background-color: wheat; */
 }
 
 #single-c1__back-arrow {
   font-size: 1.2em;
   color: #FFDA0A;  
   padding: 8px 10px;
-  margin-left: 5px;
+}
+
+#single-c1__back-arrow:hover {
+  background-color: #faf5daef;
+  border-radius: 50px;
 }
 
 #single-c1__text{
-  font-size: 1.2em;
+  font-size: 1.25em;
   font-weight: 700;
   padding-bottom: 3px;
+  padding-top: 4px;
+  padding-left: 19px;
 }
 
+/* ----Container2--------------------------------------- */
 .single__container-2 {
-  /* border: 1px solid red; */
   margin-top: 3.1em;
-  height: 12.8vh;
+  height: 32vh;
   width: 38.89vw;
+
+  /* border: 1px solid blue; */
 }
 
+/* ----Container3--------------------------------------- */
 .single__container-3 {
-  border: 1px solid red;
+  border: 1px solid green;
+  margin-top: 2em;
   height: 12.8vh;
   width: 38.89vw;
 }
