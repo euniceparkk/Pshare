@@ -11,6 +11,7 @@ import LoginPage from "./components/auth/LoginPage";
 import HomePage from "./components/HomePage/HomePage";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
 import BookmarkPage from "./components/ProfilePage/BookmarkPage";
+import OneTweet from "./components/HomePage/Tweet/OneTweet";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,10 +39,15 @@ function App() {
           <HomePage />
         </ProtectedRoute>
 
-        <ProtectedRoute path="/profile" exact={true}>
+        <ProtectedRoute path="/profile/:id" exact={true}>
           <NavBar />
           <ProfilePage />
           {/* <UsersList /> */}
+        </ProtectedRoute>
+
+        <ProtectedRoute path="/tweet/:id" exact={true}>
+          <NavBar />
+          <OneTweet />
         </ProtectedRoute>
 
         <ProtectedRoute path="/explore" exact={true}>

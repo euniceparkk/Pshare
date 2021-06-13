@@ -1,0 +1,136 @@
+.single__wrapper {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.single__content-wrapper {
+  grid-column: 2/4;
+  margin-right: 142px;
+  margin-left: 28px;
+
+  /* border: 1px solid red; */
+}
+
+/* ----Container1--------------------------------------- */
+.single__container-1 {
+  position: fixed;
+  background-color: white;
+  border-bottom: .1px solid rgba(224, 224, 224, 0.637);
+  border-right: .1px solid rgba(224, 224, 224, 0.637);
+  width: 38.9vw;
+  height: 6.5vh;
+
+  padding-left: 16px;
+  padding-top: 7px;
+  padding-bottom: 6px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* background-color: wheat; */
+}
+
+#single-c1__back-arrow {
+  font-size: 1.2em;
+  color: #FFDA0A;  
+  padding: 8px 10px;
+}
+
+#single-c1__back-arrow:hover {
+  background-color: #faf5daef;
+  border-radius: 50px;
+}
+
+#single-c1__text{
+  font-size: 1.25em;
+  font-weight: 700;
+  padding-bottom: 3px;
+  padding-top: 4px;
+  padding-left: 19px;
+}
+
+/* ----Container2--------------------------------------- */
+.single__container-2 {
+  margin-top: 3.3em;
+
+  /* border: 1px solid blue; */
+  /* background-color: blue; */
+}
+
+/* ----Container3 reply box--------------------------------------- */
+.single__container-3 {
+  height: 10vh;
+  width: 38.89vw;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-bottom: .1em;
+  
+  /* background-color: lightsteelblue; */
+}
+
+#one-tweet__profile-img {
+  height: 3.2em;
+  width: 3.2em;
+  border-radius: 50%;
+
+  margin: 0 1em;
+}
+
+.single-form__flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.single__reply-textbox {
+  border: none;
+  outline: none;
+  font-size: 1.3em;
+  height: 2.8em;
+  width: 20em;
+  color: rgb(116, 116, 116);
+  
+  /* background-color: lightskyblue; */
+}
+
+#single__reply-button {
+  background-color: #FFDA0A;
+  border-radius: 2em;
+  height: 2em;
+  width: 4.5em;
+  
+  color: white;
+  font-size: .95em;
+  font-weight: 600;
+  letter-spacing: .03em;
+  padding: 1.3em 2.4em;
+  margin-left: .7em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#single__reply-button:hover {
+  background-color: #FFE433;
+  transition: all 0.2s ease-out;
+}
+
+/* ----extra container--------------------------------------- */
+.single__extra-container {
+  background-color: rgba(238, 238, 238, 0.904);
+  height: .9em;
+  width: 37.4em;
+  
+  margin-right: 4px;
+}
+
+/* ----Container4 comments--------------------------------------- */

@@ -15,6 +15,14 @@ def load_tweets():
   return jsonify([tweet.to_dict() for tweet in tweets])
 
 
+# GET one tweet
+@tweet_routes.route('/<int:id>')
+@login_required
+def tweet(id):
+  tweet = Tweet.query.get(id)
+  return tweet.to_dict()
+
+
 # POST one tweet
 @tweet_routes.route('/add', methods=["POST"])
 @login_required

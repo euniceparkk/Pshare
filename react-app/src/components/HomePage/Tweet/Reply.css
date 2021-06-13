@@ -1,0 +1,140 @@
+.reply__wrapper {
+  border-bottom: .06em solid rgba(228, 228, 228, 0.986);
+  position: relative;
+
+  /* border: 1px solid red;   */
+}
+
+/* ----container1--------------------------------------- */
+.reply-container-1 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: .7em .9em 0em .9em;
+
+  /* background-color: plum; */
+}
+
+#reply__profile-img {
+  height: 3.2em;
+  width: 3.2em;
+  border-radius: 50%;
+}
+
+#reply__profile-img:hover {
+  height: 3.2em;
+  width: 3.2em;
+  border-radius: 50%;
+  
+  opacity: 0.7;
+  /* border: 1px solid red; */
+}
+
+.flexing-dot {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.reply-c1__flex-1{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin-left: .9em;
+  padding-right: 2em;
+  margin-right: 1em;
+
+  /* background-color: blue; */
+}
+
+.reply__profile{
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  padding-right: 9em;
+  
+  /* background-color: red; */
+}
+
+#reply__full-name {
+  font-weight: 600;
+  letter-spacing: .02em;
+  font-size: .98em;
+}
+
+#reply__full-name:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#reply__username {
+  margin-top: .1em;
+  margin-left: .3em;
+
+  font-size: .9em;
+  font-weight: 400;
+  letter-spacing: .01em;
+  color: rgb(116, 116, 116);
+}
+
+/* THIS */
+#reply__replied-text {
+  margin-top: .4em;
+  margin-bottom: .5em;
+  width: fit-content;
+  
+  font-size: .9em;
+  font-weight: 400;
+  letter-spacing: .01em;
+  color: rgb(116, 116, 116);
+
+  padding-right: 12em;
+  
+  /* background-color: red; */
+}
+
+#reply__replied-link {
+  margin-left: .3em;
+  color: #e6c409;
+}
+
+#reply__replied-link:hover {
+  text-decoration: underline;
+}
+
+/* ----delete dropdown------------------------------------ */
+#reply__dot {
+  /* background-color: lightblue; */
+}
+
+#reply__options-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: transparent;
+  font-size: 1em;
+  padding: 6px 7px;
+  border-radius: 50px;
+}
+
+#reply__options-button:hover {
+  color: #FFDA0A;  
+  border-radius: 50px;
+  background-color: #faf5daef;
+}
+/* ----container2------------------------------------ */
+.reply-container-2 {
+  font-size: .97em;
+  letter-spacing: .02em;
+  font-weight: 400;
+  color: black;
+  
+  padding-left: 5.1em;
+  padding-bottom: .7em;
+  padding-top: .3em;
+
+  /* background-color: orange; */
+}

@@ -12,15 +12,15 @@ class Tweet(db.Model):
   created_at = db.Column(db.DateTime, default=now)
 
   # bookmarks belongsTo tweet
-  bookmarks = db.relationship("Bookmark", back_populates="tweet")
+  bookmarks = db.relationship("Bookmark", cascade="all, delete", back_populates="tweet")
   # likes belongsTo tweet
-  likes = db.relationship("Like", back_populates="tweet")
-
-  # user hasMany tweets
-  user = db.relationship("User", back_populates="tweets")
+  likes = db.relationship("Like", cascade="all, delete", back_populates="tweet")
 
   # replies belongsTo tweet
-  replies = db.relationship("Reply", back_populates="tweet")
+  replies = db.relationship("Reply", cascade="all, delete", back_populates="tweet")
+  
+  # user hasMany tweets
+  user = db.relationship("User", back_populates="tweets")
 
   def to_dict(self):
     return {

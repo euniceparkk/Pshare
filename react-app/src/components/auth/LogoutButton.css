@@ -1,0 +1,19 @@
+#logout-button {
+  background-color: transparent;
+  padding: 14px;
+  font-size: .9em;
+  font-weight: 400;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  border-top: .1px solid rgba(224, 224, 224, 0.637);
+  border-bottom: .1px solid rgba(224, 224, 224, 0.637);
+  
+  /* background-color: red; */
+}
+
+#logout-button:hover {
+  background-color: rgba(250, 250, 250, 0.986);
+}

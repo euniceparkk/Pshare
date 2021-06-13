@@ -16,7 +16,6 @@ function HomePage() {
     const tweet = Object.values(state.tweet)
     return tweet.reverse()
   })
-
   // console.log("tweet", allTweets)
   // console.log("user id!", user.id)
 
@@ -59,7 +58,6 @@ function HomePage() {
               <input
                 className="home__tweet-textbox"
                 type="textbox"
-                name="tweet"
                 onChange={updateTweet}
                 value={tweetContent}
                 placeholder="What's happening?"

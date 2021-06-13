@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import ActivityBar from '../HomePage/ActivityBar';
 import Tweet from '../HomePage/Tweet/Tweet';
-import { loadAllLikes } from '../../store/like';
+import { getOneUser, updateOneUser } from '../../store/user';
+import { Modal } from '../../context/Modal';
+// import { loadAllLikes } from '../../store/like';
 import './ProfilePage.css';
+import Reply from '../HomePage/Tweet/Reply';
 
 function ProfilePage() {
   const dispatch = useDispatch();
@@ -13,25 +16,43 @@ function ProfilePage() {
   const [showReplies, setShowReplies] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
 
-  const user = useSelector(state => state.session.user);
-  const userTweets = user.tweets;
+  const [showEditProfile, setShowEditProfile] = useState(false);
 
-  const allLikes = useSelector(state => {
-    const like = Object.values(state.like)
-    return like
-  })
-  // console.log("likes", allLikes)
+  const [updateFirstName, setUpdateFirstName] = useState("");
+  const [updateLastName, setUpdateLastName] = useState("");
+  const [updateBio, setUpdateBio] = useState("");
+  const [updateLocation, setUpdateLocation] = useState("");
+
+  const sessionUser = useSelector(state => state.session.user);
+  // const userTweets = user.tweets;
+  // console.log('userTweets', userTweets)
+
+  const { id } = useParams();
+  const user = useSelector(state => Object.values(state.user)[0]);
+  // console.log('one user!', user)
 
   useEffect(() => {
-    dispatch(loadAllLikes())
+    dispatch(getOneUser(id))
   }, [dispatch])
 
-  // console.log('all likes', allLikes)
-  // GET all likes/replies thru store instead
-  // const userLikes = user.likes;
-  // console.log('user', user)
-  // console.log('userTweets', userTweets)
-  // console.log('userLikes', userLikes)
+  useEffect(() => {
+    if (user) {
+      setUpdateFirstName(user.first_name)
+      setUpdateLastName(user.last_name)
+      setUpdateBio(user.bio)
+      setUpdateLocation(user.location)
+    }
+  }, [user])
+
+  // const allLikes = useSelector(state => {
+  //   const like = Object.values(state.like)
+  //   return like
+  // })
+  // console.log("likes", allLikes)
+
+  // useEffect(() => {
+  //   dispatch(loadAllLikes())
+  // }, [dispatch])
 
   const handleTweetChange = (e) => {
     // console.log('in the bar', e.target.id)
@@ -54,9 +75,63 @@ function ProfilePage() {
     setShowReplies(showReplies);
   }
 
+  if (!user) {
+    return null;
+  };
+
+  const userTweets = user.tweets
+  // console.log('tweets', tee)
+  const userLikes = user.likes
+  // console.log('userLikes', userLikes)
+  const userReplies = user.replies
+  // console.log('userReplies', userReplies)
+
   if (!userTweets) {
     return null;
   };
+
+  if (!userLikes) {
+    return null;
+  };
+
+  if (!userReplies) {
+    return null;
+  };
+
+  const handleEditModal = (e) => {
+    e.preventDefault();
+    setShowEditProfile(!showEditProfile);
+  }
+
+  const handleEditModalExit = (e) => {
+    e.preventDefault();
+    setShowEditProfile(false);
+  }
+
+  async function handleEditSubmit(e) {
+    e.preventDefault();
+    const first_name = updateFirstName;
+    const last_name = updateLastName;
+    const bio = updateBio;
+    const location = updateLocation;
+
+    if (first_name === "") {
+      return null
+    } else if (last_name === "") {
+      return null
+    } else if (bio === "") {
+      return null
+    } else if (location === "") {
+      return null
+    }
+
+    const info = {
+      first_name, last_name, bio, location
+    }
+
+    await dispatch(updateOneUser(id, info));
+    setShowEditProfile(false);
+  }
 
   return (
     <div className="profile-wrapper">
@@ -81,7 +156,64 @@ function ProfilePage() {
         <div className="profile__container-2">
           <div className="profile-c2__container1">
             <img alt="profile cover" src={user.cover_img} id="profile-c2__cover-img"></img>
+            {sessionUser.id === user.id &&
+              <div className="profile-c2__edit-container">
+                <button id="profile-c2__edit-button" onClick={handleEditModal}>Edit profile</button>
+              </div>
+            }
           </div>
+
+          {showEditProfile && sessionUser.id === user.id &&
+            <div>
+              <Modal onClose={() => setShowEditProfile(false)}>
+                <form onSubmit={handleEditSubmit}>
+                  <div>
+                    <input
+                      type="textbox"
+                      placeholder="First name"
+                      onChange={(e) => setUpdateFirstName(e.target.value)}
+                      value={updateFirstName}
+                    >
+                    </input>
+                  </div>
+                  <div>
+                    <input
+                      type="textbox"
+                      placeholder="Last name"
+                      onChange={(e) => setUpdateLastName(e.target.value)}
+                      value={updateLastName}
+                    >
+                    </input>
+                  </div>
+                  <div>
+                    <input
+                      type="textbox"
+                      placeholder="Bio"
+                      onChange={(e) => setUpdateBio(e.target.value)}
+                      value={updateBio}
+                    >
+                    </input>
+                  </div>
+                  <div>
+                    <input
+                      type="textbox"
+                      placeholder="Location"
+                      onChange={(e) => setUpdateLocation(e.target.value)}
+                      value={updateLocation}
+                    >
+                    </input>
+                  </div>
+
+                  <button type="button" onClick={handleEditModalExit}>
+                    <i className="fas fa-times"></i>
+                  </button>
+                  <div>Edit profile</div>
+                  <button type="submit">Save</button>
+
+                </form>
+              </Modal>
+            </div>
+          }
 
           <img alt="profile" src={user.profile_img} id="profile-c2__profile-img"></img>
 
@@ -149,18 +281,33 @@ function ProfilePage() {
         </div>
 
         <div>
-          {showReplies &&
-            <div>
-              <h1>Replies</h1>
-            </div>
-          }
+          {showReplies && userReplies && userReplies.map((reply) => {
+            return (
+              <div key={`reply-${reply.id}`}>
+                {/* {console.log('replied tweet', reply)} */}
+                {/* {console.log('original tweet', reply.tweet)} */}
+                <Reply
+                  user_id={user.id}
+                  tweet_userId={reply.user_id}
+                  tweet_id={reply.id}
+                  tweetsReplies={reply.tweet.replies}
+                  tweetsLikes={reply.tweet.likes}
+                  tweetsBookmarks={reply.tweet.bookmarks}
+                  tweetsUser={reply.user}
+                  tweetCreated={reply.created_at}
+                  tweetContent={reply.content}
+                  repliedTweetsUsername={reply.tweet.user.username}
+                />
+              </div>
+            )
+          })}
         </div>
 
         <div>
-          {showLikes && allLikes && allLikes.map((like) => {
+          {showLikes && userLikes && userLikes.map((like) => {
             return (
               <div key={like.id}>
-                {/* {console.log('inside', like)} */}
+                {/* {console.log('inside like', like)} */}
                 <Tweet
                   user_id={user.id}
                   tweet_userId={like.user_id}

@@ -6,7 +6,7 @@
 
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  /* grid-template-rows: repeat(3, 1fr); */
 
   /* border: 1px solid red;   */
 }
@@ -21,7 +21,7 @@
   
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 
   /* background-color: plum; */
   /* border: 1px solid plum; */
@@ -35,12 +35,23 @@
   margin: 7px 12px 0px 12px;
 }
 
+#home-tweet__profile-img:hover {
+  height: 3.2em;
+  width: 3.2em;
+  border-radius: 50%;
+
+  opacity: 0.8;
+}
+
 .home-tweet__user-container {
   grid-column: 2/11;
   grid-row: 1/2;
+
   display: flex;
   align-items: center;
+
   margin-left: 2px;
+  padding-top: .7em;
 
   /* background-color: palegreen; */
 }
@@ -50,6 +61,12 @@
   letter-spacing: .02em;
   font-size: .98em;
 }
+
+#home-tweet__full-name:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 
 #home-tweet__username {
   font-size: .98em;
@@ -71,10 +88,9 @@
   font-weight: 400;
   color: black;
   
+  padding: .5em 0em;
   margin-right: 1em;
   margin-left: 2px;
-
-  /* height: fit-content; ????? */
 
   /* background-color: pink; */
 }

@@ -43,6 +43,7 @@
 
   display: grid;
   height: 11.2em;
+  width: 37.4em;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(4, 1fr);
 
@@ -120,11 +121,13 @@
 
 #home-profile__submit-btn:hover {
   background-color: #FFE433;
+  transition: all 0.2s ease-out;
 }
 
 .home__extra-container {
   background-color: rgba(245, 245, 245, 0.904);
   height: .7em;
+  width: 37.4em;
   border-bottom: .1px solid rgba(224, 224, 224, 0.637);
 
   margin-right: 4px;
