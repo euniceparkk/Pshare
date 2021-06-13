@@ -44,6 +44,7 @@
 #profile-c1__back-arrow:hover {
   background-color: #faf5daef;
   border-radius: 50px;
+  transition: all 0.25s ease-out;
 }
 
 .profile-c1__flex-container {
