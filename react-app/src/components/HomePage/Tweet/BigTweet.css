@@ -3,22 +3,15 @@
   margin-top: .3em;
   position: relative;
 
-  /* height: fit-content; */
-  /* display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 1fr); */
-
-  /* border: 1px solid orchid;   */
+  /* border: 1px solid orchid; */
 }
 
-.big-tweet__container:hover {
+/* .big-tweet__container:hover {
   background-color: rgba(250, 250, 250, 0.986);
-}
+} */
 
 /* ----row 1/5--------------------------------------- */
 .bt-container-1 {
-  /* grid-row: 1/2; */
-
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -60,19 +53,75 @@
   padding-top: .2em;
 }
 
+/* ----delete dropdown------------------------------------ */
 #bt__dot {
-  margin-left: 360px;
-
+  margin-left: 23em;
+  margin-bottom: 1em;
   /* background-color: lightblue; */
+}
+
+#bt__options-button {
+  background-color: transparent;
+  font-size: 1em;
+  padding: 8px 10px;
+  border-radius: 50px;
+}
+
+#bt__options-button:hover {
+  color: #FFDA0A;  
+  border-radius: 50px;
+  background-color: #faf5daef;
+}
+
+.bt__one-option {
+  position: absolute;
+  /* absolute FROM parent div of 'relative; */
+
+  top: 15px;
+  right: 30px;
+  
+  height: 8vh;
+  width: 13vw;
+
+  padding: 5px;
+  border-radius: 5px;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  /* box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.2); */
+  box-shadow: 2px 2px 10px 3px #cecbcbb7;
+
+  /* border: 1px solid red; */
+}
+
+#tweet__delete-button {
+  color: rgb(226, 93, 93);
+  background-color: white;
+  font-size: .9em;
+  letter-spacing: .01em;
+
+  padding-left: 10px;
+  padding-right: 100px;
+  margin: 10px 0px;
+
+  height: 10vh;
+
+  /* border: 1px solid blue; */
+}
+
+.trash-icon {
+  padding-right: 15px;
+}
+
+#tweet__delete-button:hover {
+  background-color: rgba(250, 250, 250, 0.986);
 }
 
 /* ----row 2/4 content & created at------------------------------------ */
 .bt-container-2 {
-  /* grid-row: 2/4; */
-  /* margin-left: 1.1em; */
-  /* height: 15em; */
-  /* height: fit-content; */
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -82,7 +131,7 @@
 
 #bt__content {
   margin-left: .75em;
-  margin-top: .3em;
+  margin-top: .6em;
 
   font-size: 1.35em;
   letter-spacing: .01em;
@@ -93,6 +142,8 @@
 #bt__time {
   margin-left: 1.1em;
   margin-top: 1em;
+  
+  padding: .4em 0;
 
   font-size: .95em;
   font-weight: 400;
@@ -102,11 +153,7 @@
 
 /* ------------------------------------------- */
 .bt-container-3 {
-  /* grid-row: 4/6; */
   margin-top: 1em;
-
-  /* height: 12vh; */
-  /* height: fit-content; */
 
   display: flex;
   flex-direction: column;
@@ -122,7 +169,7 @@
   justify-content: flex-start;
   align-items: center;
   
-  padding: .9em;
+  padding: .9em 0em .9em .7em;
   margin: 0em 1em;
   border-top: .06em solid rgba(228, 228, 228, 0.986);
   border-bottom: .06em solid rgba(228, 228, 228, 0.986);
@@ -131,24 +178,23 @@
 }
 
 .bt__length {
-  margin-left: 1.3em;
-  margin-right: 4em;
+  margin-right: 4.5em;
 
   display: flex;
   flex-direction: row;
-  align-items: center;
 }
 
 .bt__len-num {
-  margin-right: .8em;
+  margin-right: .6em;
   font-weight: 500;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 .bt__len-text {
   color: rgb(116, 116, 116);
   font-weight: 400;
-  font-size: 1em;
+  font-size: .95em;
+  letter-spacing: .01em;
 }
 
 /* ----SUBcontainer2--------------------------------------- */
@@ -169,14 +215,9 @@
 }
 
 .bt__option {
-  margin: 0em 3.1em;
-
-  font-size: 1.4em;
-  /* padding: 0px 60px 0px 16px; */
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  margin: 0em 3.6em;
+  font-size: 1.3em;
+  font-weight: 500;
 
   /* background-color: yellow; */
 }
@@ -186,8 +227,7 @@
 }
 
 .bt__like:hover {
-  /* color: rgb(226, 93, 93); */
-  color: red;
+  color: rgb(226, 93, 93);
 }
 
 .bt__bookmark:hover {
@@ -196,7 +236,7 @@
 
 #bt__comment-icon {
   /* border: 1px solid red; */
-  padding: 7px 8px;
+  padding: 9px 10px;
   margin-right: 8px;
   border-radius: 50%;
   
@@ -210,7 +250,7 @@
 
 #bt__like-icon {
   /* border: 1px solid red; */
-  padding: 7px 8px;
+  padding: 9px 8px 7px 8px;
   margin-right: 8px;
   border-radius: 50%;
 
@@ -224,7 +264,7 @@
 
 #bt__bookmark-icon {
   /* border: 1px solid red; */
-  padding: 6px 9px;
+  padding: 9px 11.4px 8px 11.4px;
   margin-right: 8px;
   border-radius: 50%;
 

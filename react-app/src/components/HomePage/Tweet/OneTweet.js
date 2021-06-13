@@ -84,7 +84,7 @@ function OneTweet() {
         </div>
 
         <div className="single__container-3">
-          <img alt="profile" src={tweet.user.profile_img} id="one-tweet__profile-img"></img>
+          <img alt="profile" src={sessionUser.profile_img} id="one-tweet__profile-img"></img>
           <form onSubmit={handleReplySubmit} className="single-form__flex-container">
             <input
               className="single__reply-textbox"
@@ -98,12 +98,13 @@ function OneTweet() {
           </form>
         </div>
 
+        <div className="single__extra-container"></div>
 
         <div className="single__container-4">
           {tweetReplies.length && tweetReplies.map((tweet) => {
             return (
               // key={`post-${postId}-comment-${commentId}`}
-              <div key={`tweet-replies-${tweetReplies.id}`}>
+              <div key={`comment-${tweet.id}-comment-${tweet.tweet_id}`}>
                 {/* {console.log('replytweet!!', tweet)} */}
                 <Tweet
                   user_id={sessionUser.id}

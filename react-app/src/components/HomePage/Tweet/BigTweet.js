@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { addOneLike, removeOneLike, loadAllLikes } from '../../../store/like';
 import { addOneBookmark, loadAllBookmarks, removeOneBookmark } from '../../../store/bookmark';
 import './BigTweet.css';
+import { removeOneTweet } from '../../../store/tweet';
 
 function BigTweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const [currentTweet, setCurrentTweet] = useState();
+  const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
 
   const allLikes = useSelector(state => {
     const like = Object.values(state.like)
@@ -25,6 +29,15 @@ function BigTweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, t
   useEffect(() => {
     dispatch(loadAllBookmarks())
   }, [dispatch])
+
+  const handleTweetDelete = async () => {
+    await dispatch(removeOneTweet(currentTweet))
+    history.push('/home');
+  }
+
+  const handleDropdown = () => {
+    setShowOptionsDropdown(!showOptionsDropdown);
+  }
 
   if (!allLikes) {
     return null;
@@ -94,11 +107,24 @@ function BigTweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, t
         </div>
 
         <div id="bt__dot">
-          <i className="fas fa-ellipsis-h"></i>
+          <button type="button" id="bt__options-button" onClick={() => {
+            handleDropdown()
+            setCurrentTweet(tweet_id)
+          }}>
+            <i className="fas fa-ellipsis-h"></i>
+          </button>
         </div>
+
+        {showOptionsDropdown && user_id === tweet_userId &&
+          <div className="bt__one-option">
+            <button type="button" onClick={handleTweetDelete} id="tweet__delete-button">
+              <i className="far fa-trash-alt trash-icon"></i>
+              Delete
+            </button>
+          </div>
+        }
+
       </div>
-
-
 
       <div className="bt-container-2">
         <div id="bt__content">
