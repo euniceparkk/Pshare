@@ -9,9 +9,7 @@ import './Tweet.css';
 function Tweet({ repliedTweet, tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
   const dispatch = useDispatch();
   const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
-
   const [currentTweet, setCurrentTweet] = useState();
-
   const [showReplyUsername, setShowReplyUsername] = useState(false);
 
   const allLikes = useSelector(state => {

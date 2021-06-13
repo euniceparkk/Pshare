@@ -93,7 +93,9 @@ function BigTweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, t
     <div className="big-tweet__container">
 
       <div className="bt-container-1">
-        <img alt="profile" src={tweetsUser.profile_img} id="big-tweet__profile-img"></img>
+        <NavLink to={`/profile/${tweetsUser.id}`}>
+          <img alt="profile" src={tweetsUser.profile_img} id="big-tweet__profile-img"></img>
+        </NavLink>
 
         <div className="bt-c1__flex-container">
           <NavLink to={`/profile/${tweetsUser.id}`}>
@@ -117,7 +119,7 @@ function BigTweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, t
 
         {showOptionsDropdown && user_id === tweet_userId &&
           <div className="bt__one-option">
-            <button type="button" onClick={handleTweetDelete} id="tweet__delete-button">
+            <button type="button" onClick={handleTweetDelete} id="bt__delete-button">
               <i className="far fa-trash-alt trash-icon"></i>
               Delete
             </button>
@@ -135,11 +137,9 @@ function BigTweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, t
         </div>
       </div>
 
-
-      <div className="bt-container-3">
+      <div className="bt-container-3" id="jump-reply">
 
         <div className="bt-container-3__1">
-
           <div className="bt__length">
             <div className="bt__len-num">{tweetsReplies.length}</div>
             <span className="bt__len-text"> Replies</span>
@@ -154,13 +154,14 @@ function BigTweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, t
             <div className="bt__len-num">{tweetsBookmarks.length}</div>
             <span className="bt__len-text"> Bookmarks</span>
           </div>
-
         </div>
 
-        <div className="bt-container-3__2">
-          <div className="bt__option bt__comment">
-            <i className="far fa-comment" id="bt__comment-icon"></i>
-          </div>
+        <div className="bt-container-3__2" >
+          <a href="#jump-reply">
+            <div className="bt__option bt__comment">
+              <i className="far fa-comment" id="bt__comment-icon"></i>
+            </div>
+          </a>
 
           {filteredLikes.length ?
             <div className="bt__option bt__like" onClick={handleLikeDelete}>
@@ -182,8 +183,8 @@ function BigTweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, t
             </div>
           }
         </div>
-      </div>
 
+      </div>
 
     </div>
   )

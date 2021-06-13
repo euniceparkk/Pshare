@@ -5,14 +5,14 @@ import ActivityBar from '../ActivityBar';
 import { loadOneTweet } from '../../../store/tweet';
 import './OneTweet.css';
 import Tweet from './Tweet';
-import { addOneReply, removeOneReply } from '../../../store/reply';
+import { addOneReply } from '../../../store/reply';
 import BigTweet from './BigTweet';
+import Reply from './Reply';
 
 function OneTweet() {
   const dispatch = useDispatch();
   const [replyContent, setReplyContent] = useState("");
 
-  const [currentReply, setCurrentReply] = useState();
 
   const { id } = useParams();
   const tweet = useSelector(state => Object.values(state.tweet)[0]);
@@ -23,9 +23,7 @@ function OneTweet() {
     dispatch(loadOneTweet(id))
   }, [dispatch])
 
-  const handleReplyDelete = async () => {
-    await dispatch(removeOneReply(currentReply))
-  }
+
 
   if (!tweet) {
     return null;
@@ -101,12 +99,12 @@ function OneTweet() {
         <div className="single__extra-container"></div>
 
         <div className="single__container-4">
-          {tweetReplies.length && tweetReplies.map((tweet) => {
+          {tweetReplies && tweetReplies.map((tweet) => {
             return (
               // key={`post-${postId}-comment-${commentId}`}
               <div key={`comment-${tweet.id}-comment-${tweet.tweet_id}`}>
                 {/* {console.log('replytweet!!', tweet)} */}
-                <Tweet
+                <Reply
                   user_id={sessionUser.id}
                   tweet_userId={tweet.user_id}
                   tweet_id={tweet.id}
@@ -116,10 +114,8 @@ function OneTweet() {
                   tweetsUser={tweet.user}
                   tweetCreated={tweet.created_at}
                   tweetContent={tweet.content}
+                  repliedTweetsUsername={tweet.tweet.user.username}
                 />
-                <button onClick={() => {
-                  handleReplyDelete()
-                }}>delete</button>
               </div>
             )
 
