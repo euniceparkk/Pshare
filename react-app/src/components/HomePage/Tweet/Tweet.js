@@ -138,7 +138,7 @@ function Tweet({ repliedTweet, tweet_id, tweet_userId, user_id, tweetsUser, twee
           </div>
           :
           <div className="home-tweet__option home-tweet__like" onClick={handleLikeAdd}>
-            <i className="far fa-heart" id="home-tweet__like-icon" style={{ color: "grey" }}></i>
+            <i className="far fa-heart" id="home-tweet__like-icon"></i>
             {tweetsLikes.length}
           </div>
         }
@@ -150,7 +150,7 @@ function Tweet({ repliedTweet, tweet_id, tweet_userId, user_id, tweetsUser, twee
           </div>
           :
           <div className="home-tweet__option home-tweet__bookmark" onClick={handleBookmarkAdd}>
-            <i className="far fa-bookmark" id="home-tweet__bookmark-icon" style={{ color: "grey" }}></i>
+            <i className="far fa-bookmark" id="home-tweet__bookmark-icon"></i>
             {tweetsBookmarks.length}
           </div>
         }
