@@ -7,6 +7,7 @@ import { getOneUser, updateOneUser } from '../../store/user';
 import { Modal } from '../../context/Modal';
 // import { loadAllLikes } from '../../store/like';
 import './ProfilePage.css';
+import Reply from '../HomePage/Tweet/Reply';
 
 function ProfilePage() {
   const dispatch = useDispatch();
@@ -282,20 +283,20 @@ function ProfilePage() {
         <div>
           {showReplies && userReplies && userReplies.map((reply) => {
             return (
-              <div key={reply.id}>
-                {console.log('replied tweet', reply)}
-                {console.log('original tweet', reply.tweet)}
-                <Tweet
+              <div key={`reply-${reply.id}`}>
+                {/* {console.log('replied tweet', reply)} */}
+                {/* {console.log('original tweet', reply.tweet)} */}
+                <Reply
                   user_id={user.id}
                   tweet_userId={reply.user_id}
                   tweet_id={reply.id}
                   tweetsReplies={reply.tweet.replies}
                   tweetsLikes={reply.tweet.likes}
                   tweetsBookmarks={reply.tweet.bookmarks}
-                  tweetsUser={reply.tweet.user}
+                  tweetsUser={reply.user}
                   tweetCreated={reply.created_at}
                   tweetContent={reply.content}
-                  repliedTweet={reply.tweet}
+                  repliedTweetsUsername={reply.tweet.user.username}
                 />
               </div>
             )
@@ -306,7 +307,7 @@ function ProfilePage() {
           {showLikes && userLikes && userLikes.map((like) => {
             return (
               <div key={like.id}>
-                {console.log('inside like', like)}
+                {/* {console.log('inside like', like)} */}
                 <Tweet
                   user_id={user.id}
                   tweet_userId={like.user_id}

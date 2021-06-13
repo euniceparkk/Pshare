@@ -6,11 +6,10 @@ import { addOneBookmark, loadAllBookmarks, removeOneBookmark } from '../../../st
 import { removeOneTweet } from '../../../store/tweet';
 import './Tweet.css';
 
-function Tweet({ repliedTweet, tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
+function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
   const dispatch = useDispatch();
   const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
   const [currentTweet, setCurrentTweet] = useState();
-  const [showReplyUsername, setShowReplyUsername] = useState(false);
 
   const allLikes = useSelector(state => {
     const like = Object.values(state.like)
@@ -96,7 +95,7 @@ function Tweet({ repliedTweet, tweet_id, tweet_userId, user_id, tweetsUser, twee
     <div className="home-tweet__container">
       {/* {console.log({ tweet })} */}
       <div className="home-tweet__profile-container">
-        <NavLink to={`/tweet/${tweet_id}`}>
+        <NavLink to={`/profile/${tweetsUser.id}`}>
           <img alt="profile" src={tweetsUser.profile_img} id="home-tweet__profile-img"></img>
         </NavLink>
       </div>
@@ -113,13 +112,9 @@ function Tweet({ repliedTweet, tweet_id, tweet_userId, user_id, tweetsUser, twee
       </div>
 
       <div className="home-tweet__content-container">
-        {showReplyUsername && repliedTweet &&
-          <div>
-            hello
-          </div>
-        }
-
-        {tweetContent}
+        <NavLink to={`/tweet/${tweet_id}`}>
+          {tweetContent}
+        </NavLink>
       </div>
 
       <div className="home-tweet__options-container">
