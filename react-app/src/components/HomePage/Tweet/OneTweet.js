@@ -83,19 +83,18 @@ function OneTweet() {
           </div>
         </div>
 
-
         <div className="single__container-3">
-          <div>Tweet here</div>
-          <form onSubmit={handleReplySubmit}>
+          <img alt="profile" src={tweet.user.profile_img} id="one-tweet__profile-img"></img>
+          <form onSubmit={handleReplySubmit} className="single-form__flex-container">
             <input
               className="single__reply-textbox"
               type="textbox"
               onChange={updateReply}
               value={replyContent}
-              placeholder="Tweet your reply"
+              placeholder="Tweet your reply.."
             >
             </input>
-            <button type="submit">Reply</button>
+            <button type="submit" id="single__reply-button">Reply</button>
           </form>
         </div>
 

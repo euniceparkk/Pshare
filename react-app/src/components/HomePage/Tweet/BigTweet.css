@@ -1,12 +1,12 @@
 .big-tweet__container {
-  border-bottom: .06em solid rgba(228, 228, 228, 0.986);
+  /* border-bottom: .06em solid rgba(228, 228, 228, 0.986); */
   margin-top: .3em;
   position: relative;
 
-  height: 40vh;
-  display: grid;
+  /* height: fit-content; */
+  /* display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr); */
 
   /* border: 1px solid orchid;   */
 }
@@ -17,12 +17,12 @@
 
 /* ----row 1/5--------------------------------------- */
 .bt-container-1 {
-  grid-row: 1/2;
+  /* grid-row: 1/2; */
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* padding: 0px 20px; */
+
   /* background-color: plum; */
 }
 
@@ -66,19 +66,23 @@
   /* background-color: lightblue; */
 }
 
-/* ----row 2/4--------------------------------------- */
+/* ----row 2/4 content & created at------------------------------------ */
 .bt-container-2 {
-  grid-row: 2/4;
+  /* grid-row: 2/4; */
   /* margin-left: 1.1em; */
+  /* height: 15em; */
+  /* height: fit-content; */
+
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 
   /* background-color: lightcoral; */
 }
 
 #bt__content {
   margin-left: .75em;
+  margin-top: .3em;
 
   font-size: 1.35em;
   letter-spacing: .01em;
@@ -88,7 +92,6 @@
 
 #bt__time {
   margin-left: 1.1em;
-
   margin-top: 1em;
 
   font-size: .95em;
@@ -97,18 +100,22 @@
   color: rgb(116, 116, 116);
 }
 
-/* ----row 4/6--------------------------------------- */
+/* ------------------------------------------- */
 .bt-container-3 {
-  grid-row: 4/6;
+  /* grid-row: 4/6; */
+  margin-top: 1em;
+
+  /* height: 12vh; */
+  /* height: fit-content; */
 
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 
   /* background-color: lightgreen; */
 }
 
-/* ----subContainer1--------------------------------------- */
+/* ----SUBcontainer1--------------------------------------- */
 .bt-container-3__1 {
   display: flex;
   flex-direction: row;
@@ -144,7 +151,7 @@
   font-size: 1em;
 }
 
-/* ----subContainer2--------------------------------------- */
+/* ----SUBcontainer2--------------------------------------- */
 .bt-container-3__2 {
   color: rgb(116, 116, 116);
 
@@ -152,9 +159,10 @@
   justify-content: center;
   align-items: center;
 
-  padding: .3em;
+  padding-top: .3em;
+  padding-bottom: .3em;
   margin: 0em 1em;
-  border-top: .06em solid rgba(228, 228, 228, 0.986);
+  /* border-top: .06em solid rgba(228, 228, 228, 0.986); */
   border-bottom: .06em solid rgba(228, 228, 228, 0.986);
 
   /* background-color: lightpink;  */
