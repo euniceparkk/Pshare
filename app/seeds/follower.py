@@ -4,13 +4,38 @@ import datetime
 def seed_followers():
 
   demo = User.query.filter_by(username='demouserrr').first()
-  eunice = User.query.filter_by(username='euniceparkkk').first()
+  koda = User.query.filter_by(username='kodabop').first()
+  netflix = User.query.filter_by(username='Netflix').first()
+  google = User.query.filter_by(username='Google').first()
+  apple = User.query.filter_by(username='Apple').first()
+  disney = User.query.filter_by(username='Disney').first()
+  chipotle = User.query.filter_by(username='ChipotleTweets').first()
+  starbucks = User.query.filter_by(username='Starbucks').first()
+
 
   # from Follower model, 'follows' is a helper table
   # 'followed_users' and 'users_followers'
   # is the many-many association made from User model
-  eunice.followed_users.append(demo)
-  eunice.users_followers.append(demo)
+  koda.followed_users.append(demo)
+  koda.users_followers.append(demo)
+
+  demo.followed_users.append(netflix)
+  demo.users_followers.append(netflix)
+
+  demo.followed_users.append(google)
+  demo.users_followers.append(google)
+
+  demo.followed_users.append(apple)
+  demo.users_followers.append(apple)
+
+  demo.followed_users.append(disney)
+  demo.users_followers.append(disney)
+
+  demo.followed_users.append(chipotle)
+  demo.users_followers.append(chipotle)
+  
+  demo.followed_users.append(starbucks)
+  demo.users_followers.append(starbucks)
   
   # # association below is equivialent to association above.
   # # demo follows eunice, eunice follows demo

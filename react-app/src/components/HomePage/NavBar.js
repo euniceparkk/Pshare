@@ -19,7 +19,14 @@ const NavBar = () => {
   const handleTweetModal = (e) => {
     e.preventDefault();
     setShowTweetModal(!showTweetModal);
+    setTweetContent("")
   };
+
+  const closeTweetModal = (e) => {
+    e.preventDefault();
+    setShowTweetModal(false);
+    setTweetContent("")
+  }
 
   const updateTweet = (e) => {
     setTweetContent(e.target.value);
@@ -99,19 +106,31 @@ const NavBar = () => {
       {showTweetModal &&
         <div>
           <Modal onClose={() => setShowTweetModal(false)}>
-            <div>
-              <form onSubmit={handleTweetSubmit}>
-                <div>
+            <div className="nav__tweet-modal">
+              <div id="nav-modal__container-1">
+                <i className="fas fa-times nav-modal__exit" onClick={closeTweetModal}></i>
+              </div>
+
+              <div id="nav-modal__container-2">
+                <img alt="profile" src={user_id.profile_img} id="nav-modal__profile-img"></img>
+
+                <form onSubmit={handleTweetSubmit}>
                   <input
+                    id="nav-modal__textbox"
                     type="textbox"
                     onChange={updateTweet}
                     value={tweetContent}
                     placeholder="What's happening?"
                   >
                   </input>
-                  <button type="submit">Tweet</button>
-                </div>
-              </form>
+
+                  <div className="nav-modal__submit-container">
+                    <button type="submit" id="nav-modal__submit-btn">Tweet</button>
+                  </div>
+
+                </form>
+              </div>
+
             </div>
           </Modal>
         </div>

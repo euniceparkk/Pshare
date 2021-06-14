@@ -6,7 +6,10 @@
   bottom: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
+  /* margin-top: 2.5em; */
+  /* margin-top: 5.4em; */
+  margin-top: 4.1em;
 }
 
 #modal-background {
@@ -15,11 +18,14 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(2, 2, 2, 0.432);
 }
 
 #modal-content {
   position: absolute;
   background-color:white;
-  border-radius: 10px;
+  border-radius: 1em;
+
+  /* un-comment to help with modal styling!!! */
+  /* padding: 1em; */
 }

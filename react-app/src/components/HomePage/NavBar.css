@@ -99,6 +99,96 @@ ul > * {
   transition: all 0.2s ease-out;
 }
 
+/* -----tweet modal------------------------------------------ */
+.nav__tweet-modal {
+  height: 35vh;
+  width: 72vh;
+}
+
+#nav-modal__container-1 {
+  height: 3.5em;
+  border-bottom: 1.1px solid rgba(175, 175, 175, 0.671);
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+  /* border: 1px solid blue; */
+}
+
+.nav-modal__exit {
+  margin-left: .5em;
+  padding: 7px 11px;
+
+  font-size: 1.5em;
+  color: #FFDA0A;
+
+  /* background-color: lightslategray; */
+}
+
+.nav-modal__exit:hover {
+  background-color: #faf5daef;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+}
+
+#nav-modal__container-2 {
+  /* margin-left: 5em; */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  /* border: solid 1px yellowgreen; */
+}
+
+#nav-modal__profile-img {
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  
+  margin: .5em .8em 1em 1em;
+}
+
+#nav-modal__textbox {
+  height: 19vh;
+  width: 32vw;
+  
+  padding-bottom: 4.6em;
+  margin-bottom: .2em;
+  font-size: 1.2em;
+  outline: none;
+  
+  border: none;
+}
+
+.nav-modal__submit-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: .5em 0;
+  border-top: 1.1px solid rgba(212, 212, 212, 0.664);
+
+  /* background-color: red; */
+}
+
+#nav-modal__submit-btn {
+  background-color: #FFDA0A;
+  border-radius: 2em;
+  height: 2.55em;
+  width: 4.7em;
+  
+  color: white;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+#nav-modal__submit-btn:hover {
+  background-color: #FFE433;
+  transition: all 0.2s ease-out;
+}
+
 /* -----container2------------------------------------------ */
 .nav__div2-wrapper {
   margin-top: .75em;

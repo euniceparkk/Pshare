@@ -44,6 +44,7 @@
 #profile-c1__back-arrow:hover {
   background-color: #faf5daef;
   border-radius: 50px;
+  transition: all 0.25s ease-out;
 }
 
 .profile-c1__flex-container {
@@ -124,8 +125,143 @@
   transition: all 0.15s ease-out;
 }
 
+/* -----edit modal------------------------------------------ */
+.edit-profile__modal {
+  height: 75vh;
+  width: 39vw;
+
+  margin-top: 4.69em;
+}
+
+#edit-modal__cover-img {
+  height: 12.4em;
+  width: 39vw;
+
+  margin-bottom: 4.5em;
+}
+
+#edit-modal__profile-img {
+  position: fixed;
+  top: 17.9em;
+  right: 58.3em;
+
+  height: 7.6em;
+  width: 7.6em;
+  border-radius: 50%;
+  border: 4.7px solid white;
+}
+
+#edit-modal__container-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 
+  /* border: 1px solid blue; */
+}
+
+#edit-modal__textbox-flex{
+  display: flex;
+  flex-direction: column;
+}
+
+#edit-modal__textbox-text {
+  padding-left: .1em;
+  padding-bottom: .1em;
+
+  font-size: .9em;
+  font-weight: 500;
+  color: #f5d418;
+  letter-spacing: .03;
+}
+
+.edit-modal__textbox {
+  width: 35vw;
+  height: 5.4vh;
+
+  padding-left: 1em;
+  margin-bottom: 1em;
+
+  font-size: .9em;
+  font-weight: 400;
+  outline: none;
+  border-style: none;
+  border: 1px solid rgba(187, 187, 187, 0.74);
+  border-radius: .4em;
+
+}
+
+.edit-modal__textbox:focus {
+  border: 2.5px solid #FFDA0A;
+}
+
+
+
+
+#edit-modal__container-2 {
+  position: fixed;
+  height: 3.35em;
+  width: 37.6em;
+
+  top: 5.4em;
+  right: 29.2em;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1.1px solid rgba(175, 175, 175, 0.671);
+  
+  /* border: 1px solid red; */
+}
+
+.edit-modal__exit {
+  margin-left: .5em;
+  margin-right: .9em;
+  padding: 7px 11px;
+  
+  font-size: 1.5em;
+  color: #FFDA0A;
+  
+  /* border: 1px solid red; */
+}
+
+.edit-modal__exit:hover {
+  background-color: #faf5daef;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+}
+
+#edit-modal__edit-text {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-right: 16.9em;
+
+  /* border: 1px solid red; */
+}
+
+#edit-modal__save-button {
+  background-color: #FFDA0A;
+  border-radius: 2em;
+  height: 2.1em;
+  width: 4.25em;
+  
+  color: white;
+  font-size: .95em;
+  font-weight: 600;
+  letter-spacing: .03em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#edit-modal__save-button:hover{
+  background-color: #e9d139;
+  transition: all 0.2s ease-out;
+}
+
+/* ----profile img--------------------------------------- */
 #profile-c2__profile-img {
   position: absolute;
   top: 182px;
@@ -136,7 +272,6 @@
   border-radius: 50%;
   border: 4.7px solid white;
 }
-
 
 /* ----Container2 --> subContainer2--------------------------------------- */
 .profile-c2__container2 {

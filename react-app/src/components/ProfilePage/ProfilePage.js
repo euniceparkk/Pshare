@@ -166,51 +166,66 @@ function ProfilePage() {
           {showEditProfile && sessionUser.id === user.id &&
             <div>
               <Modal onClose={() => setShowEditProfile(false)}>
-                <form onSubmit={handleEditSubmit}>
-                  <div>
-                    <input
-                      type="textbox"
-                      placeholder="First name"
-                      onChange={(e) => setUpdateFirstName(e.target.value)}
-                      value={updateFirstName}
-                    >
-                    </input>
-                  </div>
-                  <div>
-                    <input
-                      type="textbox"
-                      placeholder="Last name"
-                      onChange={(e) => setUpdateLastName(e.target.value)}
-                      value={updateLastName}
-                    >
-                    </input>
-                  </div>
-                  <div>
-                    <input
-                      type="textbox"
-                      placeholder="Bio"
-                      onChange={(e) => setUpdateBio(e.target.value)}
-                      value={updateBio}
-                    >
-                    </input>
-                  </div>
-                  <div>
-                    <input
-                      type="textbox"
-                      placeholder="Location"
-                      onChange={(e) => setUpdateLocation(e.target.value)}
-                      value={updateLocation}
-                    >
-                    </input>
-                  </div>
+                <div className="edit-profile__modal">
+                  <img alt="profile cover" src={user.cover_img} id="edit-modal__cover-img"></img>
+                  <img alt="profile" src={user.profile_img} id="edit-modal__profile-img"></img>
 
-                  <button type="button" onClick={handleEditModalExit}>
-                    <i className="fas fa-times"></i>
-                  </button>
-                  <div>Edit profile</div>
-                  <button type="submit">Save</button>
+                  <form onSubmit={handleEditSubmit}>
+                    <div id="edit-modal__container-1">
+                      <div id="edit-modal__textbox-flex">
+                        <label id="edit-modal__textbox-text">First name</label>
+                        <input
+                          className="edit-modal__textbox"
+                          type="textbox"
+                          placeholder="Must enter first name"
+                          onChange={(e) => setUpdateFirstName(e.target.value)}
+                          value={updateFirstName}
+                        >
+                        </input>
+                      </div>
+                      <div id="edit-modal__textbox-flex">
+                        <label id="edit-modal__textbox-text">Last name</label>
+                        <input
+                          className="edit-modal__textbox"
+                          type="textbox"
+                          placeholder="Must enter last name"
+                          onChange={(e) => setUpdateLastName(e.target.value)}
+                          value={updateLastName}
+                        >
+                        </input>
+                      </div>
+                      <div id="edit-modal__textbox-flex">
+                        <label id="edit-modal__textbox-text">Bio</label>
+                        <input
+                          className="edit-modal__textbox"
+                          type="textbox"
+                          placeholder="Must enter bio"
+                          onChange={(e) => setUpdateBio(e.target.value)}
+                          value={updateBio}
+                        >
+                        </input>
+                      </div>
+                      <div id="edit-modal__textbox-flex">
+                        <label id="edit-modal__textbox-text">Location</label>
+                        <input
+                          className="edit-modal__textbox"
+                          type="textbox"
+                          placeholder="Must enter location"
+                          onChange={(e) => setUpdateLocation(e.target.value)}
+                          value={updateLocation}
+                        >
+                        </input>
+                      </div>
+                    </div>
 
-                </form>
+                    <div id="edit-modal__container-2">
+                      <i className="fas fa-times edit-modal__exit" onClick={handleEditModalExit}></i>
+                      <div id="edit-modal__edit-text">Edit profile</div>
+                      <button type="submit" id="edit-modal__save-button">Save</button>
+                    </div>
+                  </form>
+
+                </div>
               </Modal>
             </div>
           }
