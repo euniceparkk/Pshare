@@ -11,16 +11,16 @@ class User(db.Model, UserMixin):
 
   id = db.Column(db.Integer, primary_key = True)
   first_name = db.Column(db.String(50), nullable = False)
-  last_name = db.Column(db.String(50), nullable = False)
+  last_name = db.Column(db.String(50))
   username = db.Column(db.String(50), nullable = False, unique = True)
   email = db.Column(db.String(100), nullable = False, unique = True)
-  phone = db.Column(db.Integer, nullable = False, unique = True)
+  phone = db.Column(db.Integer, unique = True)
   birthday = db.Column(db.Text, nullable = False)
   hashed_password = db.Column(db.String(255), nullable = False)
   profile_img = db.Column(db.Text, nullable = False)
   cover_img = db.Column(db.Text, nullable = False)
   bio = db.Column(db.Text, nullable = False)
-  location = db.Column(db.String(50), nullable = False)
+  location = db.Column(db.String(50))
   created_at = db.Column(db.DateTime, default=now)
 
   # booksmarks belongsTo user
