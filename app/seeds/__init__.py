@@ -26,7 +26,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     # undo_users()
-    undo_tweets()
+    # undo_tweets()
     
     undo_bookmarks()
     undo_followers()
