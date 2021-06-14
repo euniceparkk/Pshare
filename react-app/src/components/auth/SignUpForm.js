@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
+import yellowBird from '../../images/bird-yellow.png';
 import { signUp } from "../../store/session"
+import './SignUpForm.css'
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -55,75 +57,91 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        <input
-          type="text"
-          name="first_name"
-          onChange={updateFirstName}
-          value={firstName}
-          placeholder="First Name"
-        ></input>
-      </div>
-      <div>
-        <input
-          type="text"
-          name="last_name"
-          onChange={updateLastName}
-          value={lastName}
-          placeholder="Last Name"
-        ></input>
-      </div>
-      <div>
-        <input
-          type="text"
-          name="last_name"
-          onChange={updateUsername}
-          value={username}
-          placeholder="Username"
-        ></input>
-      </div>
-      <div>
-        <input
-          type="text"
-          name="email"
-          onChange={updateEmail}
-          value={email}
-          placeholder="Email"
-        ></input>
-      </div>
-      <div>
-        <input
-          type="password"
-          name="password"
-          onChange={updatePassword}
-          value={password}
-          placeholder="Password"
-        ></input>
-      </div>
-      <div>
-        <input
-          type="password"
-          name="repeat_password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-          placeholder="Confirm Password"
-        ></input>
-      </div>
-      <div>
-        <input
-          type="birthday"
-          name="birthday"
-          onChange={updateBirthday}
-          value={birthday}
-          required={true}
-          placeholder="MM/DD/YYYY"
-        ></input>
-      </div>
-      <button type="submit">Sign Up</button>
+    <div>
+      <img alt="Pshare bird" id="signup__bird-image" src={yellowBird}></img>
+      <div id="create-account">Create your account</div>
 
-    </form>
+      <form onSubmit={onSignUp} className="signup-form">
+        <div className="signup-form__name-flex">
+          <input
+            className="signup-form__textbox-name"
+            type="text"
+            name="first_name"
+            onChange={updateFirstName}
+            value={firstName}
+            placeholder="First Name"
+          ></input>
+          <input
+            className="signup-form__textbox-name"
+            type="text"
+            name="last_name"
+            onChange={updateLastName}
+            value={lastName}
+            placeholder="Last Name"
+          ></input>
+        </div>
+        <div>
+          <input
+            className="signup-form__textbox"
+            type="text"
+            name="last_name"
+            onChange={updateUsername}
+            value={username}
+            placeholder="Username"
+          ></input>
+        </div>
+        <div>
+          <input
+            className="signup-form__textbox"
+            type="text"
+            name="email"
+            onChange={updateEmail}
+            value={email}
+            placeholder="Email"
+          ></input>
+        </div>
+        <div>
+          <input
+            className="signup-form__textbox"
+            type="password"
+            name="password"
+            onChange={updatePassword}
+            value={password}
+            placeholder="Password"
+          ></input>
+        </div>
+        <div>
+          <input
+            className="signup-form__textbox"
+            type="password"
+            name="repeat_password"
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+            placeholder="Confirm Password"
+          ></input>
+        </div>
+        <div>
+          <input
+            className="signup-form__textbox"
+            type="birthday"
+            name="birthday"
+            onChange={updateBirthday}
+            value={birthday}
+            required={true}
+            placeholder="MM/DD/YYYY"
+          ></input>
+        </div>
+        <button type="submit" id="sign-form__button">Sign Up</button>
+
+      </form>
+
+      <div className="signup__container-1">
+        <div>Have an account? •</div>
+        <NavLink to={`/login`} id="signup__redirect-link">Log in to Pshare</NavLink>
+      </div>
+
+    </div>
   );
 };
 

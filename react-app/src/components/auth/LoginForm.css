@@ -57,6 +57,7 @@
 
 #login__sign-btn:hover {
   background-color: #FFE433;
+  transition: all 0.2s ease-out;
 }
 
 #login__demo-btn {
@@ -75,4 +76,5 @@
 
 #login__demo-btn:hover {
   background-color: #FFFCEB;
+  transition: all 0.2s ease-out;
 }

@@ -60,6 +60,7 @@
 
 #splash__sign-btn:hover {
   background-color: #FFE433;
+  transition: all 0.2s ease-out;
 }
 
 #splash__log-btn {
@@ -78,11 +79,16 @@
 
 #splash__log-btn:hover {
   background-color: #FFFCEB;
+  transition: all 0.2s ease-out;
 }
 
 
 /* --------Modal start---------------------------------------------- */
-.signup__modal-wrapper {
+.signup-modal {
+  height: 66vh;
+  width: 40vw;
+
+  /* border: 1px solid red; */
 }
 
 /* --------Modal end---------------------------------------------- */
