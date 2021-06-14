@@ -127,10 +127,10 @@
 
 /* -----edit modal------------------------------------------ */
 .edit-profile__modal {
-  height: 74vh;
+  height: 75vh;
   width: 39vw;
 
-  margin-top: 3.3em;
+  margin-top: 4.69em;
 }
 
 #edit-modal__cover-img {

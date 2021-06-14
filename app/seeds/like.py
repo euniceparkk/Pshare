@@ -4,19 +4,19 @@ import datetime
 def seed_likes():
 
   demo_like1 = Like(
-      user_id=1, 
+      user_id=80, 
       tweet_id=1, 
       created_at=datetime.datetime.now(), 
   )
 
   demo_like2 = Like(
-    user_id=1, 
+    user_id=80, 
     tweet_id=2, 
     created_at=datetime.datetime.now(), 
   )
 
   demo_like3 = Like(
-    user_id=1, 
+    user_id=80, 
     tweet_id=3, 
     created_at=datetime.datetime.now(), 
   )
