@@ -12,6 +12,7 @@ import HomePage from "./components/HomePage/HomePage";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
 import BookmarkPage from "./components/ProfilePage/BookmarkPage";
 import OneTweet from "./components/HomePage/Tweet/OneTweet";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,9 +66,13 @@ function App() {
           <BookmarkPage />
         </ProtectedRoute>
 
-        <ProtectedRoute path="/users/:userId" exact={true}>
+        {/* <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
+        <Route>
+          <PageNotFound />
+        </Route>
+
         {/* <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
         </ProtectedRoute> */}
