@@ -5,7 +5,6 @@ import ActivityBar from '../HomePage/ActivityBar';
 import Tweet from '../HomePage/Tweet/Tweet';
 import { getOneUser, updateOneUser } from '../../store/user';
 import { Modal } from '../../context/Modal';
-// import { loadAllLikes } from '../../store/like';
 import './ProfilePage.css';
 import Reply from '../HomePage/Tweet/Reply';
 
@@ -24,12 +23,9 @@ function ProfilePage() {
   const [updateLocation, setUpdateLocation] = useState("");
 
   const sessionUser = useSelector(state => state.session.user);
-  // const userTweets = user.tweets;
-  // console.log('userTweets', userTweets)
 
   const { id } = useParams();
   const user = useSelector(state => Object.values(state.user)[0]);
-  // console.log('one user!', user)
 
   useEffect(() => {
     dispatch(getOneUser(id))
@@ -43,16 +39,6 @@ function ProfilePage() {
       setUpdateLocation(user.location)
     }
   }, [user])
-
-  // const allLikes = useSelector(state => {
-  //   const like = Object.values(state.like)
-  //   return like
-  // })
-  // console.log("likes", allLikes)
-
-  // useEffect(() => {
-  //   dispatch(loadAllLikes())
-  // }, [dispatch])
 
   const handleTweetChange = (e) => {
     // console.log('in the bar', e.target.id)
