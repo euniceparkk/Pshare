@@ -4,19 +4,19 @@ import datetime
 def seed_bookmarks():
 
   demo_bookmark1 = Bookmark(
-      user_id=80, 
+      user_id=1, 
       tweet_id=1, 
       created_at=datetime.datetime.now(), 
   )
 
   demo_bookmark2 = Bookmark(
-    user_id=80, 
+    user_id=1, 
     tweet_id=2, 
     created_at=datetime.datetime.now(), 
   )
 
   demo_bookmark3 = Bookmark(
-    user_id=80, 
+    user_id=1, 
     tweet_id=3, 
     created_at=datetime.datetime.now(), 
   )

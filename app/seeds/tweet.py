@@ -58,19 +58,19 @@ def seed_tweets():
   )
 
   tweet12 = Tweet(
-    user_id=81, 
+    user_id=2, 
     content="when ur human says 'who's a good boy' and you already know it's you",
     created_at=datetime.datetime(2021, 6, 13),
   )
 
   tweet13 = Tweet(
-    user_id=80, 
+    user_id=1, 
     content="I tell computers to do things. Sometimes they listen.",
     created_at=datetime.datetime(2021, 6, 13),
   )
 
   tweet14 = Tweet(
-    user_id=81, 
+    user_id=2, 
     content="anything is paw-sible when you're a dog :D",
     created_at=datetime.datetime(2021, 6, 13),
   )

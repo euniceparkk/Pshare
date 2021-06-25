@@ -4,21 +4,21 @@ import datetime
 def seed_replies():
 
   demo_reply1 = Reply(
-    user_id=80, 
+    user_id=1, 
     tweet_id=7, 
     content="well, it's really just the Quesarito, but it'll change your life",
     created_at=datetime.datetime(2021, 6, 11), 
   )
 
   demo_reply2 = Reply(
-    user_id=80, 
+    user_id=1, 
     tweet_id=4, 
     content="huh Backrub????",
     created_at=datetime.datetime(2021, 6, 2), 
   )
 
   demo_reply3 = Reply(
-    user_id=80, 
+    user_id=1, 
     tweet_id=8, 
     content="lol!! they wrote 'demolition' on my cup once",
     created_at=datetime.datetime(2021, 6, 12), 
