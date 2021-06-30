@@ -1,8 +1,8 @@
 """recreating migrations
 
-Revision ID: 3c0d108af6bd
+Revision ID: 2e705f65e377
 Revises: 
-Create Date: 2021-06-04 22:41:58.216741
+Create Date: 2021-06-25 11:09:17.303670
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3c0d108af6bd'
+revision = '2e705f65e377'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,16 +21,16 @@ def upgrade():
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=50), nullable=False),
-    sa.Column('last_name', sa.String(length=50), nullable=False),
+    sa.Column('last_name', sa.String(length=50), nullable=True),
     sa.Column('username', sa.String(length=50), nullable=False),
     sa.Column('email', sa.String(length=100), nullable=False),
-    sa.Column('phone', sa.Integer(), nullable=False),
+    sa.Column('phone', sa.Integer(), nullable=True),
     sa.Column('birthday', sa.Text(), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.Column('profile_img', sa.Text(), nullable=False),
     sa.Column('cover_img', sa.Text(), nullable=False),
     sa.Column('bio', sa.Text(), nullable=False),
-    sa.Column('location', sa.String(length=50), nullable=False),
+    sa.Column('location', sa.String(length=50), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),

@@ -13,9 +13,13 @@ This is the backend for the Flask React project.
 2. Install dependencies
 
    ```bash
+   pipenv lock -r > requirements.txt
+   ```
+   
+   ```bash
    pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
    ```
-
+   
    ```bash
    pipenv install
    pipenv shell
