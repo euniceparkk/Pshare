@@ -11,7 +11,7 @@ import LoginPage from "./components/auth/LoginPage";
 import HomePage from "./components/HomePage/HomePage";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
 import BookmarkPage from "./components/ProfilePage/BookmarkPage";
-import OneTweet from "./components/HomePage/Tweet/OneTweet";
+import OneTweetPage from "./components/HomePage/Tweet/OneTweetPage";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 function App() {
@@ -48,7 +48,7 @@ function App() {
 
         <ProtectedRoute path="/tweet/:id" exact={true}>
           <NavBar />
-          <OneTweet />
+          <OneTweetPage />
         </ProtectedRoute>
 
         <ProtectedRoute path="/explore" exact={true}>

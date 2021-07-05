@@ -20,9 +20,9 @@ const removeReply = (reply) => ({
 });
 
 /* -----thunk-------------------------------------------------- */
-// GET all replies
-export const loadAllReplies = (replies) => async (dispatch) => {
-  const response = await fetch(`/api/replies/`, {
+// GET all associated tweet's replies
+export const loadAllReplies = (tweet_id) => async (dispatch) => {
+  const response = await fetch(`/api/replies/get/${tweet_id}`, {
     headers: { 'Content-Type': 'application/json' }
   })
 

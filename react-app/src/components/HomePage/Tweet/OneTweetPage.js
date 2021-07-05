@@ -3,33 +3,42 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import ActivityBar from '../ActivityBar';
 import { loadOneTweet } from '../../../store/tweet';
-import './OneTweet.css';
+import './OneTweetPage.css';
 import Tweet from './Tweet';
 import { addOneReply } from '../../../store/reply';
+import { loadAllReplies } from '../../../store/reply';
 import BigTweet from './BigTweet';
 import Reply from './Reply';
 
-function OneTweet() {
+function OneTweetPage() {
   const dispatch = useDispatch();
   const [replyContent, setReplyContent] = useState("");
-
 
   const { id } = useParams();
   const tweet = useSelector(state => Object.values(state.tweet)[0]);
   const sessionUser = useSelector(state => state.session.user);
+  // const newReply = useSelector(state => Object.values(state.reply)[0]);
+  const tweetReplies = useSelector(state => {
+    const reply = Object.values(state.reply)
+    return reply
+  })
+
+  console.log('newReply', tweetReplies)
   // console.log('tweet', tweet)
 
   useEffect(() => {
     dispatch(loadOneTweet(id))
   }, [dispatch])
 
-
+  useEffect(() => {
+    dispatch(loadAllReplies(id))
+  }, [dispatch, id])
 
   if (!tweet) {
     return null;
   };
 
-  const tweetReplies = tweet.replies;
+  // const tweetReplies = tweet.replies;
   // console.log('reply', tweetReplies)
 
   if (!tweetReplies) {
@@ -129,4 +138,4 @@ function OneTweet() {
   )
 }
 
-export default OneTweet;
+export default OneTweetPage;

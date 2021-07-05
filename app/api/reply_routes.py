@@ -7,10 +7,10 @@ reply_routes = Blueprint('replies', __name__)
 
 
 # GET all replies
-@reply_routes.route('/')
+@reply_routes.route('/get/<int:tweet_id>')
 @login_required
-def load_replies():
-  replies = Reply.query.all()
+def load_replies(tweet_id):
+  replies = Reply.query.filter(Reply.tweet_id == tweet_id).all()
   return jsonify([reply.to_dict() for reply in replies])
 
 
