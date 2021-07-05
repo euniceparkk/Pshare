@@ -5,8 +5,7 @@ import ActivityBar from '../ActivityBar';
 import { loadOneTweet } from '../../../store/tweet';
 import './OneTweetPage.css';
 import Tweet from './Tweet';
-import { addOneReply } from '../../../store/reply';
-import { loadAllReplies } from '../../../store/reply';
+import { addOneReply, loadAllReplies } from '../../../store/reply';
 import BigTweet from './BigTweet';
 import Reply from './Reply';
 
@@ -17,13 +16,12 @@ function OneTweetPage() {
   const { id } = useParams();
   const tweet = useSelector(state => Object.values(state.tweet)[0]);
   const sessionUser = useSelector(state => state.session.user);
-  // const newReply = useSelector(state => Object.values(state.reply)[0]);
   const tweetReplies = useSelector(state => {
     const reply = Object.values(state.reply)
     return reply
   })
 
-  console.log('newReply', tweetReplies)
+  // console.log('newReply', tweetReplies)
   // console.log('tweet', tweet)
 
   useEffect(() => {
@@ -38,8 +36,8 @@ function OneTweetPage() {
     return null;
   };
 
-  // const tweetReplies = tweet.replies;
-  // console.log('reply', tweetReplies)
+  // const tweetRep = tweet.replies;
+  // console.log('reply', tweetRep)
 
   if (!tweetReplies) {
     return null;
@@ -75,7 +73,7 @@ function OneTweetPage() {
 
         <div className="single__container-2">
           <div key={tweet.id}>
-            {/* {console.log('tweet1', tweet)} */}
+            {console.log('BigTweet', tweet)}
             <BigTweet
               user_id={sessionUser.id}
               tweet_userId={tweet.user_id}
@@ -112,10 +110,11 @@ function OneTweetPage() {
             return (
               // key={`post-${postId}-comment-${commentId}`}
               <div key={`comment-${tweet.id}-comment-${tweet.tweet_id}`}>
-                {/* {console.log('replytweet!!', tweet)} */}
+                {console.log('replytweet!!', tweet)}
                 <Reply
                   user_id={sessionUser.id}
                   tweet_userId={tweet.user_id}
+                  originalTweetUser={tweet.tweet.user_id}
                   tweet_id={tweet.id}
                   tweetsReplies={tweet.tweet.replies}
                   tweetsLikes={tweet.tweet.likes}

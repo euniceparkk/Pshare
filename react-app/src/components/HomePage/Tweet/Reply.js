@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { removeOneReply } from "../../../store/reply"
 import { NavLink } from 'react-router-dom';
 
-function Reply({ repliedTweetsUsername, tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
+function Reply({ originalTweetUser, repliedTweetsUsername, tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent }) {
   const dispatch = useDispatch();
   const [currentReply, setCurrentReply] = useState();
   const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
@@ -39,7 +39,9 @@ function Reply({ repliedTweetsUsername, tweet_id, tweet_userId, user_id, tweetsU
             </div>
 
             <div id="reply__replied-text">Replying to
-            <span id="reply__replied-link">@{repliedTweetsUsername}</span>
+              <NavLink to={`/profile/${originalTweetUser}`}>
+                <span id="reply__replied-link">@{repliedTweetsUsername}</span>
+              </NavLink>
             </div>
           </div>
 
