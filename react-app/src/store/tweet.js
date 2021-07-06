@@ -59,16 +59,20 @@ export const loadOneTweet = (id) => async (dispatch) => {
 
 // POST one tweet
 export const addOneTweet = (tweet) => async (dispatch) => {
-  const { user_id, content } = tweet;
+  const { user_id, content, image } = tweet;
+  const formData = new FormData();
+  formData.append("user_id", user_id);
+  formData.append("content", content);
+
+  if (image !== "") {
+    formData.append("image", image);
+  } else {
+    formData.append("image", null)
+  }
 
   const response = await fetch(`/api/tweets/add`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      user_id, content
-    })
+    body: formData
   })
 
   if (!response.ok) {

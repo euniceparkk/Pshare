@@ -8,6 +8,8 @@ import Tweet from "./Tweet/Tweet";
 function HomePage() {
   const dispatch = useDispatch();
   const [tweetContent, setTweetContent] = useState("");
+  const [imageContent, setImageContent] = useState("");
+  const [imageLoading, setImageLoading] = useState(false);
 
   const user = useSelector(state => state.session.user);
   const user_id = user.id;
@@ -27,11 +29,36 @@ function HomePage() {
     setTweetContent(e.target.value);
   }
 
-  const handleTweetSubmit = (e) => {
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImageContent(file)
+  }
+
+  const handleTweetSubmit = async (e) => {
     e.preventDefault();
     const content = tweetContent;
-    setTweetContent("");
-    dispatch(addOneTweet({ content, user_id }));
+    const image = imageContent;
+
+    if (image !== "") {
+      setImageLoading(true);
+
+      const res = await dispatch(addOneTweet({ content, user_id, image }));
+
+      if (res.ok) {
+        await res.json()
+        imageLoading(false);
+      } else {
+        setImageLoading(false);
+        console.log("error");
+      }
+
+      setTweetContent("");
+      setImageContent("");
+    } else {
+      dispatch(addOneTweet({ content, user_id }))
+      setTweetContent("");
+    }
+
   }
 
   // null is valid JSX so if no tweets, returning nothing
@@ -63,12 +90,21 @@ function HomePage() {
                 placeholder="What's happening?"
               >
               </input>
+              <input
+                className="home__tweet-image"
+                type="file"
+                onChange={updateImage}
+                accept="image/*"
+                placeholder="Choose an image!"
+              >
+              </input>
+              {imageLoading && <p>Loading...</p>}
+
               <div className="home-profile__submit-container">
                 <button type="submit" id="home-profile__submit-btn" className="active">Tweet</button>
               </div>
             </form>
           </div>
-
         </div>
 
         <div className="home__extra-container"></div>
