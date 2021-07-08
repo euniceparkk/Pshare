@@ -90,15 +90,18 @@ function HomePage() {
                 placeholder="What's happening?"
               >
               </input>
-              <input
-                className="home__tweet-image"
-                type="file"
-                onChange={updateImage}
-                accept="image/*"
-                placeholder="Choose an image!"
-              >
-              </input>
-              {imageLoading && <p>Loading...</p>}
+
+              <div id='tweet-image__container'>
+                <input
+                  className="home__tweet-image"
+                  type="file"
+                  onChange={updateImage}
+                  accept="image/*"
+                  placeholder="Choose an image!"
+                >
+                </input>
+                {imageLoading && <p>Loading...</p>}
+              </div>
 
               <div className="home-profile__submit-container">
                 <button type="submit" id="home-profile__submit-btn" className="active">Tweet</button>
@@ -111,6 +114,7 @@ function HomePage() {
 
         <div className="home__container-3">
           {allTweets && allTweets.map((tweet) => {
+            // console.log('tweet', tweet)
             return (
               <div key={tweet.id}>
                 <Tweet
