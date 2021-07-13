@@ -39,7 +39,11 @@ class Tweet(db.Model):
 
   def users_tweet_to_dict(self):
     return {
+      "id": self.id,
+      "user_id": self.user_id,
       "content": self.content,
+      "image": self.image,
+      "created_at": self.created_at,
 
       # nesting bookmark dictionary inside user dictionary
       "likes": [like.id for like in self.likes],

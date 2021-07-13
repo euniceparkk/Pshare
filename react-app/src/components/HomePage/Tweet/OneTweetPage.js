@@ -3,34 +3,41 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import ActivityBar from '../ActivityBar';
 import { loadOneTweet } from '../../../store/tweet';
-import './OneTweet.css';
+import './OneTweetPage.css';
 import Tweet from './Tweet';
-import { addOneReply } from '../../../store/reply';
+import { addOneReply, loadAllReplies } from '../../../store/reply';
 import BigTweet from './BigTweet';
 import Reply from './Reply';
 
-function OneTweet() {
+function OneTweetPage() {
   const dispatch = useDispatch();
   const [replyContent, setReplyContent] = useState("");
-
 
   const { id } = useParams();
   const tweet = useSelector(state => Object.values(state.tweet)[0]);
   const sessionUser = useSelector(state => state.session.user);
+  const tweetReplies = useSelector(state => {
+    const reply = Object.values(state.reply)
+    return reply
+  })
+
+  // console.log('newReply', tweetReplies)
   // console.log('tweet', tweet)
 
   useEffect(() => {
     dispatch(loadOneTweet(id))
   }, [dispatch])
 
-
+  useEffect(() => {
+    dispatch(loadAllReplies(id))
+  }, [dispatch, id])
 
   if (!tweet) {
     return null;
   };
 
-  const tweetReplies = tweet.replies;
-  // console.log('reply', tweetReplies)
+  // const tweetRep = tweet.replies;
+  // console.log('reply', tweetRep)
 
   if (!tweetReplies) {
     return null;
@@ -66,7 +73,7 @@ function OneTweet() {
 
         <div className="single__container-2">
           <div key={tweet.id}>
-            {/* {console.log('tweet1', tweet)} */}
+            {console.log('BigTweet', tweet)}
             <BigTweet
               user_id={sessionUser.id}
               tweet_userId={tweet.user_id}
@@ -103,10 +110,11 @@ function OneTweet() {
             return (
               // key={`post-${postId}-comment-${commentId}`}
               <div key={`comment-${tweet.id}-comment-${tweet.tweet_id}`}>
-                {/* {console.log('replytweet!!', tweet)} */}
+                {console.log('replytweet!!', tweet)}
                 <Reply
                   user_id={sessionUser.id}
                   tweet_userId={tweet.user_id}
+                  originalTweetUser={tweet.tweet.user_id}
                   tweet_id={tweet.id}
                   tweetsReplies={tweet.tweet.replies}
                   tweetsLikes={tweet.tweet.likes}
@@ -129,4 +137,4 @@ function OneTweet() {
   )
 }
 
-export default OneTweet;
+export default OneTweetPage;

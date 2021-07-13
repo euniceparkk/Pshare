@@ -7,10 +7,10 @@ reply_routes = Blueprint('replies', __name__)
 
 
 # GET all replies
-@reply_routes.route('/')
+@reply_routes.route('/<int:tweet_id>')
 @login_required
-def load_replies():
-  replies = Reply.query.all()
+def load_replies(tweet_id):
+  replies = Reply.query.filter(Reply.tweet_id == tweet_id).all()
   return jsonify([reply.to_dict() for reply in replies])
 
 
@@ -32,7 +32,7 @@ def add_reply():
 
 
 # DELETE one reply
-@reply_routes.route('/<int:reply_id>', methods=["DELETE"])
+@reply_routes.route('/delete/<int:reply_id>', methods=["DELETE"])
 @login_required
 def remove_reply(reply_id):
   reply = Reply.query.get(reply_id)
