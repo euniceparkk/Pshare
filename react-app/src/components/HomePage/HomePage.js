@@ -100,7 +100,7 @@ function HomePage() {
                   placeholder="Choose an image!"
                 >
                 </input>
-                {imageLoading && <p>Loading...</p>}
+                {imageLoading && <p id="loading-txt">Image loading . . .</p>}
               </div>
 
               <div className="home-profile__submit-container">

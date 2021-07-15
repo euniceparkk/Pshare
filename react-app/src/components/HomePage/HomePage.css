@@ -114,6 +114,20 @@
   /* grid-row: 3/4; */
 }
 
+#loading-txt {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-end;
+
+  position: fixed;
+  top: 8.35rem;
+  right: 40.3rem;
+
+  color: gray;
+  font-size: .9rem;
+  letter-spacing: .03rem;
+}
+
 .home__tweet-image {
   color: gray;
 
