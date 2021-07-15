@@ -14,7 +14,7 @@ function LoginPage() {
 
       <div className="login__container-1">
         <div>Don't have an account? •</div>
-        <NavLink to={`/signup`} id="login__redirect-link">Sign up for Pshare</NavLink>
+        <NavLink to={`/`} id="login__redirect-link">Sign up for Pshare</NavLink>
       </div>
 
     </div>
