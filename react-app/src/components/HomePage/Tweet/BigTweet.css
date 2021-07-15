@@ -147,6 +147,37 @@
   color: black;
 }
 
+/* -------------image start------------------------- */
+.bt__image-container {
+  /* border: 2px solid blue; */
+  
+  margin-top: .8rem;
+  padding-top: .5rem;
+
+  height: 20rem;
+  width: 35.3rem;
+}
+
+.bt__image-modal {
+  /* border: 2px solid red; */
+
+  height: 40rem;
+  width: 60rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#bt__image {
+  /* height: 50%; */
+  /* width: 50%; */
+  max-height: 100%;
+  max-width: 100%;
+  cursor: pointer;
+}
+/* -------------image end--------------------------- */
+
 #bt__time {
   margin-left: 1.1em;
   margin-top: 1em;
