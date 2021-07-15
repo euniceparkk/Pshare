@@ -6,7 +6,7 @@ import { addOneBookmark, loadAllBookmarks, removeOneBookmark } from '../../../st
 import { removeOneTweet } from '../../../store/tweet';
 import './Tweet.css';
 
-function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
+function Tweet({ image, tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
   const dispatch = useDispatch();
   const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
   const [currentTweet, setCurrentTweet] = useState();
@@ -115,7 +115,16 @@ function Tweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, twee
         <NavLink to={`/tweet/${tweet_id}`}>
           {tweetContent}
         </NavLink>
+
+        {image === null ?
+          <div></div>
+          :
+          <div className="home-tweet__image-container">
+            <img id="home-tweet__image" src={image} alt="user upload"></img>
+          </div>
+        }
       </div>
+
 
       <div className="home-tweet__options-container">
 

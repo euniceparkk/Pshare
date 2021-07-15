@@ -127,6 +127,7 @@ function HomePage() {
                   tweetsUser={tweet.user}
                   tweetCreated={tweet.created_at}
                   tweetContent={tweet.content}
+                  image={tweet.image}
                 />
               </div>
             )

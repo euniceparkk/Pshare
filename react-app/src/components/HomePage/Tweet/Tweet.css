@@ -81,7 +81,8 @@
   grid-row: 2/3;
 
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  flex-direction: column;
 
   font-size: .98em;
   letter-spacing: .01em;
@@ -95,6 +96,22 @@
   /* background-color: pink; */
 }
 
+/* -------------image start------------------------- */
+.home-tweet__image-container {
+  /* border: 2px solid red; */
+  
+  padding-top: .5rem;
+  height: 20rem;
+  width: 30.2rem;
+}
+
+#home-tweet__image {
+  /* height: 50%; */
+  /* width: 50%; */
+  max-height: 100%;
+  max-width: 100%;
+}
+/* -------------image end--------------------------- */
 
 .home-tweet__options-container {
   grid-column: 2/13;
