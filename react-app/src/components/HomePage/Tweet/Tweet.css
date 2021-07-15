@@ -100,9 +100,22 @@
 .home-tweet__image-container {
   /* border: 2px solid red; */
   
+  margin-top: .8rem;
   padding-top: .5rem;
+
   height: 20rem;
   width: 30.2rem;
+}
+
+.home-tweet__image-modal {
+  /* border: 2px solid red; */
+
+  height: 40rem;
+  width: 60rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #home-tweet__image {
@@ -110,6 +123,7 @@
   /* width: 50%; */
   max-height: 100%;
   max-width: 100%;
+  cursor: pointer;
 }
 /* -------------image end--------------------------- */
 

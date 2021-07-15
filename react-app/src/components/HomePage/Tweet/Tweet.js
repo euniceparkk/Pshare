@@ -5,11 +5,13 @@ import { addOneLike, removeOneLike, loadAllLikes } from '../../../store/like';
 import { addOneBookmark, loadAllBookmarks, removeOneBookmark } from '../../../store/bookmark';
 import { removeOneTweet } from '../../../store/tweet';
 import './Tweet.css';
+import { Modal } from '../../../context/Modal';
 
 function Tweet({ image, tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
   const dispatch = useDispatch();
   const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
   const [currentTweet, setCurrentTweet] = useState();
+  const [showImage, setShowImage] = useState(false);
 
   const allLikes = useSelector(state => {
     const like = Object.values(state.like)
@@ -39,13 +41,18 @@ function Tweet({ image, tweet_id, tweet_userId, user_id, tweetsUser, tweetCreate
     setShowOptionsDropdown(!showOptionsDropdown);
   }
 
+  const handleImageModal = (e) => {
+    e.preventDefault();
+    setShowImage(!showImage);
+  };
+
   if (!allLikes) {
     return null;
-  }
+  };
 
   if (!allBookmarks) {
     return null;
-  }
+  };
 
   // finding user_id in allLikes to limit more than like per tweet
   const filteredLikes = allLikes.filter((userLike) => {
@@ -120,11 +127,20 @@ function Tweet({ image, tweet_id, tweet_userId, user_id, tweetsUser, tweetCreate
           <div></div>
           :
           <div className="home-tweet__image-container">
-            <img id="home-tweet__image" src={image} alt="user upload"></img>
+            <img id="home-tweet__image" src={image} alt="user upload" onClick={handleImageModal}></img>
           </div>
         }
       </div>
 
+      {showImage &&
+        <div>
+          <Modal onClose={() => setShowImage(false)}>
+            <div className="home-tweet__image-modal">
+              <img id="home-tweet__image" src={image} alt="user upload"></img>
+            </div>
+          </Modal>
+        </div>
+      }
 
       <div className="home-tweet__options-container">
 
