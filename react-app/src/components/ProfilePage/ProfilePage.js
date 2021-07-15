@@ -274,7 +274,7 @@ function ProfilePage() {
                   tweetsUser={tweet.user}
                   tweetCreated={tweet.created_at}
                   tweetContent={tweet.content}
-                // onClick={handleTweetChange}
+                  image={tweet.image}
                 />
               </div>
             )
@@ -319,6 +319,7 @@ function ProfilePage() {
                   tweetsUser={like.tweet.user}
                   tweetCreated={like.created_at}
                   tweetContent={like.tweet.content}
+                  image={like.tweet.image}
                 />
               </div>
             )
