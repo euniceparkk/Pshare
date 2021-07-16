@@ -5,25 +5,41 @@ def seed_bookmarks():
 
   demo_bookmark1 = Bookmark(
       user_id=1, 
-      tweet_id=1, 
+      tweet_id=2, 
       created_at=datetime.datetime.now(), 
   )
 
   demo_bookmark2 = Bookmark(
     user_id=1, 
-    tweet_id=2, 
+    tweet_id=6,
     created_at=datetime.datetime.now(), 
   )
 
   demo_bookmark3 = Bookmark(
     user_id=1, 
-    tweet_id=3, 
+    tweet_id=7,
+    created_at=datetime.datetime.now(), 
+  )
+
+  demo_bookmark4 = Bookmark(
+    user_id=1, 
+    tweet_id=11, 
+    created_at=datetime.datetime.now(), 
+  )
+
+  demo_bookmark5 = Bookmark(
+    user_id=1, 
+    tweet_id=13, 
     created_at=datetime.datetime.now(), 
   )
 
   db.session.add(demo_bookmark1)
   db.session.add(demo_bookmark2)
   db.session.add(demo_bookmark3)
+  db.session.add(demo_bookmark4)
+  db.session.add(demo_bookmark5)
+
+
   db.session.commit()
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this

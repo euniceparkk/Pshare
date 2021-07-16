@@ -5,25 +5,34 @@ def seed_likes():
 
   demo_like1 = Like(
       user_id=1, 
-      tweet_id=1, 
+      tweet_id=4, 
       created_at=datetime.datetime.now(), 
   )
 
   demo_like2 = Like(
     user_id=1, 
-    tweet_id=2, 
+    tweet_id=5, 
     created_at=datetime.datetime.now(), 
   )
 
   demo_like3 = Like(
     user_id=1, 
-    tweet_id=3, 
+    tweet_id=8, 
+    created_at=datetime.datetime.now(), 
+  )
+  
+  demo_like4 = Like(
+    user_id=1, 
+    tweet_id=15, 
     created_at=datetime.datetime.now(), 
   )
 
   db.session.add(demo_like1)
   db.session.add(demo_like2)
   db.session.add(demo_like3)
+  db.session.add(demo_like4)
+
+  
   db.session.commit()
 
 
