@@ -33,6 +33,7 @@ function BookmarkPage() {
 
         <div className="bookmark__container-2">
           {allBookmarks && allBookmarks.map((bookmark) => {
+            // { console.log('BOOKMARK', bookmark) }
             if (bookmark.user_id === user_id) {
               return (
                 <div key={bookmark.id}>
@@ -46,6 +47,7 @@ function BookmarkPage() {
                     tweetsUser={bookmark.tweet.user}
                     tweetCreated={bookmark.created_at}
                     tweetContent={bookmark.tweet.content}
+                    image={bookmark.tweet.image}
                   />
                 </div>
               )

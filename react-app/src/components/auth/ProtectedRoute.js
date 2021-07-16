@@ -8,7 +8,7 @@ const ProtectedRoute = props => {
 
   return (
     <Route {...props}>
-      {(loaded && user) ? props.children : (loaded && !user) ? < Redirect to="/signup" /> : null}
+      {(loaded && user) ? props.children : (loaded && !user) ? < Redirect to="/" /> : null}
     </Route>
   )
 };

@@ -42,7 +42,7 @@
   border-bottom: .1px solid rgba(224, 224, 224, 0.637);
 
   display: grid;
-  height: 11.2em;
+  height: 11.5em;
   width: 37.4em;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(4, 1fr);
@@ -114,6 +114,20 @@
   /* grid-row: 3/4; */
 }
 
+#loading-txt {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-end;
+
+  position: fixed;
+  top: 8.35rem;
+  right: 40.3rem;
+
+  color: gray;
+  font-size: .9rem;
+  letter-spacing: .03rem;
+}
+
 .home__tweet-image {
   color: gray;
 
@@ -125,7 +139,7 @@
 .home-profile__submit-container {
   display: flex;
   justify-content: flex-end;
-  padding-top: 15px;
+  /* padding-top: 15px; */
   padding-right: 18px;
   /* border: 1px solid red; */
 }
@@ -134,7 +148,7 @@
   margin-bottom: .8em;
   background-color: #FFDA0A;
   border-radius: 2em;
-  height: 2.55em;
+  height: 2.5em;
   width: 4.7em;
   
   color: white;

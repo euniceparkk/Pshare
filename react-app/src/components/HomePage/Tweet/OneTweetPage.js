@@ -4,7 +4,6 @@ import { NavLink, useParams } from 'react-router-dom';
 import ActivityBar from '../ActivityBar';
 import { loadOneTweet } from '../../../store/tweet';
 import './OneTweetPage.css';
-import Tweet from './Tweet';
 import { addOneReply, loadAllReplies } from '../../../store/reply';
 import BigTweet from './BigTweet';
 import Reply from './Reply';
@@ -84,6 +83,7 @@ function OneTweetPage() {
               tweetsUser={tweet.user}
               tweetCreated={tweet.created_at}
               tweetContent={tweet.content}
+              image={tweet.image}
             />
           </div>
         </div>

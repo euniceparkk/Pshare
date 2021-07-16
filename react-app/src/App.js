@@ -27,7 +27,7 @@ function App() {
         {/* <Route path="/" exact={true}>
         </Route> */}
 
-        <Route path="/signup" exact={true}>
+        <Route path="/" exact={true}>
           <SignupPage />
         </Route>
 

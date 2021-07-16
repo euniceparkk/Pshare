@@ -5,12 +5,14 @@ import { addOneLike, removeOneLike, loadAllLikes } from '../../../store/like';
 import { addOneBookmark, loadAllBookmarks, removeOneBookmark } from '../../../store/bookmark';
 import './BigTweet.css';
 import { removeOneTweet } from '../../../store/tweet';
+import { Modal } from '../../../context/Modal';
 
-function BigTweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
+function BigTweet({ image, tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, tweetContent, tweetsReplies, tweetsLikes, tweetsBookmarks }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [currentTweet, setCurrentTweet] = useState();
   const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
+  const [showImage, setShowImage] = useState(false);
 
   const allLikes = useSelector(state => {
     const like = Object.values(state.like)
@@ -38,6 +40,11 @@ function BigTweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, t
   const handleDropdown = () => {
     setShowOptionsDropdown(!showOptionsDropdown);
   }
+
+  const handleImageModal = (e) => {
+    e.preventDefault();
+    setShowImage(!showImage);
+  };
 
   if (!allLikes) {
     return null;
@@ -129,9 +136,28 @@ function BigTweet({ tweet_id, tweet_userId, user_id, tweetsUser, tweetCreated, t
       </div>
 
       <div className="bt-container-2">
+
         <div id="bt__content">
           {tweetContent}
+          {image === null ?
+            <div></div>
+            :
+            <div className="bt__image-container">
+              <img id="bt__image" src={image} alt="user upload" onClick={handleImageModal}></img>
+            </div>
+          }
         </div>
+
+        {showImage &&
+          <div>
+            <Modal onClose={() => setShowImage(false)}>
+              <div className="bt__image-modal">
+                <img id="bt__image" src={image} alt="user upload"></img>
+              </div>
+            </Modal>
+          </div>
+        }
+
         <div id="bt__time">
           {(tweetCreated).slice(0, 5)} {(tweetCreated).slice(5, -13)}
         </div>
