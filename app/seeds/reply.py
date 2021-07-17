@@ -2,6 +2,12 @@ from app.models import db, Reply
 import datetime
 
 def seed_replies():
+  tweet1_google = Reply(
+    user_id=4, 
+    tweet_id=1, 
+    content="Oh you're tellin' me!",
+    created_at=datetime.datetime(2021, 5, 18), 
+  )
   tweet2_google = Reply(
     user_id=4, 
     tweet_id=2, 
@@ -37,6 +43,30 @@ def seed_replies():
     tweet_id=8, 
     content="lol!! they wrote 'demolition' on my cup once",
     created_at=datetime.datetime(2021, 6, 12), 
+  )
+  tweet9_apple = Reply(
+    user_id=5, 
+    tweet_id=9, 
+    content="Haha! This is too relatable...",
+    created_at=datetime.datetime(2021, 6, 12), 
+  )
+  tweet11_starbucks = Reply(
+    user_id=8, 
+    tweet_id=11, 
+    content="TRUTH.",
+    created_at=datetime.datetime(2021, 6, 13), 
+  )
+  tweet11_google = Reply(
+    user_id=4, 
+    tweet_id=11, 
+    content="Oh I've had my fair share.",
+    created_at=datetime.datetime(2021, 6, 13), 
+  )
+  tweet11_apple = Reply(
+    user_id=5, 
+    tweet_id=11, 
+    content="it's a love hate relationship",
+    created_at=datetime.datetime(2021, 6, 14), 
   )
   tweet13_apple = Reply(
     user_id=5, 
@@ -81,11 +111,17 @@ def seed_replies():
     created_at=datetime.datetime(2021, 7, 7), 
   )
 
+
+  db.session.add(tweet1_google)
   db.session.add(tweet2_google)
   db.session.add(tweet4_demo)
   db.session.add(tweet7_google)
   db.session.add(tweet7_demo)
   db.session.add(tweet8_demo)
+  db.session.add(tweet9_apple)
+  db.session.add(tweet11_starbucks)
+  db.session.add(tweet11_google)
+  db.session.add(tweet11_apple)
   db.session.add(tweet13_apple)
   db.session.add(tweet14_apple)
   db.session.add(tweet14_starbucks)

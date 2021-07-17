@@ -50,7 +50,7 @@ This is the backend for the Flask React project.
    ```bash migrating
    
    ---------------------------
-   flask db migrate -m "recreating migration messages"
+   flask db migrate -m "recreating migrations"
    flask db upgrade (x2)
    flask seed all
    flask db upgrade
@@ -64,10 +64,14 @@ This is the backend for the Flask React project.
 
    ```bash
    flask seed all
+   flask run
    ```
 
-   ```bash
-   flask run
+   ```to RESTART DATABASE
+   in PSQL => 
+   DROP DATABASE <<database name>>;
+   CREATE DATABASE <<database name>> WITH OWNER <<user name>>;
+   then migrate, upgrade, seed, etc
    ```
 
 6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.

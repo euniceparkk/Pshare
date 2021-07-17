@@ -114,7 +114,7 @@ def seed_users():
 
     starbucks = User(
         first_name='Starbucks',
-        last_name="Coffee",
+        last_name="Co",
         username="Starbucks",
         email="starbucks@gmail.com",
         phone=fake.ean(length=8, prefixes=('10', '11', '12', '13', '14', '15', '16', '17', '18', '19')),
