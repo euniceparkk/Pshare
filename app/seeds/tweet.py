@@ -25,6 +25,7 @@ def seed_tweets():
     user_id=4,
     content="Did you know the original name of Google was Backrub?",
     created_at=datetime.datetime(2021, 6, 2),
+    image="https://pshare-app.s3.amazonaws.com/google-tweet.jpeg",
   )
 
   tweet5 = Tweet(
@@ -65,14 +66,34 @@ def seed_tweets():
 
   tweet13 = Tweet(
     user_id=1, 
-    content="I tell computers to do things. Sometimes they listen.",
+    content="I tell computers to do things. Sometimes they listen. Rare, but mood when they do:",
     created_at=datetime.datetime(2021, 6, 13),
+    image="https://pshare-app.s3.amazonaws.com/demo-tweet.png",
   )
 
   tweet14 = Tweet(
     user_id=2, 
     content="anything is paw-sible when you're a dog :D",
     created_at=datetime.datetime(2021, 6, 13),
+  )
+
+  tweet15 = Tweet(
+    user_id=4,
+    content="Here's a fun fact... Did you know Gmail was launched on April Fool's Day? No joke.",
+    created_at=datetime.datetime(2021, 7, 1),
+  )
+
+  tweet16 = Tweet(
+    user_id=7,
+    content="Just tried mixing sour cream with green salsa. 10/10.",
+    created_at=datetime.datetime(2021, 7, 2),
+  )
+
+  tweet17 = Tweet(
+    user_id=2,
+    content="we all know what today is... throwback thursday!! this is my mom's favorite baby pic of me :)",
+    created_at=datetime.datetime(2021, 7, 6),
+    image="https://pshare-app.s3.amazonaws.com/koda-tweet.png",
   )
 
   db.session.add(tweet1)
@@ -88,6 +109,9 @@ def seed_tweets():
   db.session.add(tweet12)
   db.session.add(tweet13)
   db.session.add(tweet14)
+  db.session.add(tweet15)
+  db.session.add(tweet16)
+  db.session.add(tweet17)
 
 
   db.session.commit()
