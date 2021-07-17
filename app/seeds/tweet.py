@@ -79,7 +79,7 @@ def seed_tweets():
 
   tweet15 = Tweet(
     user_id=4,
-    content="Fun fact... Did you know Gmail was launched on April Fool's Day? No joke.",
+    content="Here's a fun fact... Did you know Gmail was launched on April Fool's Day? No joke.",
     created_at=datetime.datetime(2021, 7, 1),
   )
 
