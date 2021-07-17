@@ -110,9 +110,11 @@ function BigTweet({ image, tweet_id, tweet_userId, user_id, tweetsUser, tweetCre
               {tweetsUser.first_name} {tweetsUser.last_name}
             </div>
           </NavLink>
-          <div id="bt__username">
-            @{tweetsUser.username}
-          </div>
+          <NavLink to={`/profile/${tweetsUser.id}`}>
+            <div id="bt__username">
+              @{tweetsUser.username}
+            </div>
+          </NavLink>
         </div>
 
         <div id="bt__dot">

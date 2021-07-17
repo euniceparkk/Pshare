@@ -7,11 +7,10 @@
 
 /* ----container1--------------------------------------- */
 .reply-container-1 {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  padding: .7em .9em 0em .9em;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  padding: .7em 0em 0em .9em;
 
   /* background-color: plum; */
 }
@@ -31,20 +30,12 @@
   /* border: 1px solid red; */
 }
 
-.flexing-dot {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
 .reply-c1__flex-1{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  grid-column: 2/11;
+  grid-row: 1/2;
 
   margin-left: .9em;
-  padding-right: 2em;
-  margin-right: 1em;
+  margin-right: .5em;
 
   /* background-color: blue; */
 }
@@ -106,18 +97,19 @@
 
 /* ----delete dropdown------------------------------------ */
 #reply__dot {
+  display: grid;
+  grid-column: 11/13;
+
   /* background-color: lightblue; */
 }
 
 #reply__options-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   background-color: transparent;
-  font-size: 1em;
-  padding: 6px 7px;
+  font-size: 1rem;
+  margin: .7rem 2rem;
   border-radius: 50px;
+
+  /* background-color: lightcoral; */
 }
 
 #reply__options-button:hover {
@@ -132,9 +124,13 @@
   font-weight: 400;
   color: black;
   
-  padding-left: 5.1em;
-  padding-bottom: .7em;
   padding-top: .3em;
+  margin-left: .9em;
+
+  grid-column: 2/12;
+  grid-row: 2/3;
+  display: flex;
+  justify-content: flex-start;
 
   /* background-color: orange; */
 }

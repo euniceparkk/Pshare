@@ -25,34 +25,32 @@ function Reply({ originalTweetUser, repliedTweetsUsername, tweet_id, tweet_userI
           <img alt="profile" src={tweetsUser.profile_img} id="reply__profile-img"></img>
         </NavLink>
 
-        <div className="flexing-dot">
-          <div className="reply-c1__flex-1">
-            <div className="reply__profile">
-              <NavLink to={`/profile/${tweetsUser.id}`}>
-                <div id="reply__full-name">
-                  {tweetsUser.first_name} {tweetsUser.last_name}
-                </div>
-              </NavLink>
-              <div id="reply__username">
-                @{tweetsUser.username} • {(tweetCreated).slice(5, -18)}
+        <div className="reply-c1__flex-1">
+          <div className="reply__profile">
+            <NavLink to={`/profile/${tweetsUser.id}`}>
+              <div id="reply__full-name">
+                {tweetsUser.first_name} {tweetsUser.last_name}
               </div>
+            </NavLink>
+            <div id="reply__username">
+              @{tweetsUser.username} • {(tweetCreated).slice(5, -18)}
             </div>
+          </div>
 
-            <div id="reply__replied-text">Replying to
+          <div id="reply__replied-text">Replying to
               <NavLink to={`/profile/${originalTweetUser}`}>
-                <span id="reply__replied-link">@{repliedTweetsUsername}</span>
-              </NavLink>
-            </div>
+              <span id="reply__replied-link">@{repliedTweetsUsername}</span>
+            </NavLink>
           </div>
+        </div>
 
-          <div id="reply__dot">
-            <button type="button" id="reply__options-button" onClick={() => {
-              handleDropdown()
-              setCurrentReply(tweet_id)
-            }}>
-              <i className="fas fa-ellipsis-h"></i>
-            </button>
-          </div>
+        <div id="reply__dot">
+          <button type="button" id="reply__options-button" onClick={() => {
+            handleDropdown()
+            setCurrentReply(tweet_id)
+          }}>
+            <i className="fas fa-ellipsis-h"></i>
+          </button>
         </div>
 
         {showOptionsDropdown && user_id === tweet_userId &&
@@ -64,12 +62,12 @@ function Reply({ originalTweetUser, repliedTweetsUsername, tweet_id, tweet_userI
           </div>
         }
 
-      </div>
+        <div className="reply-container-2">
+          {tweetContent}
+        </div>
 
-      <div className="reply-container-2">
-        {tweetContent}
       </div>
-
+      
     </div>
   )
 }

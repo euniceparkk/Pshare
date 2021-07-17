@@ -61,6 +61,11 @@
   padding-top: .2em;
 }
 
+#bt__username:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 /* ----delete dropdown------------------------------------ */
 #bt__dot {
   margin-left: 23em;
