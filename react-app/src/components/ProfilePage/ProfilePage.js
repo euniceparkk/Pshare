@@ -262,7 +262,7 @@ function ProfilePage() {
         <div>
           {showTweets && userTweets && userTweets.map((tweet) => {
             return (
-              <div key={tweet.id}>
+              <div key={`profile-tweet-${tweet.id}`}>
                 {/* {console.log('tweet', tweet)} */}
                 <Tweet
                   user_id={user.id}
@@ -284,7 +284,7 @@ function ProfilePage() {
         <div>
           {showReplies && userReplies && userReplies.map((reply) => {
             return (
-              <div key={`reply-${reply.id}`}>
+              <div key={`profile-reply-${reply.id}`}>
                 {/* {console.log('replied tweet', reply)} */}
                 {/* {console.log('original tweet', reply.tweet)} */}
                 <Reply
@@ -307,7 +307,7 @@ function ProfilePage() {
         <div>
           {showLikes && userLikes && userLikes.map((like) => {
             return (
-              <div key={like.id}>
+              <div key={`profile-like-${like.id}`}>
                 {/* {console.log('inside like', like)} */}
                 <Tweet
                   user_id={user.id}

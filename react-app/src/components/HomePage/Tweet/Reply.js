@@ -44,14 +44,18 @@ function Reply({ originalTweetUser, repliedTweetsUsername, tweet_id, tweet_userI
           </div>
         </div>
 
-        <div id="reply__dot">
-          <button type="button" id="reply__options-button" onClick={() => {
-            handleDropdown()
-            setCurrentReply(tweet_id)
-          }}>
-            <i className="fas fa-ellipsis-h"></i>
-          </button>
-        </div>
+        {user_id === tweet_userId ?
+          <div id="reply__dot">
+            <button type="button" id="reply__options-button" onClick={() => {
+              handleDropdown()
+              setCurrentReply(tweet_id)
+            }}>
+              <i className="fas fa-ellipsis-h"></i>
+            </button>
+          </div>
+          :
+          <div></div>
+        }
 
         {showOptionsDropdown && user_id === tweet_userId &&
           <div className="bt__one-option">
@@ -67,7 +71,7 @@ function Reply({ originalTweetUser, repliedTweetsUsername, tweet_id, tweet_userI
         </div>
 
       </div>
-      
+
     </div>
   )
 }

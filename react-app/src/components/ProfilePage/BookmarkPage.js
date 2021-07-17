@@ -36,7 +36,7 @@ function BookmarkPage() {
             // { console.log('BOOKMARK', bookmark) }
             if (bookmark.user_id === user_id) {
               return (
-                <div key={bookmark.id}>
+                <div key={`bookmark-${bookmark.id}`}>
                   <Tweet
                     user_id={user_id}
                     tweet_userId={bookmark.user_id}

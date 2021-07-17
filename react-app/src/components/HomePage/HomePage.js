@@ -116,7 +116,7 @@ function HomePage() {
           {allTweets && allTweets.map((tweet) => {
             // console.log('tweet', tweet)
             return (
-              <div key={tweet.id}>
+              <div key={`home-${tweet.id}`}>
                 <Tweet
                   user_id={user_id}
                   tweet_userId={tweet.user_id}
