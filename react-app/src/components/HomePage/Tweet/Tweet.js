@@ -144,10 +144,12 @@ function Tweet({ image, tweet_id, tweet_userId, user_id, tweetsUser, tweetCreate
 
       <div className="home-tweet__options-container">
 
-        <div className="home-tweet__option home-tweet__comment">
-          <i className="far fa-comment" id="home-tweet__comment-icon"></i>
-          {tweetsReplies.length}
-        </div>
+        <NavLink to={`/tweet/${tweet_id}`} style={{ color: "gray" }}>
+          <div className="home-tweet__option home-tweet__comment">
+            <i className="far fa-comment" id="home-tweet__comment-icon"></i>
+            {tweetsReplies.length}
+          </div>
+        </NavLink>
 
         {filteredLikes.length ?
           <div className="home-tweet__option home-tweet__like" onClick={handleLikeDelete}>

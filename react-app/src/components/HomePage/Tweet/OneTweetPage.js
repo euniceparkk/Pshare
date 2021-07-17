@@ -72,7 +72,7 @@ function OneTweetPage() {
 
         <div className="single__container-2">
           <div key={tweet.id}>
-            {console.log('BigTweet', tweet)}
+            {/* {console.log('BigTweet', tweet)} */}
             <BigTweet
               user_id={sessionUser.id}
               tweet_userId={tweet.user_id}
@@ -110,7 +110,7 @@ function OneTweetPage() {
             return (
               // key={`post-${postId}-comment-${commentId}`}
               <div key={`comment-${tweet.id}-comment-${tweet.tweet_id}`}>
-                {console.log('replytweet!!', tweet)}
+                {/* {console.log('replytweet!!', tweet)} */}
                 <Reply
                   user_id={sessionUser.id}
                   tweet_userId={tweet.user_id}
