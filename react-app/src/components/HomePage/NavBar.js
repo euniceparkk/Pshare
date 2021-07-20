@@ -60,23 +60,23 @@ const NavBar = () => {
           </div>
         </li>
 
-        <li>
+        {/* <li>
           <div className='nav-hover'>
             <i className="fas fa-hashtag nav__icons"></i>
             <NavLink to="/explore" exact={true} activeClassName="active" className="nav__all-links">
               Explore
           </NavLink>
           </div>
-        </li>
+        </li> */}
 
-        <li>
+        {/* <li>
           <div className='nav-hover'>
             <i className="far fa-bell nav__icons"></i>
             <NavLink to="/notifications" exact={true} activeClassName="active" className="nav__all-links">
               Notifications
           </NavLink>
           </div>
-        </li>
+        </li> */}
 
         <li>
           <div className='nav-hover'>
@@ -94,12 +94,12 @@ const NavBar = () => {
           </div>
         </li>
 
-        <li>
+        {/* <li>
           <div className='nav-hover'>
             <i className="fas fa-spinner nav__icons"></i>
             <button id="nav__more-btn">More</button>
           </div>
-        </li>
+        </li> */}
 
       </ul>
 
