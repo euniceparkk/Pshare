@@ -1,6 +1,6 @@
 # Pshare
-
-Pshare is a clone inspired by Twitter. Pshare is a microblogging and social networking service where users are able to post and interact with messages known as “tweets”.
+### Live Link: [Pshare](https://pshare-app.herokuapp.com/)
+Pshare is a clone inspired by [Twitter](https://twitter.com/). Pshare is a microblogging and social networking service where users are able to post and interact with messages known as “tweets”.
 
 <!-- #### Live Link: [Pshare](https://pshare-app.herokuapp.com) -->
 
